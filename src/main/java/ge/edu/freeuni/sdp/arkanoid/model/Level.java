@@ -4,11 +4,13 @@ public class Level implements GameLevel {
 
     private final String _name;
     private final String _description;
+    private RoomBuilder _builder;
 
 
     public Level(String name, String description, RoomBuilder builder) {
         _name = name;
         _description = description;
+        _builder = builder;
     }
 
 
@@ -21,6 +23,6 @@ public class Level implements GameLevel {
     }
 
     public void build(Room room) {
-
+        _builder.build(room);
     }
 }

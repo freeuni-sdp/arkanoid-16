@@ -33,7 +33,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
                 if (key.getCharacter() == ' ') command = Command.Fire;
                 if (key.getKind() == Key.Kind.Escape) break;
                 if (key.getKind() == Key.Kind.ArrowRight) command = Command.Right;
-                if (key.getKind() == Key.Kind.ArrowRight) command = Command.Left;
+                if (key.getKind() == Key.Kind.ArrowLeft) command = Command.Left;
             }
 
             presenter.execute(command);
@@ -43,7 +43,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
 
     private void sleep() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
 
     public void updateCell(CellPosition position, CellContent content) {
 
-        _terminal.moveCursor(4, 4);
+        _terminal.moveCursor(position.x, position.y);
         switch (content) {
 
             case None:
@@ -60,19 +60,19 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
                 break;
             case RedBrick:
                 _terminal.applyForegroundColor(Terminal.Color.RED);
-                _terminal.putCharacter('=');
+                _terminal.putCharacter('█');
                 break;
             case Paddle:
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
-                _terminal.putCharacter('_');
+                _terminal.putCharacter('▄');
                 break;
             case Ball:
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
-                _terminal.putCharacter('o');
+                _terminal.putCharacter('○');
                 break;
             case Capsule:
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
-                _terminal.putCharacter('X');
+                _terminal.putCharacter('░');
                 break;
         }
     }

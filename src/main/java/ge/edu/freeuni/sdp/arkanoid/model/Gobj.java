@@ -28,7 +28,7 @@ public abstract class Gobj {
             boolean[] shapeColumn = shape[i];
             for (int j = 0; j < shapeColumn.length; j++) {
                 Boolean isOccupied = shapeColumn[j];
-                if (isOccupied) points.add(_position.add(new Point(i, j)));
+                if (isOccupied) points.add(_position.add(new Point(j, i)));
             }
         }
         return points;
