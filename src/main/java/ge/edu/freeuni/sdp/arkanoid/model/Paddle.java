@@ -25,18 +25,11 @@ public class Paddle extends Gobj {
 
     @Override
     public void interactAt(Gobj other, Set<Point> intersection) {
-
     }
 
     @Override
     public boolean isAlive() {
         return true;
-    }
-
-    @Override
-    public void move() {
-        super.move();
-        setSpeed(Speed.NULL);
     }
 
     public void fire() {

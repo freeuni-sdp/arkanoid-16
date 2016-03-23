@@ -6,6 +6,7 @@ public class Game implements GameFacade {
     private Room _room;
     private Size _size;
     private Paddle _paddle;
+    private Ball _ball;
 
     public Game(Size size) {
 
@@ -18,8 +19,8 @@ public class Game implements GameFacade {
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
         _paddle = new Paddle(position);
         _room.add(_paddle);
-        Ball ball = new Ball(new Point(position.X, position.Y - 2));
-        _room.add(ball);
+        _ball = new Ball(new Point(position.X + 1, position.Y - 2), _room, _size);
+        _room.add(_ball);
     }
 
     public void move(Direction direction) {
@@ -34,7 +35,7 @@ public class Game implements GameFacade {
     }
 
     public boolean isGameOver() {
-        return false;
+        return !_ball.isAlive();
     }
 
     public Size getSize() {

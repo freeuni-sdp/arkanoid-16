@@ -18,7 +18,7 @@ public class App {
 		Terminal terminal = getTerminal();
 		Size size = getSize(terminal);
 
-		List<Level> levels = LevelRegistry.getLevels();
+		List<Level> levels = LevelRegistry.getLevels(size);
 
 		Configuration.init(size, levels);
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
@@ -44,7 +44,6 @@ public class App {
 		int width = terminalSize.getColumns();
 		int height = terminalSize.getRows();
 
-		Size size = new Size(width, height);
-		return size;
+		return new Size(width, height);
 	}
 }

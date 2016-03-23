@@ -7,4 +7,13 @@ public class Speed extends Point {
     public Speed(int x, int y) {
         super(x, y);
     }
+
+    public Speed mirrorVertically() {
+        return new Speed(this.X, -this.Y);
+    }
+
+    public Speed mirrorHorizontally() {
+        return new Speed(-this.X, this.Y);
+    }
+
 }

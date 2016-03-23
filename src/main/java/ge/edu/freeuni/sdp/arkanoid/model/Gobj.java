@@ -40,6 +40,13 @@ public abstract class Gobj {
 
     public abstract void interactAt(Gobj other, Set<Point> intersection);
 
+    public Point getPosition() {
+        return _position;
+    }
+
+    public void setPosition(Point position) {
+        _position = position;
+    }
 
     public Speed getSpeed() {
         return _speed;
