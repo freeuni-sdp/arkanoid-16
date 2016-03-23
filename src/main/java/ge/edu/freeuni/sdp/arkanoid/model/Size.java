@@ -19,4 +19,11 @@ public class Size {
     public int getHeight() {
         return _height;
     }
+
+    public boolean isInRange(Point current) {
+        return current.X >= 0 &&
+                current.X < this.getWidth() &&
+                current.Y >= 0 &&
+                current.Y < this.getHeight();
+    }
 }

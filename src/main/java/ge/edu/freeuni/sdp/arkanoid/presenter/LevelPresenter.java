@@ -26,7 +26,7 @@ public class LevelPresenter extends Presenter {
 
     public boolean setSelection(int index) {
         if (index < 0 || index >= getLevelNames().length) return false;
-        _config.selectLevel(index);
+        _config.setSelectedLevelIndex(index);
         _listener.levelSelectionChanged();
         return true;
     }

@@ -29,6 +29,11 @@ public class Paddle extends Gobj {
     }
 
     @Override
+    public boolean isAlive() {
+        return true;
+    }
+
+    @Override
     public void move() {
         super.move();
         setSpeed(Speed.NULL);

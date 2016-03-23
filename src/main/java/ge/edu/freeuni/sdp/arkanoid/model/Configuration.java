@@ -5,9 +5,9 @@ import java.util.List;
 public class Configuration {
 
     private static Configuration _singleton;
-    private List<Level> _levels;
+    private final List<Level> _levels;
+    private final Size _size;
     private int _selectedLevelIndex;
-    private Size _size;
 
     private Configuration(Size size, List<Level> levels) {
         _size = size;
@@ -38,7 +38,7 @@ public class Configuration {
         return _selectedLevelIndex;
     }
 
-    public void selectLevel(int index) {
+    public void setSelectedLevelIndex(int index) {
         _selectedLevelIndex = index;
     }
 

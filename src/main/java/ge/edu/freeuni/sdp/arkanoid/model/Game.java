@@ -17,10 +17,16 @@ public class Game implements GameFacade {
         level.build(_room);
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
         _paddle = new Paddle(position);
+        _room.add(_paddle);
+        Ball ball = new Ball(new Point(position.X, position.Y - 2));
+        _room.add(ball);
     }
 
     public void move(Direction direction) {
         _paddle.setSpeed(direction.toSpeed());
+        _room.move();
+        _room.interact();
+        _room.removeZombies();
     }
 
     public void fire() {

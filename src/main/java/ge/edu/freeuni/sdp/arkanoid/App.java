@@ -23,7 +23,7 @@ public class App {
 		Configuration.init(size, levels);
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
 		GameFacade gameFacade = new Game(size);
-		PresenterFactory presenterFactory = new PresenterFactory(gameFacade);
+		PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
 		ViewController controller = new ViewController(viewFactory, presenterFactory);
 		controller.run();
 		terminal.exitPrivateMode();

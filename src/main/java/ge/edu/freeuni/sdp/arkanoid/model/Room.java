@@ -1,6 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Room {
@@ -30,7 +32,11 @@ public class Room {
     }
 
     public void removeZombies() {
-
+        List<Gobj> zombies = new ArrayList<Gobj>();
+        for (Gobj candidate : getGobjs()) {
+            if (!candidate.isAlive()) zombies.add(candidate);
+        }
+        _gobjs.removeAll(zombies);
     }
 
     public Set<Gobj> getGobjs() {

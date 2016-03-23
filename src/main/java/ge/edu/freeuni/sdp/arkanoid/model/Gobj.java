@@ -48,4 +48,6 @@ public abstract class Gobj {
     public void setSpeed(Speed _speed) {
         this._speed = _speed;
     }
+
+    public abstract boolean isAlive();
 }

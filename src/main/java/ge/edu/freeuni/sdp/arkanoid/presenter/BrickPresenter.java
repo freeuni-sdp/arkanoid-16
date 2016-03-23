@@ -2,12 +2,13 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Brick;
 import ge.edu.freeuni.sdp.arkanoid.model.BrickColor;
+import ge.edu.freeuni.sdp.arkanoid.model.Size;
 
 public class BrickPresenter extends GobjPresenter<Brick> {
 
 
-    BrickPresenter(Brick gameObject) {
-        super(gameObject);
+    BrickPresenter(Brick gameObject, Size size) {
+        super(gameObject, size);
     }
 
     @Override

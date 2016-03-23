@@ -28,6 +28,11 @@ public class Brick extends Gobj {
 
     }
 
+    @Override
+    public boolean isAlive() {
+        return true;
+    }
+
     public BrickColor getColor() {
         return _color;
     }

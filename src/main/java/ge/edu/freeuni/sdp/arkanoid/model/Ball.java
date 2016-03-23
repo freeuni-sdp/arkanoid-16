@@ -27,4 +27,9 @@ public class Ball extends Gobj {
     public void interactAt(Gobj other, Set<Point> intersection) {
 
     }
+
+    @Override
+    public boolean isAlive() {
+        return true;
+    }
 }

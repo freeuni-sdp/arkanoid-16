@@ -27,11 +27,14 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
             Key key = _terminal.readInput();
             if (presenter.isGameOver()) break;
 
-            if (key == null) break;
-            if (key.getCharacter() == ' ') command = Command.Fire;
-            //if (key.getKind() == Key.Kind.Escape)
-            if (key.getKind() == Key.Kind.ArrowRight) command = Command.Right;
-            if (key.getKind() == Key.Kind.ArrowRight) command = Command.Left;
+            if (key == null) {
+                command = Command.None;
+            } else {
+                if (key.getCharacter() == ' ') command = Command.Fire;
+                if (key.getKind() == Key.Kind.Escape) break;
+                if (key.getKind() == Key.Kind.ArrowRight) command = Command.Right;
+                if (key.getKind() == Key.Kind.ArrowRight) command = Command.Left;
+            }
 
             presenter.execute(command);
             sleep();
