@@ -24,7 +24,9 @@ public class Room {
             for (Gobj other : _gobjs) {
                 if (current == other) continue;
                 boolean hasOverlap = current.getShape().hasOverlap(other.getShape());
-                if (hasOverlap) current.interact(other);
+                if (hasOverlap) {
+                    current.interact(other);
+                }
             }
         }
     }

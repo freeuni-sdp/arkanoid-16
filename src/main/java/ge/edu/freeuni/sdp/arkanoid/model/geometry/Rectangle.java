@@ -41,12 +41,12 @@ public class Rectangle extends Shape {
     }
 
     public boolean hasOverlap(Shape other) {
-        if (other.getClass().isInstance(Circle.class)) {
-            hasOverlap((Circle) other);
+        if (other instanceof Circle) {
+            return hasOverlap((Circle) other);
         }
 
-        if (other.getClass().isInstance(Rectangle.class)) {
-            hasOverlap((Rectangle) other);
+        if (other instanceof Rectangle) {
+            return hasOverlap((Rectangle) other);
         }
 
         return false;

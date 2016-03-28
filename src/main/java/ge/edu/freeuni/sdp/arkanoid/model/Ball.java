@@ -24,7 +24,7 @@ public class Ball extends Gobj {
 
     public void interact(Gobj other) {
         Shape otherShape = other.getShape();
-        if (otherShape.getClass().isInstance(Rectangle.class)) {
+        if (otherShape instanceof Rectangle) {
             Rectangle otherRectangle = (Rectangle) other.getShape();
             Point c = getPosition();
             double radius = RADIUS;
@@ -36,8 +36,17 @@ public class Ball extends Gobj {
             boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= l.Y + s.getHeight();
             boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= r.Y && c.Y <= r.Y + s.getHeight();
 
-            if (touchTop || touchBottom) setSpeed(getSpeed().mirrorVertically());
-            if (touchLeft || touchRight) setSpeed(getSpeed().mirrorHorizontally());
+            if (touchTop || touchBottom) {
+                Speed newSpeed = getSpeed().mirrorVertically();
+                setSpeed(newSpeed);
+                return;
+            }
+
+            if (touchLeft || touchRight) {
+                Speed newSpeed = getSpeed().mirrorHorizontally();
+                setSpeed(newSpeed);
+                return;
+            }
         }
     }
 
