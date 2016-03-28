@@ -14,8 +14,7 @@ public class FrameBuilder implements RoomBuilder {
     public void build(Room room) {
         for (int i = -1; i < _size.getWidth() + 1; i++) {
             //NOTE: Bottom is a killer brick
-            //Brick bottomBrick = new KillerBrick(new Point(i, _size.getHeight()));
-            Brick bottomBrick = new SolidBrick(new Point(i, _size.getHeight()));
+            Brick bottomBrick = new KillerBrick(new Point(i, _size.getHeight()));
             room.add(bottomBrick);
 
             Brick topBrick = new SolidBrick(new Point(i, -1));
