@@ -34,6 +34,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
                 if (key.getKind() == Key.Kind.Escape) break;
                 if (key.getKind() == Key.Kind.ArrowRight) command = Command.Right;
                 if (key.getKind() == Key.Kind.ArrowLeft) command = Command.Left;
+                if (key.getKind() == Key.Kind.ArrowDown) command = Command.Stop;
             }
 
             presenter.execute(command);
@@ -43,7 +44,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
 
     private void sleep() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(30);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

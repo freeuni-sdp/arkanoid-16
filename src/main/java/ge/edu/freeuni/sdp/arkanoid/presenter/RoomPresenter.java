@@ -1,7 +1,11 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 
-import ge.edu.freeuni.sdp.arkanoid.model.*;
+import ge.edu.freeuni.sdp.arkanoid.model.Configuration;
+import ge.edu.freeuni.sdp.arkanoid.model.GameFacade;
+import ge.edu.freeuni.sdp.arkanoid.model.Gobj;
+import ge.edu.freeuni.sdp.arkanoid.model.Level;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 
 public class RoomPresenter extends Presenter {
 
@@ -9,11 +13,13 @@ public class RoomPresenter extends Presenter {
     private final GobjPresenterFactory _gobjPresenterFactory;
     private final CellContent[][] _cellsCache;
     private CellUpdateListener _listener;
+    private Direction _direction;
 
     public RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
         _game = game;
         _gobjPresenterFactory = gobjPresenterFactory;
         _cellsCache = initCells();
+        _direction = Direction.NONE;
     }
 
     public void init() {
@@ -31,11 +37,25 @@ public class RoomPresenter extends Presenter {
 
     public void execute(Command command) {
         scanAndNotify();
-        _game.move(toDirection(command));
+        switch (command) {
 
-        if (command == Command.Fire) {
-            _game.fire();
+            case None:
+                break;
+            case Stop:
+                _direction = Direction.NONE;
+                break;
+            case Left:
+                _direction = Direction.LEFT;
+                break;
+            case Right:
+                _direction = Direction.RIGHT;
+                break;
+            case Fire:
+                _game.fire();
+                break;
         }
+
+        _game.move(_direction);
     }
 
     private void scanAndNotify() {

@@ -1,16 +1,23 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Ball;
-import ge.edu.freeuni.sdp.arkanoid.model.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class BallPresenter extends GobjPresenter<Ball> {
 
     BallPresenter(Ball gameObject, Size size) {
-        super(gameObject, size);
+        super(size, gameObject);
     }
 
-    @Override
-    CellContent getContent() {
-        return CellContent.Ball;
+    void Draw(CellContent[][] cells) {
+        Point p = getGameObject().getPosition();
+        int i = (int) Math.round(p.X);
+        int j = (int) Math.round(p.Y);
+        Point current = new Point(i, j);
+        Size size = getSize();
+        if (size.isInRange(current)) {
+            cells[i][j] = CellContent.Ball;
+        }
     }
 }

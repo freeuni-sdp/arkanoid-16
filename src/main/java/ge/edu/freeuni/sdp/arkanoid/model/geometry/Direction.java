@@ -1,4 +1,4 @@
-package ge.edu.freeuni.sdp.arkanoid.model;
+package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
 import java.util.Random;
 

@@ -1,5 +1,10 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
+
 import java.util.Set;
 
 public class Game implements GameFacade {
@@ -19,7 +24,8 @@ public class Game implements GameFacade {
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
         _paddle = new Paddle(position);
         _room.add(_paddle);
-        _ball = new Ball(new Point(position.X + 1, position.Y - 2), _room, _size);
+        _ball = new Ball(new Point(position.X + 1, position.Y - 2));
+        _ball.setSpeed(new Speed(-45));
         _room.add(_ball);
     }
 

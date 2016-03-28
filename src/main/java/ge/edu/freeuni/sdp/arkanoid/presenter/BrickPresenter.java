@@ -2,9 +2,9 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Brick;
 import ge.edu.freeuni.sdp.arkanoid.model.BrickColor;
-import ge.edu.freeuni.sdp.arkanoid.model.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class BrickPresenter extends GobjPresenter<Brick> {
+public class BrickPresenter extends RectanglePresenter<Brick> {
 
 
     BrickPresenter(Brick gameObject, Size size) {

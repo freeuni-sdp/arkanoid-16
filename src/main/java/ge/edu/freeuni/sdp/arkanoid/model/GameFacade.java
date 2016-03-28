@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+
 import java.util.Set;
 
 public interface GameFacade {

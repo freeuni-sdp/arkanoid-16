@@ -1,7 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 public abstract class Gobj {
 
@@ -17,28 +18,15 @@ public abstract class Gobj {
         _speed = speed;
     }
 
-    protected abstract boolean[][] getShape();
+    public abstract Shape getShape();
 
     public abstract GobjKind getKind();
-
-    public Set<Point> getOccupied() {
-        HashSet<Point> points = new HashSet<Point>();
-        boolean[][] shape = getShape();
-        for (int i = 0; i < shape.length; i++) {
-            boolean[] shapeColumn = shape[i];
-            for (int j = 0; j < shapeColumn.length; j++) {
-                Boolean isOccupied = shapeColumn[j];
-                if (isOccupied) points.add(_position.add(new Point(j, i)));
-            }
-        }
-        return points;
-    }
 
     public void move() {
         _position = _position.add(_speed);
     }
 
-    public abstract void interactAt(Gobj other, Set<Point> intersection);
+    public abstract void interact(Gobj other);
 
     public Point getPosition() {
         return _position;

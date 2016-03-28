@@ -22,11 +22,9 @@ public class Room {
     public void interact() {
         for (Gobj current : _gobjs) {
             for (Gobj other : _gobjs) {
-                Set<Point> intersection = other.getOccupied();
-                intersection.retainAll(current.getOccupied());
-                if (!intersection.isEmpty()) {
-                    current.interactAt(other, intersection);
-                }
+                if (current == other) continue;
+                boolean hasOverlap = current.getShape().hasOverlap(other.getShape());
+                if (hasOverlap) current.interact(other);
             }
         }
     }

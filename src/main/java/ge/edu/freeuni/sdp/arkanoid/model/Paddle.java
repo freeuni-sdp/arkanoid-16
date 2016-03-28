@@ -1,11 +1,14 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.Set;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class Paddle extends Gobj {
 
     private static boolean[][] _normalShape = {
-            {true, true, true}
+            {true, true, true, true, true}
     };
 
 
@@ -14,8 +17,8 @@ public class Paddle extends Gobj {
     }
 
     @Override
-    protected boolean[][] getShape() {
-        return _normalShape;
+    public Shape getShape() {
+        return new Rectangle(getPosition(), new Size(3, 1));
     }
 
     @Override
@@ -24,7 +27,7 @@ public class Paddle extends Gobj {
     }
 
     @Override
-    public void interactAt(Gobj other, Set<Point> intersection) {
+    public void interact(Gobj other) {
     }
 
     @Override

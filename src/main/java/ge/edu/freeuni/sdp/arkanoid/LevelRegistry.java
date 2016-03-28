@@ -2,7 +2,7 @@ package ge.edu.freeuni.sdp.arkanoid;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.Level1Builder;
-import ge.edu.freeuni.sdp.arkanoid.model.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.util.ArrayList;
 import java.util.List;

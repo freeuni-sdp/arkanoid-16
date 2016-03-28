@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+
 import java.util.List;
 
 public class Configuration {

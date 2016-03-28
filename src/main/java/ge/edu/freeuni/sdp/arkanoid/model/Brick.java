@@ -1,11 +1,12 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.Set;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class Brick extends Gobj {
-    private static boolean[][] _shape = {
-            {true, true}
-    };
+
     private final BrickColor _color;
 
     public Brick(Point position, BrickColor color) {
@@ -14,8 +15,8 @@ public class Brick extends Gobj {
     }
 
     @Override
-    protected boolean[][] getShape() {
-        return _shape;
+    public Shape getShape() {
+        return new Rectangle(getPosition(), new Size(3, 1));
     }
 
     @Override
@@ -23,10 +24,10 @@ public class Brick extends Gobj {
         return GobjKind.Brick;
     }
 
-    @Override
-    public void interactAt(Gobj other, Set<Point> intersection) {
+    public void interact(Gobj other) {
 
     }
+
 
     @Override
     public boolean isAlive() {

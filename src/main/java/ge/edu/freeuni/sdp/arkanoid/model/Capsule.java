@@ -1,20 +1,19 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.Set;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class Capsule extends Gobj {
-
-    private static boolean[][] _shape = {
-            {true, true}
-    };
 
     protected Capsule(Point position) {
         super(position);
     }
 
     @Override
-    protected boolean[][] getShape() {
-        return _shape;
+    public Shape getShape() {
+        return new Rectangle(getPosition(), new Size(1, 1));
     }
 
     @Override
@@ -22,10 +21,10 @@ public class Capsule extends Gobj {
         return GobjKind.Capsule;
     }
 
-    @Override
-    public void interactAt(Gobj other, Set<Point> intersection) {
+    public void interact(Gobj other) {
 
     }
+
 
     @Override
     public boolean isAlive() {

@@ -1,11 +1,11 @@
-package ge.edu.freeuni.sdp.arkanoid.model;
+package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
 public class Point {
 
-    public int X;
-    public int Y;
+    public double X;
+    public double Y;
 
-    public Point(int x, int y) {
+    public Point(double x, double y) {
         X = x;
         Y = y;
     }
@@ -14,8 +14,8 @@ public class Point {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + X;
-        result = prime * result + Y;
+        result = prime * result + (int) (Double.doubleToLongBits(X) % Integer.MAX_VALUE);
+        result = prime * result + (int) (Double.doubleToLongBits(Y) % Integer.MAX_VALUE);
         return result;
     }
 

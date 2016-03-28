@@ -1,7 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 import ge.edu.freeuni.sdp.arkanoid.model.GameFacade;
-import ge.edu.freeuni.sdp.arkanoid.model.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class PresenterFactory {
 

@@ -1,36 +1,20 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.Set;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+
 
 public class Ball extends Gobj {
 
-    private static boolean[][] _shape = {
-            {true}
-    };
-    private static Speed _initialSpeed = new Speed(1, -1);
-    private final Room _room;
-    private final Point _initialPosition;
-    private Size _size;
-    private int _lives;
+    private static double RADIUS = (float) 0.5;
 
-    protected Ball(Point position, Room room, Size size) {
+    protected Ball(Point position) {
 
         super(position);
-        _initialPosition = position;
-        _size = size;
-        _lives = 3;
-        _room = room;
-        init();
-    }
-
-    private void init() {
-        setSpeed(_initialSpeed);
-        setPosition(_initialPosition);
     }
 
     @Override
-    protected boolean[][] getShape() {
-        return _shape;
+    public Shape getShape() {
+        return new Circle(RADIUS, getPosition());
     }
 
     @Override
@@ -38,38 +22,29 @@ public class Ball extends Gobj {
         return GobjKind.Ball;
     }
 
-    @Override
-    public void interactAt(Gobj other, Set<Point> intersection) {
-        if (other.getKind() == GobjKind.Paddle) {
-            setSpeed(getSpeed().mirrorVertically());
+    public void interact(Gobj other) {
+        Shape otherShape = other.getShape();
+        if (otherShape.getClass().isInstance(Rectangle.class)) {
+            Rectangle otherRectangle = (Rectangle) other.getShape();
+            Point c = getPosition();
+            double radius = RADIUS;
+            Point l = otherRectangle.getPosition();
+            Point r = otherRectangle.getBottomRight();
+            Size s = otherRectangle.getSize();
+            boolean touchTop = Math.abs(c.Y - l.Y) <= radius && c.X >= l.X && c.X <= l.X + s.getWidth();
+            boolean touchBottom = Math.abs(c.Y - r.Y) <= radius && c.X >= r.X && c.X <= r.X + s.getWidth();
+            boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= l.Y + s.getHeight();
+            boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= r.Y && c.Y <= r.Y + s.getHeight();
+
+            if (touchTop || touchBottom) setSpeed(getSpeed().mirrorVertically());
+            if (touchLeft || touchRight) setSpeed(getSpeed().mirrorHorizontally());
         }
     }
 
 
     @Override
     public boolean isAlive() {
-        return _lives > 0;
+        return true;
     }
 
-    @Override
-    public void move() {
-        Point current = getPosition();
-        Point next = current.add(getSpeed());
-        if (next.X < 0 || next.X >= _size.getWidth()) setSpeed(getSpeed().mirrorHorizontally());
-        if (next.Y < 0) setSpeed(getSpeed().mirrorVertically());
-        super.move();
-    }
-
-    public int getLives() {
-        return _lives;
-    }
-
-    public void incLives() {
-        _lives++;
-    }
-
-    public void decLives() {
-        _lives--;
-        init();
-    }
 }
