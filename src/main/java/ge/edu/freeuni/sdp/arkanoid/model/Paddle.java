@@ -43,8 +43,7 @@ public class Paddle extends Gobj {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());
         for (PaddleChangedListener listener : _listeners) {
-            listener.changed(newPaddle);
-            newPaddle.addListener(listener);
+            listener.paddleChanged(newPaddle);
         }
     }
 

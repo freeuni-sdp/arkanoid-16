@@ -7,7 +7,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 import java.util.Set;
 
-public class Game implements GameFacade {
+public class Game implements GameFacade, PaddleChangedListener {
     private Room _room;
     private Size _size;
     private Paddle _paddle;
@@ -22,8 +22,7 @@ public class Game implements GameFacade {
         _room = new Room();
         level.build(_room);
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
-        _paddle = new Paddle(position);
-        _room.add(_paddle);
+        paddleChanged(new Paddle(position));
         _ball = new Ball(new Point(position.X + 1, position.Y - 2));
         _ball.setSpeed(new Speed(-45));
         _room.add(_ball);
@@ -50,5 +49,11 @@ public class Game implements GameFacade {
 
     public Set<Gobj> getGobjs() {
         return _room.getGobjs();
+    }
+
+    public void paddleChanged(Paddle newPaddle) {
+        _paddle = newPaddle;
+        _room.add(_paddle);
+        _paddle.addListener(this);
     }
 }
