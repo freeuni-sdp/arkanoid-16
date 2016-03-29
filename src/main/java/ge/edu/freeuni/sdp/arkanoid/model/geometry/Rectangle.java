@@ -21,7 +21,7 @@ public class Rectangle extends Shape {
         return new Point(_position.X + _size.getWidth(), _position.Y + _size.getHeight());
     }
 
-    public boolean hasOverlap(Rectangle other) {
+    public boolean canOverlap(Rectangle other) {
         Point l1 = this.getPosition();
         Point r1 = this.getBottomRight();
 
@@ -36,17 +36,17 @@ public class Rectangle extends Shape {
 
     }
 
-    public boolean hasOverlap(Circle other) {
-        return other.hasOverlap(this);
+    public boolean canOverlap(Circle other) {
+        return other.canOverlap(this);
     }
 
-    public boolean hasOverlap(Shape other) {
+    public boolean canOverlap(Shape other) {
         if (other instanceof Circle) {
-            return hasOverlap((Circle) other);
+            return canOverlap((Circle) other);
         }
 
         if (other instanceof Rectangle) {
-            return hasOverlap((Rectangle) other);
+            return canOverlap((Rectangle) other);
         }
 
         return false;

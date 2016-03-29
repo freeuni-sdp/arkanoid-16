@@ -17,4 +17,10 @@ public class FrameBrick extends Brick {
     public Shape getShape() {
         return new Rectangle(getPosition(), _size);
     }
+
+    @Override
+    public boolean isAlive() {
+        return true;
+    }
+
 }

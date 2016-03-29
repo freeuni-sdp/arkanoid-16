@@ -37,10 +37,10 @@ public class Ball extends Gobj {
             Point l = otherRectangle.getPosition();
             Point r = otherRectangle.getBottomRight();
             Size s = otherRectangle.getSize();
-            boolean touchTop = Math.abs(c.Y - l.Y) <= radius && c.X >= l.X && c.X <= l.X + s.getWidth();
-            boolean touchBottom = Math.abs(c.Y - r.Y) <= radius && c.X >= r.X && c.X <= r.X + s.getWidth();
-            boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= l.Y + s.getHeight();
-            boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= r.Y && c.Y <= r.Y + s.getHeight();
+            boolean touchTop = Math.abs(c.Y - l.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
+            boolean touchBottom = Math.abs(c.Y - r.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
+            boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
+            boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
 
             Speed newSpeed = getSpeed();
             if (touchTop) newSpeed = newSpeed.mirrorVertically();

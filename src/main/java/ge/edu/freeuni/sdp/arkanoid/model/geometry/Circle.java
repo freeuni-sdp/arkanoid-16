@@ -17,41 +17,35 @@ public class Circle extends Shape {
         return _center;
     }
 
-    public boolean hasOverlap(Shape other) {
+    public boolean canOverlap(Shape other) {
         if (other instanceof Circle) {
-            return hasOverlap((Circle) other);
+            return canOverlap((Circle) other);
         }
 
         if (other instanceof Rectangle) {
-            return hasOverlap((Rectangle) other);
+            return canOverlap((Rectangle) other);
         }
 
         return false;
     }
 
-    public boolean hasOverlap(Circle other) {
+    public boolean canOverlap(Circle other) {
         Point c1 = this.getCenter();
         Point c2 = other.getCenter();
         double distance = Math.hypot(c1.X - c2.X, c1.Y - c2.Y);
         return distance < this.getRadius() + other.getRadius();
     }
 
-    public boolean hasOverlap(Rectangle rectangle) {
-        Point c = this.getCenter();
+    public boolean canOverlap(Rectangle rectangle) {
+        Point c = _center;
+        double radius = _radius;
         Point l = rectangle.getPosition();
-        Size s = rectangle.getSize();
         Point r = rectangle.getBottomRight();
-        boolean isInside = l.X < c.X && l.Y < c.Y && r.X > c.X && r.Y > c.Y;
-        if (isInside) return true;
-
-        boolean touchTop = Math.abs(c.Y - l.Y) <= _radius && c.X >= l.X && c.X <= l.X + s.getWidth();
-        if (touchTop) return true;
-        boolean touchBottom = Math.abs(c.Y - r.Y) <= _radius && c.X >= r.X && c.X <= r.X + s.getWidth();
-        if (touchBottom) return true;
-        boolean touchLeft = Math.abs(c.X - l.X) <= _radius && c.Y >= l.Y && c.Y <= l.Y + s.getHeight();
-        if (touchLeft) return true;
-        boolean touchRight = Math.abs(c.X - r.X) <= _radius && c.Y >= r.Y && c.Y <= r.Y + s.getHeight();
-        return touchRight;
-
+        Size s = rectangle.getSize();
+        boolean touchTop = Math.abs(c.Y - l.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
+        boolean touchBottom = Math.abs(c.Y - r.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
+        boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
+        boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
+        return touchBottom || touchLeft || touchTop || touchRight;
     }
 }

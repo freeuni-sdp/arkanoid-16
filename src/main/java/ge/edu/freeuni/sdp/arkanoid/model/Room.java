@@ -26,7 +26,7 @@ public class Room {
         for (Gobj current : snapshot) {
             for (Gobj other : snapshot) {
                 if (current == other) continue;
-                boolean hasOverlap = current.getShape().hasOverlap(other.getShape());
+                boolean hasOverlap = current.getShape().canOverlap(other.getShape());
                 if (hasOverlap) {
                     current.interact(other);
                 }
