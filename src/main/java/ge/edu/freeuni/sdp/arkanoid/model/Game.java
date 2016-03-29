@@ -8,19 +8,20 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 import java.util.Set;
 
 public class Game implements GameFacade, PaddleChangedListener {
+    private final ScoreCounter _scoreCounter;
     private Room _room;
     private Size _size;
     private Paddle _paddle;
     private Ball _ball;
 
     public Game(Size size) {
-
         this._size = size;
+        _scoreCounter = new ScoreCounter();
     }
 
     public void init(Level level) {
         _room = new Room();
-        level.build(_room);
+        level.build(_room, _scoreCounter);
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
         paddleChanged(new Paddle(position));
         _ball = new Ball(new Point(position.X + 1, position.Y - 2));

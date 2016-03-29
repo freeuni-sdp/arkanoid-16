@@ -9,8 +9,8 @@ public class TestLevelBuilder extends FrameBuilder {
         super(size);
     }
 
-    public void build(Room room) {
-        super.build(room);
+    public void build(Room room, ScoreCounter scoreCounter) {
+        super.build(room, scoreCounter);
         int brickDistance = 5;
         int roomWidth = Configuration.getInstance().getSize().getWidth();
 

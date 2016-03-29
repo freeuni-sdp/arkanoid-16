@@ -22,7 +22,7 @@ public class Level implements GameLevel {
         return _name;
     }
 
-    public void build(Room room) {
-        _builder.build(room);
+    public void build(Room room, ScoreCounter _scoreCounter) {
+        _builder.build(room, _scoreCounter);
     }
 }

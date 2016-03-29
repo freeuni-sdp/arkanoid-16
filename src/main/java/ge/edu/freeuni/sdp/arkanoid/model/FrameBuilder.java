@@ -11,7 +11,7 @@ public class FrameBuilder implements RoomBuilder {
         _size = size;
     }
 
-    public void build(Room room) {
+    public void build(Room room, ScoreCounter scoreCounter) {
 
         int h = _size.getHeight();
         int w = _size.getWidth();
