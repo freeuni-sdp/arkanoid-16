@@ -8,12 +8,6 @@ public abstract class Brick extends Gobj {
     private final Capsule _capsule;
     private boolean _isAlive;
 
-
-    public Brick(Point position, BrickColor color) {
-        this(position, color, new NullCapsule(position));
-    }
-
-
     public Brick(Point position, BrickColor color, Capsule capsule) {
         super(position);
         _color = color;

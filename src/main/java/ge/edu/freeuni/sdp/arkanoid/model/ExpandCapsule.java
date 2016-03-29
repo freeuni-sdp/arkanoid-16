@@ -11,9 +11,9 @@ public class ExpandCapsule extends Capsule {
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle) {
-            Room room = getRoom();
-            Paddle extendedPaddle = new ExpandedPaddle(other.getPosition());
-            room.add(extendedPaddle);
+            Paddle oldPaddle = (Paddle) other;
+            Paddle newPaddle = new ExpandedPaddle(other.getPosition());
+            oldPaddle.exchange(newPaddle);
         }
     }
 }

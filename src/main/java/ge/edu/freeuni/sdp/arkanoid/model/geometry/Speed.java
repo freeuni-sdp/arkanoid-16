@@ -21,4 +21,8 @@ public class Speed extends Point {
         return new Speed(-this.X, this.Y);
     }
 
+    public Speed mirror() {
+        return this.mirrorHorizontally().mirrorVertically();
+    }
+
 }

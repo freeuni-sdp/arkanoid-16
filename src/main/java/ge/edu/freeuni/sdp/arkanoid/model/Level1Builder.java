@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class Level1Builder extends FrameBuilder {
@@ -11,13 +12,23 @@ public class Level1Builder extends FrameBuilder {
 
     public void build(Room room) {
         super.build(room);
-        int brickDistance = 3;
-        int width = Configuration.getInstance().getSize().getWidth();
-        for (int i = 0; i < width; i += brickDistance) {
-            Point position = new Point(i, 5);
+        int brickDistance = getNormalBrickWidth() + 1;
+        int roomWidth = Configuration.getInstance().getSize().getWidth();
+
+        createRow(room, brickDistance, roomWidth, 5);
+        createRow(room, brickDistance, roomWidth, 4);
+    }
+
+    private void createRow(Room room, int brickDistance, int roomWidth, int rowHeight) {
+        for (int i = 1; i < roomWidth; i += brickDistance) {
+            Point position = new Point(i, rowHeight);
             Brick current = new NormalBrick(position, BrickColor.Red, new NullCapsule(null));
             room.add(current);
         }
+    }
+
+    private int getNormalBrickWidth() {
+        return ((Rectangle) new NormalBrick(null, BrickColor.Red, null).getShape()).getSize().getWidth();
     }
 }
 

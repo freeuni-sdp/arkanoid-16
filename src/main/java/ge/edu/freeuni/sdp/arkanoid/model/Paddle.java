@@ -5,17 +5,18 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Paddle extends Gobj {
 
-    private static boolean[][] _normalShape = {
-            {true, true, true, true, true}
-    };
+    private final Set<PaddleChangedListener> _listeners;
     private boolean _isAlive;
-
 
     protected Paddle(Point position) {
         super(position);
         _isAlive = true;
+        _listeners = new HashSet<PaddleChangedListener>();
     }
 
     @Override
@@ -30,9 +31,7 @@ public class Paddle extends Gobj {
 
     @Override
     public void interact(Gobj other) {
-        if (other instanceof Capsule) {
-            _isAlive = false;
-        }
+
     }
 
     @Override
@@ -40,8 +39,20 @@ public class Paddle extends Gobj {
         return _isAlive;
     }
 
+    public void exchange(Paddle newPaddle) {
+        _isAlive = false;
+        newPaddle.setPosition(this.getPosition());
+        for (PaddleChangedListener listener : _listeners) {
+            listener.changed(newPaddle);
+            newPaddle.addListener(listener);
+        }
+    }
 
     public void fire() {
 
+    }
+
+    public void addListener(PaddleChangedListener listener) {
+        _listeners.add(listener);
     }
 }

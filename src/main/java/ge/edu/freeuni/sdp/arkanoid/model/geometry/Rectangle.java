@@ -28,12 +28,10 @@ public class Rectangle extends Shape {
         Point l2 = other.getPosition();
         Point r2 = other.getBottomRight();
 
-        if (l1.X > r2.X || l2.X > r1.X)
-            return false;
-
-        // If one rectangle is above other
-        return !(l1.Y < r2.Y || l2.Y < r1.Y);
-
+        return l1.X < r2.X &&
+                r1.X > l2.X &&
+                l1.Y < r2.Y &&
+                r1.Y > l2.Y;
     }
 
     public boolean canOverlap(Circle other) {

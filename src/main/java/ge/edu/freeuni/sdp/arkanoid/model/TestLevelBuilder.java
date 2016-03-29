@@ -11,9 +11,10 @@ public class TestLevelBuilder extends FrameBuilder {
 
     public void build(Room room) {
         super.build(room);
-        int brickDistance = 3;
-        int width = Configuration.getInstance().getSize().getWidth();
-        for (int i = 0; i < width; i += brickDistance) {
+        int brickDistance = 5;
+        int roomWidth = Configuration.getInstance().getSize().getWidth();
+
+        for (int i = 1; i < roomWidth; i += brickDistance) {
             Point position = new Point(i, 5);
             Capsule capsule = new ExpandCapsule(position, room);
             Brick current = new NormalBrick(position, BrickColor.Red, capsule);

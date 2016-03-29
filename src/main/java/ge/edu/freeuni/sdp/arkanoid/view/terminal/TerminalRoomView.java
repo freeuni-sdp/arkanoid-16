@@ -44,7 +44,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener {
 
     private void sleep() {
         try {
-            Thread.sleep(30);
+            Thread.sleep(50);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
