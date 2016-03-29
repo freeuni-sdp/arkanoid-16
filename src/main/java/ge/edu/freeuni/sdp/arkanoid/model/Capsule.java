@@ -1,14 +1,17 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
-public class Capsule extends Gobj {
+public abstract class Capsule extends Gobj {
 
-    protected Capsule(Point position) {
+    private final Room _room;
+    private boolean _isAlive;
+
+    protected Capsule(Point position, Room room) {
+
         super(position);
+        _isAlive = true;
+        _room = room;
     }
 
     @Override
@@ -21,13 +24,27 @@ public class Capsule extends Gobj {
         return GobjKind.Capsule;
     }
 
+    @Override
     public void interact(Gobj other) {
-
+        if (!(other instanceof Ball)) {
+            _isAlive = false;
+        }
     }
-
 
     @Override
     public boolean isAlive() {
-        return true;
+        return _isAlive;
+    }
+
+    public void release(Point position) {
+        this.setPosition(position);
+        Speed falling = new Speed(90);
+        this.setSpeed(falling);
+        _room.add(this);
+    }
+
+    protected Room getRoom() {
+        return _room;
     }
 }
+

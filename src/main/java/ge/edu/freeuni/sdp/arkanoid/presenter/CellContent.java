@@ -4,5 +4,6 @@ public enum CellContent {
     None,
     RedBrick,
     Paddle,
-    Ball, Capsule
+    Ball,
+    ECapsule
 }

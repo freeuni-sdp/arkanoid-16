@@ -23,8 +23,14 @@ public class Ball extends Gobj {
     }
 
     public void interact(Gobj other) {
-        Shape otherShape = other.getShape();
-        if (otherShape instanceof Rectangle) {
+
+        if (other instanceof Paddle) {
+            Speed newSpeed = getSpeed().mirrorVertically();
+            setSpeed(newSpeed);
+            return;
+        }
+
+        if (other instanceof Brick) {
             Rectangle otherRectangle = (Rectangle) other.getShape();
             Point c = getPosition();
             double radius = RADIUS;
@@ -36,17 +42,14 @@ public class Ball extends Gobj {
             boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= l.Y + s.getHeight();
             boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= r.Y && c.Y <= r.Y + s.getHeight();
 
-            if (touchTop || touchBottom) {
-                Speed newSpeed = getSpeed().mirrorVertically();
-                setSpeed(newSpeed);
-                return;
-            }
+            Speed newSpeed = getSpeed();
+            if (touchTop) newSpeed = newSpeed.mirrorVertically();
+            if (touchBottom) newSpeed = newSpeed.mirrorVertically();
+            if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
+            if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
 
-            if (touchLeft || touchRight) {
-                Speed newSpeed = getSpeed().mirrorHorizontally();
-                setSpeed(newSpeed);
-                return;
-            }
+            setSpeed(newSpeed);
+            return;
         }
     }
 

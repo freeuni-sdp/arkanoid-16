@@ -20,8 +20,11 @@ public class Room {
     }
 
     public void interact() {
-        for (Gobj current : _gobjs) {
-            for (Gobj other : _gobjs) {
+        Gobj[] snapshot = new Gobj[_gobjs.size()];
+        _gobjs.toArray(snapshot);
+
+        for (Gobj current : snapshot) {
+            for (Gobj other : snapshot) {
                 if (current == other) continue;
                 boolean hasOverlap = current.getShape().hasOverlap(other.getShape());
                 if (hasOverlap) {

@@ -2,6 +2,7 @@ package ge.edu.freeuni.sdp.arkanoid;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.Level1Builder;
+import ge.edu.freeuni.sdp.arkanoid.model.TestLevelBuilder;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class LevelRegistry {
         Level levelVerySimple = new Level(
                 "Test level - one brick",
                 "One line of bricks, paddle and that's it.",
-                new Level1Builder(size));
+                new TestLevelBuilder(size));
 
         Level level1 = new Level(
                 "Level 1",

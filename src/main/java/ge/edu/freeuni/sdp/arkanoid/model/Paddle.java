@@ -10,10 +10,12 @@ public class Paddle extends Gobj {
     private static boolean[][] _normalShape = {
             {true, true, true, true, true}
     };
+    private boolean _isAlive;
 
 
     protected Paddle(Point position) {
         super(position);
+        _isAlive = true;
     }
 
     @Override
@@ -28,12 +30,16 @@ public class Paddle extends Gobj {
 
     @Override
     public void interact(Gobj other) {
+        if (other instanceof Capsule) {
+            _isAlive = false;
+        }
     }
 
     @Override
     public boolean isAlive() {
-        return true;
+        return _isAlive;
     }
+
 
     public void fire() {
 

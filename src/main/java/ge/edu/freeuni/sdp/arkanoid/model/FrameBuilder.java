@@ -12,24 +12,30 @@ public class FrameBuilder implements RoomBuilder {
     }
 
     public void build(Room room) {
-        for (int i = -1; i < _size.getWidth() + 1; i++) {
+
+        int h = _size.getHeight();
+        int w = _size.getWidth();
+
             //NOTE: Bottom is a killer brick
-            Brick bottomBrick = new KillerBrick(new Point(i, _size.getHeight()));
+        Brick bottomBrick = new KillerBrick(
+                new Point(-1, h),
+                new Size(w, 1));
             room.add(bottomBrick);
 
-            Brick topBrick = new SolidBrick(new Point(i, -1));
+        Brick topBrick = new FrameBrick(
+                new Point(-1, -1),
+                new Size(w, 1));
             room.add(topBrick);
 
-        }
 
-        for (int j = 0; j < _size.getHeight(); j++) {
-            //NOTE: Bottom is a killer brick
-            Brick leftBrick = new SolidBrick(new Point(-1, j));
+        Brick leftBrick = new FrameBrick(
+                new Point(-1, 0),
+                new Size(1, h - 1));
             room.add(leftBrick);
 
-            Brick rightBrick = new SolidBrick(new Point(_size.getWidth(), j));
+        Brick rightBrick = new FrameBrick(
+                new Point(w, 0),
+                new Size(1, h - 1));
             room.add(rightBrick);
-
-        }
     }
 }
