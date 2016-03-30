@@ -37,6 +37,20 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-Djava.library.path=${project.build.directory}/lib</argument>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>ge.edu.freeuni.sdp.arkanoid.App</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -44,12 +58,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <executable>java</executable>
-                    <arguments>
-                        <argument>-Djava.library.path=${project.build.directory}/lib</argument>
-                        <argument>-classpath</argument>
-                        <classpath/>
-                        <argument>ge.edu.freeuni.sdp.arkanoid.App</argument>
-                    </arguments>
                 </configuration>
             </plugin>
         </plugins>
