@@ -11,14 +11,12 @@ import java.util.Set;
 public class Paddle extends Gobj {
 
     private final Set<PaddleChangedListener> _listeners;
-    private final Set<PaddleMovedListener> _paddleMovedListeners;
     private boolean _isAlive;
 
     protected Paddle(Point position) {
         super(position);
         _isAlive = true;
         _listeners = new HashSet<PaddleChangedListener>();
-        _paddleMovedListeners = new HashSet<PaddleMovedListener>();
     }
 
     @Override
@@ -41,14 +39,6 @@ public class Paddle extends Gobj {
         return _isAlive;
     }
 
-    @Override
-    public void move() {
-        super.move();
-        for (PaddleMovedListener listener : _paddleMovedListeners) {
-            listener.paddleMoved();
-        }
-    }
-
     public void exchange(Paddle newPaddle) {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());
@@ -63,9 +53,5 @@ public class Paddle extends Gobj {
 
     public void addListener(PaddleChangedListener listener) {
         _listeners.add(listener);
-    }
-
-    public void addListener(PaddleMovedListener listener) {
-        _paddleMovedListeners.add(listener);
     }
 }

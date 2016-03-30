@@ -4,7 +4,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 import java.util.Set;
 
-public class Game implements GameFacade, PaddleChangedListener, PaddleMovedListener {
+public class Game implements GameFacade, PaddleChangedListener {
     private final ScoreCounter _scoreCounter;
     private Room _room;
     private Size _size;
@@ -52,16 +52,7 @@ public class Game implements GameFacade, PaddleChangedListener, PaddleMovedListe
     public void paddleChanged(Paddle newPaddle) {
         _paddle = newPaddle;
         _room.add(_paddle);
-        _paddle.addListener((PaddleChangedListener) this);
-        _paddle.addListener((PaddleMovedListener) this);
+        _paddle.addListener(this);
     }
 
-    public void paddleMoved() {
-        Size paddleSize = ((Rectangle) _paddle.getShape()).getSize();
-        Point paddlePosition = _paddle.getPosition();
-        paddlePosition.X = Math.max(0, paddlePosition.X);
-        paddlePosition.X = Math.min(_size.getWidth() - paddleSize.getWidth(), paddlePosition.X);
-        _paddle.setPosition(paddlePosition);
-        _paddle.setSpeed(Direction.NONE.toSpeed());
-    }
 }
