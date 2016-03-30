@@ -48,6 +48,6 @@ public class App {
 		int width = terminalSize.getColumns();
 		int height = terminalSize.getRows();
 
-		return new Size(width, height);
+		return new Size(width, height - 1);
 	}
 }
