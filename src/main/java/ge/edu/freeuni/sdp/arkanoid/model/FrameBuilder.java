@@ -20,22 +20,22 @@ public class FrameBuilder implements RoomBuilder {
         Brick bottomBrick = new KillerBrick(
                 new Point(-1, h),
                 new Size(w, 1));
-            room.add(bottomBrick);
+        room.add(bottomBrick);
 
         Brick topBrick = new FrameBrick(
                 new Point(-1, -1),
                 new Size(w, 1));
-            room.add(topBrick);
+        room.add(topBrick);
 
 
         Brick leftBrick = new FrameBrick(
                 new Point(-1, 0),
                 new Size(1, h - 1));
-            room.add(leftBrick);
+        room.add(leftBrick);
 
         Brick rightBrick = new FrameBrick(
                 new Point(w, 0),
                 new Size(1, h - 1));
-            room.add(rightBrick);
+        room.add(rightBrick);
     }
 }

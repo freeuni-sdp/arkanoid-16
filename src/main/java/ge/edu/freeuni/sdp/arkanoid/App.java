@@ -17,37 +17,37 @@ import java.util.List;
 
 public class App {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Terminal terminal = getTerminal();
-		Size size = getSize(terminal);
+        Terminal terminal = getTerminal();
+        Size size = getSize(terminal);
 
-		List<Level> levels = LevelRegistry.getLevels(size);
+        List<Level> levels = LevelRegistry.getLevels(size);
 
-		Configuration.init(size, levels);
-		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
-		GameFacade gameFacade = new Game(size);
-		PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
-		ViewController controller = new ViewController(viewFactory, presenterFactory);
-		controller.run();
-		terminal.exitPrivateMode();
-	}
+        Configuration.init(size, levels);
+        TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
+        GameFacade gameFacade = new Game(size);
+        PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
+        ViewController controller = new ViewController(viewFactory, presenterFactory);
+        controller.run();
+        terminal.exitPrivateMode();
+    }
 
 
-	private static Terminal getTerminal() {
-		Terminal terminal = TerminalFacade.createTerminal(System.in,
-				System.out, Charset.forName("UTF8"));
-		terminal.enterPrivateMode();
-		terminal.clearScreen();
-		terminal.setCursorVisible(false);
-		return terminal;
-	}
+    private static Terminal getTerminal() {
+        Terminal terminal = TerminalFacade.createTerminal(System.in,
+                System.out, Charset.forName("UTF8"));
+        terminal.enterPrivateMode();
+        terminal.clearScreen();
+        terminal.setCursorVisible(false);
+        return terminal;
+    }
 
-	private static Size getSize(Terminal terminal) {
-		TerminalSize terminalSize = terminal.getTerminalSize();
-		int width = terminalSize.getColumns();
-		int height = terminalSize.getRows();
+    private static Size getSize(Terminal terminal) {
+        TerminalSize terminalSize = terminal.getTerminalSize();
+        int width = terminalSize.getColumns();
+        int height = terminalSize.getRows();
 
-		return new Size(width, height - 1);
-	}
+        return new Size(width, height - 1);
+    }
 }
