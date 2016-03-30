@@ -62,5 +62,6 @@ public class Game implements GameFacade, PaddleChangedListener, PaddleMovedListe
         paddlePosition.X = Math.max(0, paddlePosition.X);
         paddlePosition.X = Math.min(_size.getWidth() - paddleSize.getWidth(), paddlePosition.X);
         _paddle.setPosition(paddlePosition);
+        _paddle.setSpeed(Direction.NONE.toSpeed());
     }
 }
