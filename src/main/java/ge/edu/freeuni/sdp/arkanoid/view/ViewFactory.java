@@ -9,4 +9,6 @@ public interface ViewFactory {
     LevelView getLevelView(LevelPresenter presenter);
 
     RoomView getRoomView(RoomPresenter roomPresenter);
+
+    IntroView getIntroView();
 }
