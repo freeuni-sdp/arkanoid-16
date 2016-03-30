@@ -38,12 +38,12 @@ public class RoomPresenter extends Presenter {
 
     public void execute(Command command) {
         scanAndNotify();
+        _direction = Direction.NONE;
         switch (command) {
 
             case None:
                 break;
             case Stop:
-                _direction = Direction.NONE;
                 break;
             case Left:
                 _direction = Direction.LEFT;

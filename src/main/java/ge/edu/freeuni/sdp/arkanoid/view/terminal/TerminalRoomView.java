@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.view.terminal;
 
 
-import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
 import ge.edu.freeuni.sdp.arkanoid.presenter.*;
 import ge.edu.freeuni.sdp.arkanoid.view.RoomView;
@@ -13,6 +12,7 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener, St
 
     protected TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
+        PressedKeyWatcher.init();
         _terminal = terminal;
         presenter.set_cellUpdateListener(this);
     }
@@ -24,18 +24,12 @@ public class TerminalRoomView extends RoomView implements CellUpdateListener, St
         _terminal.clearScreen();
         while (true) {
             Command command = Command.None;
-            Key key = _terminal.readInput();
             if (presenter.isGameOver()) break;
 
-            if (key == null) {
-                command = Command.None;
-            } else {
-                if (key.getCharacter() == ' ') command = Command.Fire;
-                if (key.getKind() == Key.Kind.Escape) break;
-                if (key.getKind() == Key.Kind.ArrowRight) command = Command.Right;
-                if (key.getKind() == Key.Kind.ArrowLeft) command = Command.Left;
-                if (key.getKind() == Key.Kind.ArrowDown) command = Command.Stop;
-            }
+            if (PressedKeyWatcher.isRightPressed()) command = Command.Right;
+            if (PressedKeyWatcher.isLeftPressed()) command = Command.Left;
+            if (PressedKeyWatcher.isSpacePressed()) command = Command.Fire;
+            if (PressedKeyWatcher.isEscapePressed()) break;
 
             presenter.execute(command);
             sleep();
