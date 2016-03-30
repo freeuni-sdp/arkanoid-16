@@ -23,4 +23,21 @@ public class FrameBrick extends Brick {
         return true;
     }
 
+    @Override
+    public void interact(Gobj other) {
+        super.interact(other);
+
+        if (other instanceof Paddle) {
+            Point paddlePosition = other.getPosition();
+            Size paddleSize = ((Rectangle) other.getShape()).getSize();
+
+            Point barrierPosition = this.getPosition();
+
+            if (barrierPosition.X < 0) {
+                paddlePosition.X = 0;
+            } else {
+                paddlePosition.X = barrierPosition.X - paddleSize.getWidth();
+            }
+        }
+    }
 }
