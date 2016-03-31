@@ -12,7 +12,8 @@ public class RoomPresenter extends Presenter {
     private final GameFacade _game;
     private final GobjPresenterFactory _gobjPresenterFactory;
     private final CellContent[][] _cellsCache;
-    private CellUpdateListener _listener;
+    private CellUpdateListener _cellUpdateListener;
+    private StatusUpdateListener _statusUpdateListener;
     private Direction _direction;
 
     public RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
@@ -27,8 +28,8 @@ public class RoomPresenter extends Presenter {
         _game.init(level);
     }
 
-    public void setCellUpdateListener(CellUpdateListener listener) {
-        _listener = listener;
+    public void set_cellUpdateListener(CellUpdateListener listener) {
+        _cellUpdateListener = listener;
     }
 
     public boolean isGameOver() {
@@ -37,12 +38,12 @@ public class RoomPresenter extends Presenter {
 
     public void execute(Command command) {
         scanAndNotify();
+        _direction = Direction.NONE;
         switch (command) {
 
             case None:
                 break;
             case Stop:
-                _direction = Direction.NONE;
                 break;
             case Left:
                 _direction = Direction.LEFT;
@@ -74,18 +75,18 @@ public class RoomPresenter extends Presenter {
 
                 boolean hasChanged = currentValue != newValue;
                 if (hasChanged) {
-                    updateListener(i, j, newValue);
+                    updateCellListener(i, j, newValue);
                     _cellsCache[i][j] = newValue;
                 }
             }
         }
     }
 
-    private void updateListener(int i, int j, CellContent newValue) {
-        if (_listener == null)
+    private void updateCellListener(int i, int j, CellContent newValue) {
+        if (_cellUpdateListener == null)
             return;
         CellPosition position = new CellPosition(i, j);
-        _listener.updateCell(position, newValue);
+        _cellUpdateListener.updateCell(position, newValue);
     }
 
     private CellContent[][] initCells() {

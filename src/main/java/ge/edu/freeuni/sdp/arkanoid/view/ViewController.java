@@ -19,6 +19,10 @@ public class ViewController {
     public void run() {
 
         while (true) {
+
+            IntroView introView = _viewFactory.getIntroView();
+            introView.show();
+
             LevelPresenter levelPresenter = _presenterFactory.getLevelPresenter();
             LevelView levelView = _viewFactory.getLevelView(levelPresenter);
             levelView.show();

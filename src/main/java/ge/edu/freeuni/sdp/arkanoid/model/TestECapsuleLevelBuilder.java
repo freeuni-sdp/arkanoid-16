@@ -3,9 +3,9 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class TestLevelBuilder extends FrameBuilder {
+public class TestECapsuleLevelBuilder extends TestFrameBuilder {
 
-    public TestLevelBuilder(Size size) {
+    public TestECapsuleLevelBuilder(Size size) {
         super(size);
     }
 
