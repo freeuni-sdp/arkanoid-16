@@ -2,13 +2,10 @@ package ge.edu.freeuni.sdp.arkanoid.view.terminal;
 
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.presenter.IntroPresenter;
 import ge.edu.freeuni.sdp.arkanoid.view.IntroView;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,30 +31,16 @@ public class TerminalIntroView extends IntroView {
         _terminal.clearScreen();
         drawSplashScreen();
 
-        Clip clip = playTune();
+        SoundPlayer.getInstance().loop(SoundPlayer.INTRO);
+
         while (true) {
             Key key = _terminal.readInput();
             if (key != null) break;
         }
-        if (clip != null) clip.close();
+
+        SoundPlayer.getInstance().stopAll();
     }
 
-    private Clip playTune() {
-        Clip clip = null;
-        try {
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(_classLoader.getResource("intro.wav").openStream()));
-        } catch (LineUnavailableException e) {
-            printLine(_row++, "Ups! HTTP 404 - Not found ...");
-        } catch (IOException e) {
-            printLine(_row++, "Ups! HTTP 403 - Forbidden ...");
-        } catch (UnsupportedAudioFileException e) {
-            printLine(_row++, "Ups! HTTP 415 Unsupported Media Type ...");
-        }
-
-        if (clip != null) clip.loop(42);
-        return clip;
-    }
 
     private void drawSplashScreen() {
         File file = new File(_classLoader.getResource("intro.txt").getFile());

@@ -20,6 +20,7 @@ public class App {
     public static void main(String[] args) {
 
         Terminal terminal = getTerminal();
+        SoundPlayer soundPlayer = SoundPlayer.getInstance();
         Size size = getSize(terminal);
 
         List<Level> levels = LevelRegistry.getLevels(size);
@@ -30,6 +31,8 @@ public class App {
         PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
         ViewController controller = new ViewController(viewFactory, presenterFactory);
         controller.run();
+
+        soundPlayer.close();
         terminal.exitPrivateMode();
     }
 

@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 
@@ -25,6 +26,7 @@ public class Ball extends Gobj {
     public void interact(Gobj other) {
 
         if (other instanceof Paddle) {
+            SoundPlayer.getInstance().play(SoundPlayer.PARRY);
             Speed newSpeed = getSpeed().mirrorVertically();
             setSpeed(newSpeed);
             return;
@@ -48,7 +50,10 @@ public class Ball extends Gobj {
             if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
             if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
 
-            setSpeed(newSpeed);
+            if (touchTop || touchBottom || touchLeft || touchRight) {
+                SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+                setSpeed(newSpeed);
+            }
             return;
         }
     }
