@@ -6,7 +6,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 public class Ball extends Gobj {
 
-    private static double RADIUS = (float) 0.5;
+    private static double RADIUS = (float) 0.25;
+    private Point _prevPosition;
 
     protected Ball(Point position) {
 
@@ -34,15 +35,16 @@ public class Ball extends Gobj {
 
         if (other instanceof Brick) {
             Rectangle otherRectangle = (Rectangle) other.getShape();
-            Point c = getPosition();
-            double radius = RADIUS;
             Point l = otherRectangle.getPosition();
             Point r = otherRectangle.getBottomRight();
-            Size s = otherRectangle.getSize();
-            boolean touchTop = Math.abs(c.Y - l.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
-            boolean touchBottom = Math.abs(c.Y - r.Y) <= radius && c.X >= l.X && c.X <= r.X + s.getWidth();
-            boolean touchLeft = Math.abs(c.X - l.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
-            boolean touchRight = Math.abs(c.X - r.X) <= radius && c.Y >= l.Y && c.Y <= r.Y + s.getHeight();
+
+            Point c = getPosition();
+            Point p = _prevPosition;
+
+            boolean touchTop = p.Y <= l.Y && c.Y >= l.Y;
+            boolean touchBottom = p.Y >= r.Y && c.Y <= r.Y;
+            boolean touchLeft = p.X <= l.X && c.X >= l.X;
+            boolean touchRight = p.X >= r.X && c.X <= r.X;
 
             Speed newSpeed = getSpeed();
             if (touchTop) newSpeed = newSpeed.mirrorVertically();
@@ -58,6 +60,11 @@ public class Ball extends Gobj {
         }
     }
 
+    @Override
+    public void move() {
+        _prevPosition = getPosition();
+        super.move();
+    }
 
     @Override
     public boolean isAlive() {

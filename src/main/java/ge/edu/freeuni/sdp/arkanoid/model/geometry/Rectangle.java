@@ -21,6 +21,13 @@ public class Rectangle extends Shape {
         return new Point(_position.X + _size.getWidth(), _position.Y + _size.getHeight());
     }
 
+    public boolean canOverlap(Point point) {
+        return point.X > _position.X &&
+                point.Y > _position.Y &&
+                point.X <= _position.X + _size.getWidth() &&
+                point.Y <= _position.Y + _size.getHeight();
+    }
+
     public boolean canOverlap(Rectangle other) {
         Point l1 = this.getPosition();
         Point r1 = this.getBottomRight();

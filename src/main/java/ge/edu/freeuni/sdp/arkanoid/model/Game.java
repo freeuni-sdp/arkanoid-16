@@ -1,10 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 import java.util.Set;
 
@@ -24,8 +21,11 @@ public class Game implements GameFacade, PaddleChangedListener {
         _room = new Room();
         level.build(_room, _scoreCounter);
         Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
-        paddleChanged(new Paddle(position));
-        _ball = new Ball(new Point(position.X + 1, position.Y - 2));
+        Paddle newPaddle = new Paddle(position);
+        Rectangle paddleRectangle = (Rectangle) newPaddle.getShape();
+        double paddleCenterX = position.X + paddleRectangle.getSize().getWidth() / 2;
+        paddleChanged(newPaddle);
+        _ball = new Ball(new Point(paddleCenterX, position.Y - 0.5));
         _ball.setSpeed(new Speed(-45));
         _room.add(_ball);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);

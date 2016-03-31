@@ -12,8 +12,9 @@ public class BallPresenter extends GobjPresenter<Ball> {
 
     void Draw(CellContent[][] cells) {
         Point p = getGameObject().getPosition();
-        int i = (int) Math.round(p.X);
-        int j = (int) Math.round(p.Y);
+        int i = (int) Math.round(p.X - 0.5);
+        int j = (int) Math.round(p.Y - 0.5);
+
         Point current = new Point(i, j);
         Size size = getSize();
         if (size.isInRange(current)) {
