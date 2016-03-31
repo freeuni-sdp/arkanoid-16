@@ -1,9 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 public class FrameBrick extends Brick {
     private final Size _size;
@@ -22,5 +19,4 @@ public class FrameBrick extends Brick {
     public boolean isAlive() {
         return true;
     }
-
 }

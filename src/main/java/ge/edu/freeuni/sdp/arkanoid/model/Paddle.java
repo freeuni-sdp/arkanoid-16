@@ -12,11 +12,13 @@ public class Paddle extends Gobj {
 
     private final Set<PaddleChangedListener> _listeners;
     private boolean _isAlive;
+    private Point prevPosition;
 
     protected Paddle(Point position) {
         super(position);
         _isAlive = true;
         _listeners = new HashSet<PaddleChangedListener>();
+        prevPosition = position;
     }
 
     @Override
@@ -31,7 +33,15 @@ public class Paddle extends Gobj {
 
     @Override
     public void interact(Gobj other) {
+        if (other instanceof FrameBrick) {
+            setPosition(prevPosition);
+        }
+    }
 
+    @Override
+    public void move() {
+        prevPosition = getPosition();
+        super.move();
     }
 
     @Override

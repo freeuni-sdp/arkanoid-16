@@ -1,9 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 import java.util.Set;
 
@@ -57,4 +54,5 @@ public class Game implements GameFacade, PaddleChangedListener {
         _room.add(_paddle);
         _paddle.addListener(this);
     }
+
 }
