@@ -24,7 +24,7 @@ public class Paddle extends Gobj {
 
     @Override
     public Shape getShape() {
-        return new Rectangle(getPosition(), new Size(3, 1));
+        return new Rectangle(getPosition(), new Size(5, 1));
     }
 
     @Override

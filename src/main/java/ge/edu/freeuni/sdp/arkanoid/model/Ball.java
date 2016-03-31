@@ -56,6 +56,8 @@ public class Ball extends Gobj {
                 SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
                 setSpeed(newSpeed);
             }
+
+
             return;
         }
     }

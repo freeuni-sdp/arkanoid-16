@@ -12,6 +12,6 @@ public class ExpandedPaddle extends Paddle {
 
     @Override
     public Shape getShape() {
-        return new Rectangle(getPosition(), new Size(5, 1));
+        return new Rectangle(getPosition(), new Size(9, 1));
     }
 }
