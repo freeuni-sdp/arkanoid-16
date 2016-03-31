@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
@@ -34,6 +35,7 @@ public class Paddle extends Gobj {
     @Override
     public void interact(Gobj other) {
         if (other instanceof FrameBrick) {
+            SoundPlayer.getInstance().play(SoundPlayer.COLLIDE);
             setPosition(prevPosition);
         }
     }

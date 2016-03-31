@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 
 public class ExpandCapsule extends Capsule {
@@ -14,6 +15,7 @@ public class ExpandCapsule extends Capsule {
             Paddle oldPaddle = (Paddle) other;
             Paddle newPaddle = new ExpandedPaddle(other.getPosition());
             oldPaddle.exchange(newPaddle);
+            SoundPlayer.getInstance().play(SoundPlayer.EXTEND);
         }
     }
 }

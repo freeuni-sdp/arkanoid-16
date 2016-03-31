@@ -39,6 +39,7 @@ public class TerminalIntroView extends IntroView {
         }
 
         SoundPlayer.getInstance().stopAll();
+        SoundPlayer.getInstance().play(SoundPlayer.START);
     }
 
 

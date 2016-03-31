@@ -13,6 +13,9 @@ public class SoundPlayer {
     public static final String INTRO = "intro.wav";
     public static final String BOUNCE = "bounce.wav";
     public static final String PARRY = "parry.wav";
+    public static final String EXTEND = "extend.wav";
+    public static final String START = "start.wav";
+    public static final String COLLIDE = "collide.wav";
     public static final String NONE = null;
     private static SoundPlayer _instance;
     private final ClassLoader _classLoader;
@@ -37,6 +40,9 @@ public class SoundPlayer {
         getOrOpen(INTRO);
         getOrOpen(BOUNCE);
         getOrOpen(PARRY);
+        getOrOpen(EXTEND);
+        getOrOpen(START);
+        getOrOpen(COLLIDE);
     }
 
     public void play(String soundName) {
