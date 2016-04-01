@@ -1,10 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,6 +34,14 @@ public class Paddle extends Gobj {
         if (other instanceof FrameBrick) {
             SoundPlayer.getInstance().play(SoundPlayer.COLLIDE);
             setPosition(prevPosition);
+        }
+
+        if (other instanceof Ball) {
+            Ball ball = (Ball) other;
+            SoundPlayer.getInstance().play(SoundPlayer.PARRY);
+            Speed newSpeed = ball.getSpeed().mirrorVertically();
+            ball.setSpeed(newSpeed);
+            return;
         }
     }
 

@@ -20,7 +20,7 @@ public class Level1Builder extends FrameBuilder {
     }
 
     private void createRow(Room room, int brickDistance, int roomWidth, int rowHeight) {
-        for (int i = 1; i < roomWidth; i += brickDistance) {
+        for (int i = 0; i < roomWidth; i += brickDistance) {
             Point position = new Point(i, rowHeight);
             Brick current = new NormalBrick(position, BrickColor.Red, new NullCapsule(null));
             room.add(current);

@@ -26,40 +26,32 @@ public class Ball extends Gobj {
 
     public void interact(Gobj other) {
 
-        if (other instanceof Paddle) {
-            SoundPlayer.getInstance().play(SoundPlayer.PARRY);
-            Speed newSpeed = getSpeed().mirrorVertically();
-            setSpeed(newSpeed);
-            return;
-        }
+    }
 
-        if (other instanceof Brick) {
-            Rectangle rectangle = (Rectangle) other.getShape();
-            Point leftTop = rectangle.getPosition();
-            Point rightBottom = rectangle.getBottomRight();
+    public void bounceFrom(Rectangle rectangle) {
+        Point leftTop = rectangle.getPosition();
+        Point rightBottom = rectangle.getBottomRight();
 
-            Point previous = _prevPosition;
-            Point current = getPosition();
+        Point previous = _prevPosition;
+        Point current = getPosition();
 
-            while (rectangle.canOverlap(current)) {
-                boolean touchTop = previous.Y <= leftTop.Y && current.Y >= leftTop.Y;
-                boolean touchBottom = previous.Y >= rightBottom.Y && current.Y <= rightBottom.Y;
-                boolean touchLeft = previous.X <= leftTop.X && current.X >= leftTop.X;
-                boolean touchRight = previous.X >= rightBottom.X && current.X <= rightBottom.X;
+        while (rectangle.canOverlap(current)) {
+            boolean touchTop = previous.Y <= leftTop.Y && current.Y >= leftTop.Y;
+            boolean touchBottom = previous.Y >= rightBottom.Y && current.Y <= rightBottom.Y;
+            boolean touchLeft = previous.X <= leftTop.X && current.X >= leftTop.X;
+            boolean touchRight = previous.X >= rightBottom.X && current.X <= rightBottom.X;
 
-                Speed newSpeed = getSpeed();
-                if (touchTop) newSpeed = newSpeed.mirrorVertically();
-                if (touchBottom) newSpeed = newSpeed.mirrorVertically();
-                if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
-                if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
+            Speed newSpeed = getSpeed();
+            if (touchTop) newSpeed = newSpeed.mirrorVertically();
+            if (touchBottom) newSpeed = newSpeed.mirrorVertically();
+            if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
+            if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
 
-                if (touchTop || touchBottom || touchLeft || touchRight) {
-                    SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
-                    setSpeed(newSpeed);
-                }
-                current = previous.add(newSpeed);
+            if (touchTop || touchBottom || touchLeft || touchRight) {
+                SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+                setSpeed(newSpeed);
             }
-            return;
+            current = previous.add(newSpeed);
         }
     }
 

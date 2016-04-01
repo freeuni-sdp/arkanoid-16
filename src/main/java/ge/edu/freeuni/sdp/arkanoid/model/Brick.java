@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 
 public abstract class Brick extends Gobj {
 
@@ -22,6 +23,8 @@ public abstract class Brick extends Gobj {
 
     public void interact(Gobj other) {
         if (other instanceof Ball) {
+            Ball ball = (Ball) other;
+            ball.bounceFrom((Rectangle) getShape());
             _capsule.release(getPosition());
             _isAlive = false;
         }
