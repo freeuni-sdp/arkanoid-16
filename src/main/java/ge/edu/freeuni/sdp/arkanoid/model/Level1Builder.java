@@ -12,7 +12,7 @@ public class Level1Builder extends FrameBuilder {
 
     public void build(Room room, ScoreCounter scoreCounter) {
         super.build(room, scoreCounter);
-        int brickDistance = getNormalBrickWidth() + 1;
+        int brickDistance = getNormalBrickWidth();
         int roomWidth = Configuration.getInstance().getSize().getWidth();
 
         createRow(room, brickDistance, roomWidth, 5);

@@ -34,30 +34,31 @@ public class Ball extends Gobj {
         }
 
         if (other instanceof Brick) {
-            Rectangle otherRectangle = (Rectangle) other.getShape();
-            Point l = otherRectangle.getPosition();
-            Point r = otherRectangle.getBottomRight();
+            Rectangle rectangle = (Rectangle) other.getShape();
+            Point leftTop = rectangle.getPosition();
+            Point rightBottom = rectangle.getBottomRight();
 
-            Point c = getPosition();
-            Point p = _prevPosition;
+            Point previous = _prevPosition;
+            Point current = getPosition();
 
-            boolean touchTop = p.Y <= l.Y && c.Y >= l.Y;
-            boolean touchBottom = p.Y >= r.Y && c.Y <= r.Y;
-            boolean touchLeft = p.X <= l.X && c.X >= l.X;
-            boolean touchRight = p.X >= r.X && c.X <= r.X;
+            while (rectangle.canOverlap(current)) {
+                boolean touchTop = previous.Y <= leftTop.Y && current.Y >= leftTop.Y;
+                boolean touchBottom = previous.Y >= rightBottom.Y && current.Y <= rightBottom.Y;
+                boolean touchLeft = previous.X <= leftTop.X && current.X >= leftTop.X;
+                boolean touchRight = previous.X >= rightBottom.X && current.X <= rightBottom.X;
 
-            Speed newSpeed = getSpeed();
-            if (touchTop) newSpeed = newSpeed.mirrorVertically();
-            if (touchBottom) newSpeed = newSpeed.mirrorVertically();
-            if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
-            if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
+                Speed newSpeed = getSpeed();
+                if (touchTop) newSpeed = newSpeed.mirrorVertically();
+                if (touchBottom) newSpeed = newSpeed.mirrorVertically();
+                if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
+                if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
 
-            if (touchTop || touchBottom || touchLeft || touchRight) {
-                SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
-                setSpeed(newSpeed);
+                if (touchTop || touchBottom || touchLeft || touchRight) {
+                    SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+                    setSpeed(newSpeed);
+                }
+                current = previous.add(newSpeed);
             }
-
-
             return;
         }
     }
