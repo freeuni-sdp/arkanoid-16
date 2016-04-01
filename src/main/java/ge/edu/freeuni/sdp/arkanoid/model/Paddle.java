@@ -15,7 +15,7 @@ public class Paddle extends Gobj {
     protected Paddle(Point position) {
         super(position);
         _isAlive = true;
-        _listeners = new HashSet<PaddleChangedListener>();
+        _listeners = new HashSet<>();
         prevPosition = position;
     }
 
@@ -39,7 +39,7 @@ public class Paddle extends Gobj {
         if (other instanceof Ball) {
             Ball ball = (Ball) other;
             SoundPlayer.getInstance().play(SoundPlayer.PARRY);
-            Speed newSpeed = ball.getSpeed().mirrorVertically();
+            Speed newSpeed = ball.getSpeed().mirrorY();
             ball.setSpeed(newSpeed);
             return;
         }

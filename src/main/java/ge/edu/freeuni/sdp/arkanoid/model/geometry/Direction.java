@@ -57,7 +57,11 @@ public class Direction {
         return candidate;
     }
 
+    public Point toPoint() {
+        return new Point(this._dx, this._dy);
+    }
+
     public Speed toSpeed() {
-        return new Speed(this._dx, this._dy);
+        return new Speed(this.toPoint());
     }
 }

@@ -42,10 +42,10 @@ public class Ball extends Gobj {
             boolean touchRight = previous.X >= rightBottom.X && current.X <= rightBottom.X;
 
             Speed newSpeed = getSpeed();
-            if (touchTop) newSpeed = newSpeed.mirrorVertically();
-            if (touchBottom) newSpeed = newSpeed.mirrorVertically();
-            if (touchLeft) newSpeed = newSpeed.mirrorHorizontally();
-            if (touchRight) newSpeed = newSpeed.mirrorHorizontally();
+            if (touchTop) newSpeed = newSpeed.mirrorY();
+            if (touchBottom) newSpeed = newSpeed.mirrorY();
+            if (touchLeft) newSpeed = newSpeed.mirrorX();
+            if (touchRight) newSpeed = newSpeed.mirrorX();
 
             if (touchTop || touchBottom || touchLeft || touchRight) {
                 SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
@@ -59,7 +59,11 @@ public class Ball extends Gobj {
     public void move() {
         _prevPosition = getPosition();
         super.move();
-        setPosition(getPosition().smoothen());
+        smoothenCoordinates();
+    }
+
+    private void smoothenCoordinates() {
+        setPosition(getPosition().smoothen(getSpeed().getLength() / 2));
     }
 
     @Override

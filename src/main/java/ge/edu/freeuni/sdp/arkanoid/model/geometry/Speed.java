@@ -1,28 +1,54 @@
 package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
-public class Speed extends Point {
+public final class Speed extends Point {
 
     public static Speed NULL = new Speed(0, 0);
-    public static double LENGTH = 0.2;
+    private static double DEFAULT_LENGTH = 0.15;
 
     public Speed(int angleDegrees) {
-        this(Math.cos(Math.toRadians(angleDegrees)) * LENGTH, Math.sin(Math.toRadians(angleDegrees)) * LENGTH);
+        this(angleDegrees, DEFAULT_LENGTH);
     }
 
-    protected Speed(double x, double y) {
-        super(x, y);
+    public Speed(int angleDegrees, double length) {
+        super(1, 1);
+        setAngleDegrees(angleDegrees);
+        setLength(length);
     }
 
-    public Speed mirrorVertically() {
-        return new Speed(this.X, -this.Y);
+    public Speed(Point point) {
+        super(point.X, point.Y);
     }
 
-    public Speed mirrorHorizontally() {
-        return new Speed(-this.X, this.Y);
+    public Speed mirrorY() {
+        return new Speed(super.mirrorY());
     }
 
-    public Speed mirror() {
-        return this.mirrorHorizontally().mirrorVertically();
+    public Speed mirrorX() {
+        return new Speed(super.mirrorX());
     }
 
+    public double getLength() {
+        return getDistance(new Point(0, 0));
+    }
+
+    public void setLength(double length) {
+        double angle = getAngle();
+        X = Math.cos(angle) * length;
+        Y = Math.sin(angle) * length;
+    }
+
+    public double getAngleDegrees() {
+        return Math.round(Math.toDegrees(getAngle()));
+    }
+
+    public void setAngleDegrees(int angleDegrees) {
+        double length = this.getLength();
+        double angle = Math.toRadians(angleDegrees);
+        X = Math.cos(angle) * length;
+        Y = Math.sin(angle) * length;
+    }
+
+    private double getAngle() {
+        return Math.atan2(Y, X);
+    }
 }

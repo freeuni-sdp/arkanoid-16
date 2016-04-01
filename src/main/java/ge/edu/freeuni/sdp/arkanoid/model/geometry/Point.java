@@ -50,13 +50,22 @@ public class Point {
         return new Point(-X, -Y);
     }
 
+    public Point mirrorY() {
+        return new Point(this.X, -this.Y);
+    }
+
+    public Point mirrorX() {
+        return new Point(-this.X, this.Y);
+    }
+
+
     public GridIndex toGridIndex() {
         Point shifted = this.add(CENTER_OFFSET);
         Point rounded = shifted.round();
         return new GridIndex((int) rounded.X, (int) rounded.Y);
     }
 
-    public Point smoothen() {
+    public Point smoothen(double threshold) {
         Point shifted = this.add(CENTER_OFFSET);
         Point rounded = shifted.round();
 
