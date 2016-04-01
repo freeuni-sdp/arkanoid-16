@@ -17,12 +17,11 @@ public class SoundPlayer {
     public static final String EXTEND = "extend.wav";
     public static final String START = "start.wav";
     public static final String COLLIDE = "collide.wav";
-    public static final String NONE = null;
     private static SoundPlayer _instance;
-    final Map<String, Clip> _clipsCache;
+    private final Map<String, Clip> _clipsCache;
     private final ClassLoader _classLoader;
 
-    public SoundPlayer() {
+    private SoundPlayer() {
         _clipsCache = new HashMap<>();
         _classLoader = getClass().getClassLoader();
     }
@@ -36,7 +35,7 @@ public class SoundPlayer {
         return _instance;
     }
 
-    public void init() {
+    private void init() {
         getOrOpen(INTRO);
         getOrOpen(BOUNCE);
         getOrOpen(PARRY);
@@ -60,7 +59,7 @@ public class SoundPlayer {
         clip.loop(42);
     }
 
-    public void close() {
+    void close() {
         stopAll();
         _clipsCache.values().forEach(Clip::close);
     }
