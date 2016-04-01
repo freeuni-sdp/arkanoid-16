@@ -1,9 +1,9 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.Stack;
+import java.util.stream.Collectors;
 
 class Room {
 
@@ -33,11 +33,12 @@ class Room {
     }
 
     void removeZombies() {
-        List<Gobj> zombies = new ArrayList<>();
-        //noinspection Convert2streamapi
-        for (Gobj candidate : getGobjs()) {
-            if (!candidate.isAlive()) zombies.add(candidate);
-        }
+        Stack<Gobj> zombies =
+                getGobjs()
+                    .stream()
+                    .filter(candidate -> !candidate.isAlive())
+                    .collect(Collectors.toCollection(Stack::new));
+        
         _gobjs.removeAll(zombies);
     }
 
