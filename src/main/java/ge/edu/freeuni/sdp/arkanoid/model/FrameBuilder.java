@@ -16,26 +16,36 @@ public class FrameBuilder implements RoomBuilder {
         int h = _size.getHeight();
         int w = _size.getWidth();
 
-        //NOTE: Bottom is a killer brick
-        Brick bottomBrick = new KillerBrick(
-                new Point(-1, h),
-                new Size(w, 1));
+        Size horizontalFrameBrickSize = new Size(w + 2, 1);
+
+        Point bottomFrameBrickPosition = new Point(-1, h);
+        Brick bottomBrick = createBottomFrameBrick(bottomFrameBrickPosition, horizontalFrameBrickSize);
         room.add(bottomBrick);
 
-        Brick topBrick = new FrameBrick(
-                new Point(-1, -1),
-                new Size(w, 1));
+        Point topFrameBrickPosition = new Point(-1, -1);
+        Brick topBrick = createFrameBrick(horizontalFrameBrickSize, topFrameBrickPosition);
         room.add(topBrick);
 
+        Size verticalFrameBrickSize = new Size(1, h + 2);
 
-        Brick leftBrick = new FrameBrick(
-                new Point(-1, 0),
-                new Size(1, h - 1));
+        Point leftFrameBrickPosition = new Point(-1, -1);
+        Brick leftBrick = createFrameBrick(verticalFrameBrickSize, leftFrameBrickPosition);
         room.add(leftBrick);
 
-        Brick rightBrick = new FrameBrick(
-                new Point(w, 0),
-                new Size(1, h - 1));
+        Point rightFrameBrickPosition = new Point(w, -1);
+        Brick rightBrick = createFrameBrick(verticalFrameBrickSize, rightFrameBrickPosition);
         room.add(rightBrick);
+    }
+
+    private FrameBrick createFrameBrick(Size horizontalFrameBrickSize, Point topFrameBrickPosition) {
+        return new FrameBrick(
+                topFrameBrickPosition,
+                horizontalFrameBrickSize);
+    }
+
+    protected FrameBrick createBottomFrameBrick(Point bottomFrameBrickPosition, Size horizontalFrameBrickSize) {
+        return new KillerBrick(
+                bottomFrameBrickPosition,
+                horizontalFrameBrickSize);
     }
 }
