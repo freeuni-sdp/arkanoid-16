@@ -5,7 +5,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public abstract class RectanglePresenter<T extends Gobj> extends GobjPresenter<T> {
+abstract class RectanglePresenter<T extends Gobj> extends GobjPresenter<T> {
 
     RectanglePresenter(T gameObject, Size size) {
         super(size, gameObject);

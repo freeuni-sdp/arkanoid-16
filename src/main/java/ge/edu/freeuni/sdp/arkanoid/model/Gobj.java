@@ -9,11 +9,11 @@ public abstract class Gobj<TShape extends Shape> {
     private Point _position;
     private Speed _speed;
 
-    protected Gobj(Point position) {
+    Gobj(Point position) {
         this(position, Speed.NULL);
     }
 
-    protected Gobj(Point position, Speed speed) {
+    Gobj(Point position, Speed speed) {
         _position = position;
         _speed = speed;
     }
@@ -32,15 +32,15 @@ public abstract class Gobj<TShape extends Shape> {
         return _position;
     }
 
-    public void setPosition(Point position) {
+    void setPosition(Point position) {
         _position = position;
     }
 
-    public Speed getSpeed() {
+    Speed getSpeed() {
         return _speed;
     }
 
-    public void setSpeed(Speed _speed) {
+    void setSpeed(Speed _speed) {
         this._speed = _speed;
     }
 

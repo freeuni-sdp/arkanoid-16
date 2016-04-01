@@ -4,7 +4,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.Brick;
 import ge.edu.freeuni.sdp.arkanoid.model.BrickColor;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class BrickPresenter extends RectanglePresenter<Brick> {
+class BrickPresenter extends RectanglePresenter<Brick> {
 
 
     BrickPresenter(Brick gameObject, Size size) {

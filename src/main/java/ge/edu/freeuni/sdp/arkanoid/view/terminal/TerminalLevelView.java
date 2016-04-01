@@ -6,11 +6,11 @@ import ge.edu.freeuni.sdp.arkanoid.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.arkanoid.presenter.LevelSelectionListener;
 import ge.edu.freeuni.sdp.arkanoid.view.LevelView;
 
-public class TerminalLevelView extends LevelView implements LevelSelectionListener {
+class TerminalLevelView extends LevelView implements LevelSelectionListener {
 
     private final Terminal _terminal;
 
-    public TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
+    TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
         super(presenter);
         _terminal = terminal;
         presenter.setLevelSelectionListener(this);

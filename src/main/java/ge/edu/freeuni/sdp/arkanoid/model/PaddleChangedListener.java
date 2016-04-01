@@ -1,5 +1,5 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-public interface PaddleChangedListener {
+interface PaddleChangedListener {
     void paddleChanged(Paddle newPaddle);
 }

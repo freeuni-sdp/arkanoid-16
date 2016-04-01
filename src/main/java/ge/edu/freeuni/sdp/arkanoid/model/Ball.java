@@ -15,11 +15,11 @@ public class Ball extends Gobj<Circle> {
         this(new Point(0, 0));
     }
 
-    public Ball(Point position) {
+    private Ball(Point position) {
         this(position, new Speed(-45));
     }
 
-    protected Ball(Point position, Speed speed) {
+    private Ball(Point position, Speed speed) {
         super(position, speed);
     }
 
@@ -38,7 +38,7 @@ public class Ball extends Gobj<Circle> {
 
     }
 
-    public void bounceFrom(Rectangle rectangle) {
+    void bounceFrom(Rectangle rectangle) {
         Point leftTop = rectangle.getPosition();
         Point rightBottom = rectangle.getBottomRight();
 
@@ -81,7 +81,7 @@ public class Ball extends Gobj<Circle> {
         return true;
     }
 
-    public void putOn(Gobj<Rectangle> other) {
+    void putOn(Gobj<Rectangle> other) {
         Point p = other.getPosition();
         double width = other.getShape().getSize().getWidth();
         double radius = getShape().getRadius();

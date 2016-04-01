@@ -5,12 +5,12 @@ import com.googlecode.lanterna.terminal.Terminal;
 import ge.edu.freeuni.sdp.arkanoid.presenter.*;
 import ge.edu.freeuni.sdp.arkanoid.view.RoomView;
 
-public class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpdateListener {
+class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpdateListener {
 
 
     private final Terminal _terminal;
 
-    protected TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
+    TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
         PressedKeyWatcher.init();
         _terminal = terminal;

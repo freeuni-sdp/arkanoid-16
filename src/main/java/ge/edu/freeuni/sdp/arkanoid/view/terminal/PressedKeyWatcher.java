@@ -3,30 +3,30 @@ package ge.edu.freeuni.sdp.arkanoid.view.terminal;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class PressedKeyWatcher {
+class PressedKeyWatcher {
     private static volatile boolean leftPressed = false;
     private static volatile boolean rightPressed = false;
     private static volatile boolean spacePressed = false;
     private static volatile boolean escapePressed = false;
 
-    public static boolean isLeftPressed() {
+    static boolean isLeftPressed() {
         return leftPressed;
     }
 
-    public static boolean isRightPressed() {
+    static boolean isRightPressed() {
         return rightPressed;
     }
 
-    public static boolean isSpacePressed() {
+    static boolean isSpacePressed() {
         return spacePressed;
     }
 
-    public static boolean isEscapePressed() {
+    static boolean isEscapePressed() {
         return escapePressed;
     }
 
 
-    public static void init() {
+    static void init() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(ke -> {
             switch (ke.getID()) {
                 case KeyEvent.KEY_PRESSED:

@@ -10,7 +10,7 @@ public abstract class Capsule extends Gobj<Rectangle> {
     private final Room _room;
     private boolean _isAlive;
 
-    protected Capsule(Point position, Room room) {
+    Capsule(Point position, Room room) {
 
         super(position);
         _isAlive = true;

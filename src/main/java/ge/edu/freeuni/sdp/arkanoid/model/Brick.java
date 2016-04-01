@@ -9,7 +9,7 @@ public abstract class Brick extends Gobj<Rectangle> {
     private final Capsule _capsule;
     private boolean _isAlive;
 
-    public Brick(Point position, BrickColor color, Capsule capsule) {
+    Brick(Point position, BrickColor color, Capsule capsule) {
         super(position);
         _color = color;
         _capsule = capsule;

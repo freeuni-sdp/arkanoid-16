@@ -3,11 +3,11 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 import ge.edu.freeuni.sdp.arkanoid.model.Gobj;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public abstract class GobjPresenter<T extends Gobj> extends Presenter {
-    protected final T _gameObject;
-    protected final Size _size;
+abstract class GobjPresenter<T extends Gobj> extends Presenter {
+    private final T _gameObject;
+    private final Size _size;
 
-    public GobjPresenter(Size size, T gameObject) {
+    GobjPresenter(Size size, T gameObject) {
         _size = size;
         _gameObject = gameObject;
     }
@@ -18,7 +18,7 @@ public abstract class GobjPresenter<T extends Gobj> extends Presenter {
         return _gameObject;
     }
 
-    public Size getSize() {
+    Size getSize() {
         return _size;
     }
 }

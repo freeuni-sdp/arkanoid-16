@@ -16,7 +16,7 @@ public class RoomPresenter extends Presenter {
     private StatusUpdateListener _statusUpdateListener;
     private Direction _direction;
 
-    public RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
+    RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
         _game = game;
         _gobjPresenterFactory = gobjPresenterFactory;
         _cellsCache = initCells();
@@ -102,14 +102,4 @@ public class RoomPresenter extends Presenter {
         return result;
     }
 
-    private Direction toDirection(Command key) {
-        switch (key) {
-            case Left:
-                return Direction.LEFT;
-            case Right:
-                return Direction.RIGHT;
-            default:
-                return Direction.NONE;
-        }
-    }
 }

@@ -29,6 +29,7 @@ public class Point {
         if (getClass() != obj.getClass())
             return false;
         Point other = (Point) obj;
+        //noinspection SimplifiableIfStatement
         if (X != other.X)
             return false;
         return Y == other.Y;
@@ -38,23 +39,23 @@ public class Point {
         return new Point(this.X + point.X, this.Y + point.Y);
     }
 
-    public double getDistance(Point other) {
+    double getDistance(Point other) {
         return Math.hypot(this.X - other.X, this.Y - other.Y);
     }
 
-    public Point round() {
+    private Point round() {
         return new Point(Math.round(this.X), Math.round(this.Y));
     }
 
-    public Point reverse() {
+    private Point reverse() {
         return new Point(-X, -Y);
     }
 
-    public Point mirrorY() {
+    Point mirrorY() {
         return new Point(this.X, -this.Y);
     }
 
-    public Point mirrorX() {
+    Point mirrorX() {
         return new Point(-this.X, this.Y);
     }
 

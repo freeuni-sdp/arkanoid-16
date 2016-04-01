@@ -3,7 +3,7 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 import ge.edu.freeuni.sdp.arkanoid.model.*;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class GobjPresenterFactory {
+class GobjPresenterFactory {
 
     private final Size _size;
 

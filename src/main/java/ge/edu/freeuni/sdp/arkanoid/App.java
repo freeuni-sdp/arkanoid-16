@@ -15,7 +15,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.terminal.TerminalViewFactory;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class App {
+class App {
 
     public static void main(String[] args) {
 

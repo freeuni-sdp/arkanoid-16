@@ -5,7 +5,7 @@ public class GridIndex {
     public final int X;
     public final int Y;
 
-    public GridIndex(int x, int y) {
+    GridIndex(int x, int y) {
         X = x;
         Y = y;
     }
@@ -28,6 +28,7 @@ public class GridIndex {
         if (getClass() != obj.getClass())
             return false;
         Point other = (Point) obj;
+        //noinspection SimplifiableIfStatement
         if (X != other.X)
             return false;
         return Y == other.Y;

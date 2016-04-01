@@ -8,11 +8,11 @@ public class LevelPresenter extends Presenter {
     private final Configuration _config;
     private LevelSelectionListener _listener;
 
-    public LevelPresenter() {
+    LevelPresenter() {
         this(Configuration.getInstance());
     }
 
-    public LevelPresenter(Configuration config) {
+    private LevelPresenter(Configuration config) {
         _config = config;
     }
 

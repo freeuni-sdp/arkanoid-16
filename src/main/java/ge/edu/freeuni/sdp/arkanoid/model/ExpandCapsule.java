@@ -5,7 +5,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 
 public class ExpandCapsule extends Capsule {
 
-    protected ExpandCapsule(Point position, Room room) {
+    ExpandCapsule(Point position, Room room) {
         super(position, room);
     }
 

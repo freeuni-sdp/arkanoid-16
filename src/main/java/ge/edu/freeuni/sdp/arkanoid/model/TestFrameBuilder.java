@@ -3,9 +3,9 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class TestFrameBuilder extends FrameBuilder {
+class TestFrameBuilder extends FrameBuilder {
 
-    public TestFrameBuilder(Size size) {
+    TestFrameBuilder(Size size) {
         super(size);
     }
 

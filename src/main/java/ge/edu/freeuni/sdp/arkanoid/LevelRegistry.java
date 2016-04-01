@@ -8,9 +8,9 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LevelRegistry {
+class LevelRegistry {
 
-    public static List<Level> getLevels(Size size) {
+    static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
 
         Level levelVerySimple = new Level(

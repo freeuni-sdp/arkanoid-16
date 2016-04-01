@@ -5,19 +5,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Room {
+class Room {
 
     private final Set<Gobj> _gobjs;
 
-    public Room() {
+    Room() {
         _gobjs = new HashSet<>();
     }
 
-    public void move() {
+    void move() {
         _gobjs.forEach(Gobj::move);
     }
 
-    public void interact() {
+    void interact() {
         Gobj[] snapshot = new Gobj[_gobjs.size()];
         _gobjs.toArray(snapshot);
 
@@ -32,15 +32,16 @@ public class Room {
         }
     }
 
-    public void removeZombies() {
+    void removeZombies() {
         List<Gobj> zombies = new ArrayList<>();
+        //noinspection Convert2streamapi
         for (Gobj candidate : getGobjs()) {
             if (!candidate.isAlive()) zombies.add(candidate);
         }
         _gobjs.removeAll(zombies);
     }
 
-    public Set<Gobj> getGobjs() {
+    Set<Gobj> getGobjs() {
         return _gobjs;
     }
 

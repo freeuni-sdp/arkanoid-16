@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class TerminalIntroView extends IntroView {
+class TerminalIntroView extends IntroView {
     private final String _spaces;
     private final ClassLoader _classLoader;
     private final Terminal _terminal;
     private int _row;
 
-    public TerminalIntroView(IntroPresenter presenter, Terminal terminal) {
+    TerminalIntroView(IntroPresenter presenter, Terminal terminal) {
         super(presenter);
         _terminal = terminal;
         int nrOfSpaces = (terminal.getTerminalSize().getColumns() - 81) / 2;

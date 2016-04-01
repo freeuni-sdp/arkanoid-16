@@ -3,11 +3,11 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class FrameBuilder implements RoomBuilder {
+class FrameBuilder implements RoomBuilder {
 
     private final Size _size;
 
-    public FrameBuilder(Size size) {
+    FrameBuilder(Size size) {
         _size = size;
     }
 
@@ -43,7 +43,7 @@ public class FrameBuilder implements RoomBuilder {
                 size);
     }
 
-    protected FrameBrick createBottomFrameBrick(Point point, Size size) {
+    FrameBrick createBottomFrameBrick(Point point, Size size) {
         return new KillerBrick(
                 point,
                 size);

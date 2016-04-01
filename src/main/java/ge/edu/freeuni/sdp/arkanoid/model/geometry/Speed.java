@@ -9,13 +9,13 @@ public final class Speed extends Point {
         this(angleDegrees, DEFAULT_LENGTH);
     }
 
-    public Speed(int angleDegrees, double length) {
+    private Speed(int angleDegrees, double length) {
         super(1, 1);
         setAngleDegrees(angleDegrees);
         setLength(length);
     }
 
-    public Speed(Point point) {
+    Speed(Point point) {
         super(point.X, point.Y);
     }
 
@@ -31,7 +31,7 @@ public final class Speed extends Point {
         return getDistance(new Point(0, 0));
     }
 
-    public void setLength(double length) {
+    private void setLength(double length) {
         double angle = getAngle();
         X = Math.cos(angle) * length;
         Y = Math.sin(angle) * length;
@@ -41,7 +41,7 @@ public final class Speed extends Point {
         return Math.round(Math.toDegrees(getAngle()));
     }
 
-    public void setAngleDegrees(int angleDegrees) {
+    private void setAngleDegrees(int angleDegrees) {
         double length = this.getLength();
         double angle = Math.toRadians(angleDegrees);
         X = Math.cos(angle) * length;

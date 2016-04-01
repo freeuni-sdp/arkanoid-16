@@ -8,7 +8,7 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 /**
  * @author toka
  */
-public interface GameLevel {
+interface GameLevel {
     String getName();
 
     String getDescription();

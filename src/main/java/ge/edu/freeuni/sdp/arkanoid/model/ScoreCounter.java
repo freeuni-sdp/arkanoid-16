@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-public class ScoreCounter {
+class ScoreCounter {
 
     private int _score;
 

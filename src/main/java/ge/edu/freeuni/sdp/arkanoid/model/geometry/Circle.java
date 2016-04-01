@@ -13,7 +13,7 @@ public class Circle extends Shape {
         return _radius;
     }
 
-    public Point getCenter() {
+    private Point getCenter() {
         return _center;
     }
 
@@ -22,6 +22,7 @@ public class Circle extends Shape {
             return canOverlap((Circle) other);
         }
 
+        //noinspection SimplifiableIfStatement
         if (other instanceof Rectangle) {
             return canOverlap((Rectangle) other);
         }
@@ -29,14 +30,14 @@ public class Circle extends Shape {
         return false;
     }
 
-    public boolean canOverlap(Circle other) {
+    private boolean canOverlap(Circle other) {
         Point c1 = this.getCenter();
         Point c2 = other.getCenter();
         double distance = Math.hypot(c1.X - c2.X, c1.Y - c2.Y);
         return distance < this.getRadius() + other.getRadius();
     }
 
-    public boolean canOverlap(Rectangle rectangle) {
+    boolean canOverlap(Rectangle rectangle) {
         return rectangle.canOverlap(_center);
     }
 }

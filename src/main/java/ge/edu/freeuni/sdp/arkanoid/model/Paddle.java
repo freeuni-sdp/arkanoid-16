@@ -1,12 +1,15 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Paddle extends Gobj {
+public class Paddle extends Gobj<Rectangle> {
 
     private final Set<PaddleChangedListener> _listeners;
     private boolean _isAlive;
@@ -17,7 +20,7 @@ public class Paddle extends Gobj {
         this(new Point(roomSize.getWidth() / 2, roomSize.getHeight() - 2));
     }
 
-    protected Paddle(Point position) {
+    Paddle(Point position) {
         super(position);
         _isAlive = true;
         _listeners = new HashSet<>();
@@ -25,7 +28,7 @@ public class Paddle extends Gobj {
     }
 
     @Override
-    public Shape getShape() {
+    public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(5, 1));
     }
 
@@ -60,7 +63,7 @@ public class Paddle extends Gobj {
         return _isAlive;
     }
 
-    public void exchange(Paddle newPaddle) {
+    void exchange(Paddle newPaddle) {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());
         for (PaddleChangedListener listener : _listeners) {
@@ -68,11 +71,11 @@ public class Paddle extends Gobj {
         }
     }
 
-    public void fire() {
+    void fire() {
         //TODO: Laser goes here
     }
 
-    public void addListener(PaddleChangedListener listener) {
+    void addListener(PaddleChangedListener listener) {
         _listeners.add(listener);
     }
 }
