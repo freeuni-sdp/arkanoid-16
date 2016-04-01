@@ -25,7 +25,8 @@ public class Game implements GameFacade, PaddleChangedListener {
         Rectangle paddleRectangle = (Rectangle) newPaddle.getShape();
         double paddleCenterX = position.X + paddleRectangle.getSize().getWidth() / 2;
         paddleChanged(newPaddle);
-        _ball = new Ball(new Point(paddleCenterX, position.Y - 0.5));
+        Point cellCenterOffset = new Point(-0.5, -0.5);
+        _ball = new Ball(new Point(paddleCenterX, position.Y).add(cellCenterOffset));
         _ball.setSpeed(new Speed(-45));
         _room.add(_ball);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);

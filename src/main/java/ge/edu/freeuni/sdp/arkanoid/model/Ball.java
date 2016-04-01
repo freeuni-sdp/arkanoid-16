@@ -59,6 +59,7 @@ public class Ball extends Gobj {
     public void move() {
         _prevPosition = getPosition();
         super.move();
+        setPosition(getPosition().smoothen());
     }
 
     @Override

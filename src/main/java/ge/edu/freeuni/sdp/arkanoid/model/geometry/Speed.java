@@ -6,7 +6,7 @@ public class Speed extends Point {
     public static double LENGTH = 0.2;
 
     public Speed(int angleDegrees) {
-        this(Math.cos(Math.toRadians(angleDegrees)) * LENGTH, (float) Math.sin(Math.toRadians(angleDegrees)) * LENGTH);
+        this(Math.cos(Math.toRadians(angleDegrees)) * LENGTH, Math.sin(Math.toRadians(angleDegrees)) * LENGTH);
     }
 
     protected Speed(double x, double y) {
