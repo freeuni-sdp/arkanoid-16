@@ -4,7 +4,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
-public abstract class Gobj {
+public abstract class Gobj<TShape extends Shape> {
 
     private Point _position;
     private Speed _speed;
@@ -18,7 +18,7 @@ public abstract class Gobj {
         _speed = speed;
     }
 
-    public abstract Shape getShape();
+    public abstract TShape getShape();
 
     public abstract GobjKind getKind();
 

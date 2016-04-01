@@ -5,7 +5,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.Configuration;
 
 public class LevelPresenter extends Presenter {
 
-    private Configuration _config;
+    private final Configuration _config;
     private LevelSelectionListener _listener;
 
     public LevelPresenter() {

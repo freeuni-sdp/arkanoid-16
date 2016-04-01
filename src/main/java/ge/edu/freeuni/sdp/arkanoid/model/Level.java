@@ -4,7 +4,7 @@ public class Level implements GameLevel {
 
     private final String _name;
     private final String _description;
-    private RoomBuilder _builder;
+    private final RoomBuilder _builder;
 
 
     public Level(String name, String description, RoomBuilder builder) {

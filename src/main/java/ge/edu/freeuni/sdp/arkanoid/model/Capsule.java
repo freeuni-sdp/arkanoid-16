@@ -1,8 +1,11 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
-public abstract class Capsule extends Gobj {
+public abstract class Capsule extends Gobj<Rectangle> {
 
     private final Room _room;
     private boolean _isAlive;
@@ -15,7 +18,7 @@ public abstract class Capsule extends Gobj {
     }
 
     @Override
-    public Shape getShape() {
+    public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(1, 1));
     }
 

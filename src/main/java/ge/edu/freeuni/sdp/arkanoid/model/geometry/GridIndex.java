@@ -2,8 +2,8 @@ package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
 public class GridIndex {
 
-    public int X;
-    public int Y;
+    public final int X;
+    public final int Y;
 
     public GridIndex(int x, int y) {
         X = x;

@@ -8,7 +8,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.LevelView;
 
 public class TerminalLevelView extends LevelView implements LevelSelectionListener {
 
-    private Terminal _terminal;
+    private final Terminal _terminal;
 
     public TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
         super(presenter);

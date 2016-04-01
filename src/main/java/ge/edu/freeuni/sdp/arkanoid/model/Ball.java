@@ -1,21 +1,31 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Circle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 
-public class Ball extends Gobj {
+public class Ball extends Gobj<Circle> {
 
-    private static double RADIUS = (float) 0.25;
     private Point _prevPosition;
 
-    protected Ball(Point position) {
+    public Ball() {
+        this(new Point(0, 0));
+    }
 
-        super(position);
+    public Ball(Point position) {
+        this(position, new Speed(-45));
+    }
+
+    protected Ball(Point position, Speed speed) {
+        super(position, speed);
     }
 
     @Override
-    public Shape getShape() {
+    public Circle getShape() {
+        double RADIUS = (float) 0.5;
         return new Circle(RADIUS, getPosition());
     }
 
@@ -71,4 +81,11 @@ public class Ball extends Gobj {
         return true;
     }
 
+    public void putOn(Gobj<Rectangle> other) {
+        Point p = other.getPosition();
+        double width = other.getShape().getSize().getWidth();
+        double radius = getShape().getRadius();
+        Point position = new Point(p.X + width / 2, p.Y - radius);
+        setPosition(position);
+    }
 }

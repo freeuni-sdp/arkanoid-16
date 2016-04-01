@@ -5,7 +5,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class GobjPresenterFactory {
 
-    private Size _size;
+    private final Size _size;
 
     GobjPresenterFactory(Size size) {
 

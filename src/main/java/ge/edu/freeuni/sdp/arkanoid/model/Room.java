@@ -10,13 +10,11 @@ public class Room {
     private final Set<Gobj> _gobjs;
 
     public Room() {
-        _gobjs = new HashSet<Gobj>();
+        _gobjs = new HashSet<>();
     }
 
     public void move() {
-        for (Gobj current : _gobjs) {
-            current.move();
-        }
+        _gobjs.forEach(Gobj::move);
     }
 
     public void interact() {
@@ -35,7 +33,7 @@ public class Room {
     }
 
     public void removeZombies() {
-        List<Gobj> zombies = new ArrayList<Gobj>();
+        List<Gobj> zombies = new ArrayList<>();
         for (Gobj candidate : getGobjs()) {
             if (!candidate.isAlive()) zombies.add(candidate);
         }

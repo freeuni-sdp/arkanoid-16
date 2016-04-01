@@ -5,6 +5,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +19,8 @@ public class SoundPlayer {
     public static final String COLLIDE = "collide.wav";
     public static final String NONE = null;
     private static SoundPlayer _instance;
+    final Map<String, Clip> _clipsCache;
     private final ClassLoader _classLoader;
-
-    Map<String, Clip> _clipsCache;
 
     public SoundPlayer() {
         _clipsCache = new HashMap<>();
@@ -81,7 +81,9 @@ public class SoundPlayer {
     private Clip createClip(String sound) {
         try {
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(_classLoader.getResource(sound).openStream()));
+            URL resource = _classLoader.getResource(sound);
+            if (resource == null) return null;
+            clip.open(AudioSystem.getAudioInputStream(resource.openStream()));
             return clip;
         } catch (LineUnavailableException e) {
             System.err.println("Ups! HTTP 404 - Not found ...");

@@ -11,7 +11,7 @@ import java.util.List;
 public class LevelRegistry {
 
     public static List<Level> getLevels(Size size) {
-        List<Level> levels = new ArrayList<Level>();
+        List<Level> levels = new ArrayList<>();
 
         Level levelVerySimple = new Level(
                 "Test #3 Expand Capsule",

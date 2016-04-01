@@ -2,8 +2,8 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 public class CellPosition {
 
-    public int x;
-    public int y;
+    public final int x;
+    public final int y;
 
     public CellPosition(int x, int y) {
         this.x = x;

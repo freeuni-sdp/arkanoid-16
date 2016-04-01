@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class Level1Builder extends FrameBuilder {
@@ -28,7 +27,7 @@ public class Level1Builder extends FrameBuilder {
     }
 
     private int getNormalBrickWidth() {
-        return ((Rectangle) new NormalBrick(null, BrickColor.Red, null).getShape()).getSize().getWidth();
+        return new NormalBrick(null, BrickColor.Red, null).getShape().getSize().getWidth();
     }
 }
 

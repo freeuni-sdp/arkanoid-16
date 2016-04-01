@@ -7,8 +7,8 @@ import ge.edu.freeuni.sdp.arkanoid.presenter.RoomPresenter;
 
 public class ViewController {
 
-    private ViewFactory _viewFactory;
-    private PresenterFactory _presenterFactory;
+    private final ViewFactory _viewFactory;
+    private final PresenterFactory _presenterFactory;
 
     public ViewController(ViewFactory viewFactory,
                           PresenterFactory presenterRegistry) {
@@ -18,20 +18,15 @@ public class ViewController {
 
     public void run() {
 
-        while (true) {
+        IntroView introView = _viewFactory.getIntroView();
+        introView.show();
 
-            IntroView introView = _viewFactory.getIntroView();
-            introView.show();
+        LevelPresenter levelPresenter = _presenterFactory.getLevelPresenter();
+        LevelView levelView = _viewFactory.getLevelView(levelPresenter);
+        levelView.show();
 
-            LevelPresenter levelPresenter = _presenterFactory.getLevelPresenter();
-            LevelView levelView = _viewFactory.getLevelView(levelPresenter);
-            levelView.show();
-
-            RoomPresenter roomPresenter = _presenterFactory.getRoomPresenter();
-            RoomView roomView = _viewFactory.getRoomView(roomPresenter);
-            roomView.show();
-
-            break;
-        }
+        RoomPresenter roomPresenter = _presenterFactory.getRoomPresenter();
+        RoomView roomView = _viewFactory.getRoomView(roomPresenter);
+        roomView.show();
     }
 }

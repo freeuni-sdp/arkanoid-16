@@ -3,7 +3,7 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 
-public abstract class Brick extends Gobj {
+public abstract class Brick extends Gobj<Rectangle> {
 
     private final BrickColor _color;
     private final Capsule _capsule;
@@ -24,7 +24,7 @@ public abstract class Brick extends Gobj {
     public void interact(Gobj other) {
         if (other instanceof Ball) {
             Ball ball = (Ball) other;
-            ball.bounceFrom((Rectangle) getShape());
+            ball.bounceFrom(getShape());
             _capsule.release(getPosition());
             _isAlive = false;
         }

@@ -8,7 +8,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.RoomView;
 public class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpdateListener {
 
 
-    private Terminal _terminal;
+    private final Terminal _terminal;
 
     protected TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);

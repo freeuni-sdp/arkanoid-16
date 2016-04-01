@@ -10,7 +10,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.ViewFactory;
 
 public class TerminalViewFactory implements ViewFactory {
 
-    private Terminal _terminal;
+    private final Terminal _terminal;
 
     public TerminalViewFactory(Terminal terminal) {
         _terminal = terminal;

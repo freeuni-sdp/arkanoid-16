@@ -1,14 +1,15 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.util.Set;
 
 public class Game implements GameFacade, PaddleChangedListener {
     private final ScoreCounter _scoreCounter;
+    private final Size _size;
     private Room _room;
-    private Size _size;
     private Paddle _paddle;
     private Ball _ball;
 
@@ -20,14 +21,11 @@ public class Game implements GameFacade, PaddleChangedListener {
     public void init(Level level) {
         _room = new Room();
         level.build(_room, _scoreCounter);
-        Point position = new Point(_size.getWidth() / 2, _size.getHeight() - 2);
-        Paddle newPaddle = new Paddle(position);
-        Rectangle paddleRectangle = (Rectangle) newPaddle.getShape();
-        double paddleCenterX = position.X + paddleRectangle.getSize().getWidth() / 2;
+        Paddle newPaddle = new Paddle(_size);
         paddleChanged(newPaddle);
-        Point cellCenterOffset = new Point(-0.5, -0.5);
-        _ball = new Ball(new Point(paddleCenterX, position.Y).add(cellCenterOffset));
-        _ball.setSpeed(new Speed(-45));
+        _ball = new Ball();
+        _ball.putOn(newPaddle);
+
         _room.add(_ball);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
     }

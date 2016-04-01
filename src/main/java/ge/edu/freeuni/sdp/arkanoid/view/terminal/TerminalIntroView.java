@@ -8,12 +8,13 @@ import ge.edu.freeuni.sdp.arkanoid.view.IntroView;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Scanner;
 
 public class TerminalIntroView extends IntroView {
     private final String _spaces;
     private final ClassLoader _classLoader;
-    private Terminal _terminal;
+    private final Terminal _terminal;
     private int _row;
 
     public TerminalIntroView(IntroPresenter presenter, Terminal terminal) {
@@ -44,7 +45,9 @@ public class TerminalIntroView extends IntroView {
 
 
     private void drawSplashScreen() {
-        File file = new File(_classLoader.getResource("intro.txt").getFile());
+        URL resource = _classLoader.getResource("intro.txt");
+        if (resource == null) return;
+        File file = new File(resource.getFile());
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

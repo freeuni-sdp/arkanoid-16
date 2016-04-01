@@ -12,6 +12,11 @@ public class Paddle extends Gobj {
     private boolean _isAlive;
     private Point prevPosition;
 
+
+    public Paddle(Size roomSize) {
+        this(new Point(roomSize.getWidth() / 2, roomSize.getHeight() - 2));
+    }
+
     protected Paddle(Point position) {
         super(position);
         _isAlive = true;
@@ -41,7 +46,6 @@ public class Paddle extends Gobj {
             SoundPlayer.getInstance().play(SoundPlayer.PARRY);
             Speed newSpeed = ball.getSpeed().mirrorY();
             ball.setSpeed(newSpeed);
-            return;
         }
     }
 
@@ -65,7 +69,7 @@ public class Paddle extends Gobj {
     }
 
     public void fire() {
-
+        //TODO: Laser goes here
     }
 
     public void addListener(PaddleChangedListener listener) {

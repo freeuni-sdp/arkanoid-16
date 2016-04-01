@@ -2,7 +2,6 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Shape;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class NormalBrick extends Brick {
@@ -12,7 +11,7 @@ public class NormalBrick extends Brick {
     }
 
     @Override
-    public Shape getShape() {
+    public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(4, 1));
     }
 }

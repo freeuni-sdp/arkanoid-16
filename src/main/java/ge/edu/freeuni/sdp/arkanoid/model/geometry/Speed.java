@@ -2,8 +2,8 @@ package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
 public final class Speed extends Point {
 
-    public static Speed NULL = new Speed(0, 0);
-    private static double DEFAULT_LENGTH = 0.15;
+    public static final Speed NULL = new Speed(0, 0);
+    private static final double DEFAULT_LENGTH = 0.15;
 
     public Speed(int angleDegrees) {
         this(angleDegrees, DEFAULT_LENGTH);

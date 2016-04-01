@@ -69,7 +69,7 @@ public class Point {
         Point shifted = this.add(CENTER_OFFSET);
         Point rounded = shifted.round();
 
-        boolean isAlmostOnGrid = shifted.getDistance(rounded) < 0.1;
+        boolean isAlmostOnGrid = shifted.getDistance(rounded) < threshold;
         if (isAlmostOnGrid)
             return rounded.add(CENTER_OFFSET.reverse());
         else return this;

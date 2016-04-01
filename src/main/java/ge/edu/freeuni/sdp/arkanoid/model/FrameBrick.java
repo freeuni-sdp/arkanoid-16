@@ -1,6 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class FrameBrick extends Brick {
     private final Size _size;
@@ -11,7 +13,7 @@ public class FrameBrick extends Brick {
     }
 
     @Override
-    public Shape getShape() {
+    public Rectangle getShape() {
         return new Rectangle(getPosition(), _size);
     }
 

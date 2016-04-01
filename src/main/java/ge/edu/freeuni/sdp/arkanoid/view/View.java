@@ -4,7 +4,7 @@ import ge.edu.freeuni.sdp.arkanoid.presenter.Presenter;
 
 public abstract class View<T extends Presenter> {
 
-    private T _presenter;
+    private final T _presenter;
 
     protected View(T presenter) {
         _presenter = presenter;

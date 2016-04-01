@@ -5,17 +5,17 @@ import java.util.Random;
 public class Direction {
 
     // Note there is no Direction.NONE
-    public static Direction LEFT = new Direction(-1, 0);
-    public static Direction RIGHT = new Direction(1, 0);
-    public static Direction UP = new Direction(0, -1);
-    public static Direction DOWN = new Direction(0, 1);
-    public static Direction NONE = new Direction(0, 0);
+    public static final Direction LEFT = new Direction(-1, 0);
+    public static final Direction RIGHT = new Direction(1, 0);
+    public static final Direction UP = new Direction(0, -1);
+    public static final Direction DOWN = new Direction(0, 1);
+    public static final Direction NONE = new Direction(0, 0);
 
-    private static Direction[] ALL = {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
+    private static final Direction[] ALL = {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
 
 
-    private int _dx;
-    private int _dy;
+    private final int _dx;
+    private final int _dy;
 
     private Direction(int dx, int dy) {
         _dx = dx;

@@ -27,42 +27,39 @@ public class PressedKeyWatcher {
 
 
     public static void init() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(ke -> {
+            switch (ke.getID()) {
+                case KeyEvent.KEY_PRESSED:
+                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                        leftPressed = true;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        rightPressed = true;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
+                        spacePressed = true;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        escapePressed = true;
+                    }
+                    break;
 
-            public boolean dispatchKeyEvent(KeyEvent ke) {
-                switch (ke.getID()) {
-                    case KeyEvent.KEY_PRESSED:
-                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            leftPressed = true;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            rightPressed = true;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
-                            spacePressed = true;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                            escapePressed = true;
-                        }
-                        break;
-
-                    case KeyEvent.KEY_RELEASED:
-                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            leftPressed = false;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            rightPressed = false;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
-                            spacePressed = false;
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                            escapePressed = false;
-                        }
-                        break;
-                }
-                return false;
+                case KeyEvent.KEY_RELEASED:
+                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                        leftPressed = false;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        rightPressed = false;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
+                        spacePressed = false;
+                    }
+                    if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        escapePressed = false;
+                    }
+                    break;
             }
+            return false;
         });
     }
 
