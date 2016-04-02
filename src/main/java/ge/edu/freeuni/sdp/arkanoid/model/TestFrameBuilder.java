@@ -3,7 +3,7 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public class TestFrameBuilder implements RoomBuilder {
+public abstract class TestFrameBuilder implements RoomBuilder {
     private Size _size;
 
     public TestFrameBuilder(Size size) {
