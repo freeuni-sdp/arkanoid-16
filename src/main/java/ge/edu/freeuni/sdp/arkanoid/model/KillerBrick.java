@@ -11,6 +11,6 @@ public class KillerBrick extends FrameBrick {
 
     @Override
     public void interact(Gobj other) {
-
+        super.interact(other);
     }
 }
