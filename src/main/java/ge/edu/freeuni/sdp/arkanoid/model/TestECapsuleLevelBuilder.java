@@ -19,7 +19,7 @@ public class TestECapsuleLevelBuilder extends TestFrameBuilder {
         int roomWidth = Configuration.getInstance().getSize().getWidth();
 
         _numGameObjects = 0;
-        for (int i = 1; i < 2; i += brickDistance) {
+        for (int i = 1; i < roomWidth; i += brickDistance) {
             Point position = new Point(i, 5);
             Capsule capsule = new ExpandCapsule(position, room);
             Brick current = new NormalBrick(position, BrickColor.Red, capsule);
