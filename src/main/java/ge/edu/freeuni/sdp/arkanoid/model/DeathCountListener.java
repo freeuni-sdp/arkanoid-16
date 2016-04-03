@@ -10,11 +10,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class DeathCountListener implements GobjDeathListener {
 
-    private AtomicInteger _count;
+    private int _count;
     private ArrayList<LevelOverListener> _overListeners;
 
     public DeathCountListener(int count) {
-        _count = new AtomicInteger(count);
+        _count = count;
         _overListeners = new ArrayList<>();
     }
 
@@ -23,17 +23,16 @@ public class DeathCountListener implements GobjDeathListener {
     }
 
     public void setCount(int count) {
-        _count.set(count);
+        _count = count;
     }
 
     public int getCount() {
-        return _count.get();
+        return _count;
     }
 
     @Override
     public void gobjDied(Gobj obj, String reason) {
-        int value = _count.addAndGet(-1);
-        if (value == 0)
+        if (--_count == 0)
             notifyAllLevelOver();
     }
 
