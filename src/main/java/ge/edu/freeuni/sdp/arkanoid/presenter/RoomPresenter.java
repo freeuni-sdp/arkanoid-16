@@ -1,10 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 
-import ge.edu.freeuni.sdp.arkanoid.model.Configuration;
-import ge.edu.freeuni.sdp.arkanoid.model.GameFacade;
-import ge.edu.freeuni.sdp.arkanoid.model.Gobj;
-import ge.edu.freeuni.sdp.arkanoid.model.Level;
+import ge.edu.freeuni.sdp.arkanoid.model.*;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 
 public class RoomPresenter extends Presenter {
@@ -25,6 +22,13 @@ public class RoomPresenter extends Presenter {
 
     public void init() {
         Level level = Configuration.getInstance().getSelectedLevel();
+        level.setLevelOverListener(new LevelOverListener() {
+            @Override
+            public void levelOver() {
+                System.out.println("Game over!");       // TODO: Start next level
+            }
+        });
+
         _game.init(level);
     }
 

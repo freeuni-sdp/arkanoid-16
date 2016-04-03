@@ -27,6 +27,7 @@ public abstract class Brick extends Gobj<Rectangle> {
             ball.bounceFrom(getShape());
             _capsule.release(getPosition());
             _isAlive = false;
+            notifyAllDeath("Death");
         }
     }
 
