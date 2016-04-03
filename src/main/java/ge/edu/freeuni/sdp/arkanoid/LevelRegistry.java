@@ -2,6 +2,7 @@ package ge.edu.freeuni.sdp.arkanoid;
 
 import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.Level1Builder;
+import ge.edu.freeuni.sdp.arkanoid.model.SinkingWallLevelBuilder;
 import ge.edu.freeuni.sdp.arkanoid.model.TestECapsuleLevelBuilder;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
@@ -23,8 +24,14 @@ class LevelRegistry {
                 "Destruct the wall. No power-ups.",
                 new Level1Builder(size));
 
+        Level levelSinkingWall = new Level(
+                "Level 2 Sinking Wall",
+                "Wall is sinking. Make sure it doesn't reach you.",
+                new SinkingWallLevelBuilder(size));
+
         levels.add(levelVerySimple);
         levels.add(level1);
+        levels.add(levelSinkingWall);
 
         return levels;
     }

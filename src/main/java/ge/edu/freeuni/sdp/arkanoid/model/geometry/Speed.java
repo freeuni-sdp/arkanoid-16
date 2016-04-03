@@ -15,7 +15,7 @@ public final class Speed extends Point {
         setLength(length);
     }
 
-    Speed(Point point) {
+    public Speed(Point point) {
         super(point.X, point.Y);
     }
 

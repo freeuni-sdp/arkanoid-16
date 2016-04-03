@@ -23,7 +23,7 @@ public abstract class FrameBuilder implements RoomBuilder {
         room.add(bottomBrick);
 
         Point topFrameBrickPosition = new Point(-1, -1);
-        Brick topBrick = createFrameBrick(topFrameBrickPosition, horizontalFrameBrickSize);
+        Brick topBrick = createTopFrameBrick(topFrameBrickPosition, horizontalFrameBrickSize, room);
         room.add(topBrick);
 
         Size verticalFrameBrickSize = new Size(1, h + 2);
@@ -45,6 +45,12 @@ public abstract class FrameBuilder implements RoomBuilder {
 
     FrameBrick createBottomFrameBrick(Point point, Size size) {
         return new KillerBrick(
+                point,
+                size);
+    }
+
+    FrameBrick createTopFrameBrick(Point point, Size size, Room room) {
+        return new FrameBrick(
                 point,
                 size);
     }
