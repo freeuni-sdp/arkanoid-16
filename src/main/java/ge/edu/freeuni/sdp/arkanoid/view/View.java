@@ -2,7 +2,7 @@ package ge.edu.freeuni.sdp.arkanoid.view;
 
 import ge.edu.freeuni.sdp.arkanoid.presenter.Presenter;
 
-abstract class View<T extends Presenter> {
+abstract class View<T extends Presenter> extends KeyListener {
 
     private final T _presenter;
 

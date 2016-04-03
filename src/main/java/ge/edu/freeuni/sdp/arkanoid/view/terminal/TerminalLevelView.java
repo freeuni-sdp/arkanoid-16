@@ -9,6 +9,8 @@ import ge.edu.freeuni.sdp.arkanoid.view.LevelView;
 class TerminalLevelView extends LevelView implements LevelSelectionListener {
 
     private final Terminal _terminal;
+    private int selectedLevelIndex = 0, prevLevelIndex;
+    private boolean isAccepted;
 
     TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
         super(presenter);
@@ -19,22 +21,19 @@ class TerminalLevelView extends LevelView implements LevelSelectionListener {
     public void show() {
         draw();
 
-        boolean isAccepted = false;
-        boolean isSelected = false;
-
         while (!isAccepted) {
             Key p = _terminal.readInput();
             if (p == null) continue;
-            if (p.getKind() == Key.Kind.Enter && isSelected) {
-                isAccepted = true;
-                continue;
+
+            boolean isSelected = getPresenter().setSelection(selectedLevelIndex);
+            if (isSelected) {
+                prevLevelIndex = selectedLevelIndex;
+            } else {
+                selectedLevelIndex = prevLevelIndex;
             }
-            char ch = p.getCharacter();
-            if (!Character.isDigit(ch)) continue;
-            int index = Character.getNumericValue(ch) - 1;
-            isSelected = getPresenter().setSelection(index);
         }
     }
+
 
     private void draw() {
         _terminal.clearScreen();
@@ -63,4 +62,25 @@ class TerminalLevelView extends LevelView implements LevelSelectionListener {
     public void levelSelectionChanged() {
         draw();
     }
+
+    @Override
+    protected void upKeyPressed() {
+        selectedLevelIndex--;
+    }
+
+    @Override
+    protected void downKeyPressed() {
+        selectedLevelIndex++;
+    }
+
+    @Override
+    protected void enterPressed() {
+        isAccepted = true;
+    }
+
+    @Override
+    protected void numberPressed(char keyChar) {
+        selectedLevelIndex = Character.getNumericValue(keyChar) - 1;
+    }
+
 }

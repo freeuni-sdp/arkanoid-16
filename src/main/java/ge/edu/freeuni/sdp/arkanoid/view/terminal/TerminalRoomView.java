@@ -7,7 +7,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.RoomView;
 
 class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpdateListener {
 
-
+    private boolean escPressed = false;
     private final Terminal _terminal;
 
     TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
@@ -22,15 +22,16 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
         presenter.init();
 
         _terminal.clearScreen();
-        while (true) {
-            Command command = Command.None;
+        while (!escPressed) {
+//            Command command = Command.None;
             if (presenter.isGameOver()) break;
 
-            if (PressedKeyWatcher.isRightPressed()) command = Command.Right;
-            if (PressedKeyWatcher.isLeftPressed()) command = Command.Left;
-            if (PressedKeyWatcher.isSpacePressed()) command = Command.Fire;
-            if (PressedKeyWatcher.isEscapePressed()) break;
+//            if (PressedKeyWatcher.isRightPressed()) command = Command.Right;
+//            if (PressedKeyWatcher.isLeftPressed()) command = Command.Left;
+//            if (PressedKeyWatcher.isSpacePressed()) command = Command.Fire;
+//            if (PressedKeyWatcher.isEscapePressed()) break;
 
+//            System.out.println(command);
             presenter.execute(command);
             sleep();
         }
@@ -89,5 +90,10 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
             _terminal.moveCursor(i, 0);
             _terminal.putCharacter('*');
         }
+    }
+
+    @Override
+    protected void escPressed() {
+        escPressed = true;
     }
 }

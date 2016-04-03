@@ -14,6 +14,7 @@ public class TerminalViewFactory implements ViewFactory {
 
     public TerminalViewFactory(Terminal terminal) {
         _terminal = terminal;
+        PressedKeyWatcher.init();
     }
 
     public IntroView getIntroView() {
@@ -21,12 +22,15 @@ public class TerminalViewFactory implements ViewFactory {
     }
 
     public LevelView getLevelView(LevelPresenter presenter) {
-
-        return new TerminalLevelView(presenter, _terminal);
+        LevelView lv = new TerminalLevelView(presenter, _terminal);
+        PressedKeyWatcher.addWatcher(lv);
+        return lv;
     }
 
     public RoomView getRoomView(RoomPresenter roomPresenter) {
-        return new TerminalRoomView(roomPresenter, _terminal);
+        RoomView rv = new TerminalRoomView(roomPresenter, _terminal);
+        PressedKeyWatcher.addWatcher(rv);
+        return rv;
     }
 
 
