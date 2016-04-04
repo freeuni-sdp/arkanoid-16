@@ -14,7 +14,8 @@ class Room {
     }
 
     void move() {
-        _gobjs.forEach(Gobj::move);
+        Set<Gobj> cgobjs = new HashSet<>(_gobjs);
+        cgobjs.forEach(Gobj::move);
     }
 
     void interact() {

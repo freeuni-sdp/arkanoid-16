@@ -7,7 +7,7 @@ public class Direction {
     public static final Direction RIGHT = new Direction(1, 0);
     public static final Direction NONE = new Direction(0, 0);
     private static final Direction UP = new Direction(0, -1);
-    private static final Direction DOWN = new Direction(0, 1);
+    public static final Direction DOWN = new Direction(0, 1);
     @SuppressWarnings({"MismatchedReadAndWriteOfArray", "unused"})
     private static final Direction[] ALL = {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
 
@@ -20,7 +20,7 @@ public class Direction {
         _dy = dy;
     }
 
-    private Point toPoint() {
+    public Point toPoint() {
         return new Point(this._dx, this._dy);
     }
 
