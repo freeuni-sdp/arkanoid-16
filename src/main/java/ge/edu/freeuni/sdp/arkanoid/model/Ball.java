@@ -61,6 +61,7 @@ public class Ball extends Gobj<Circle> {
                 SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
                 setSpeed(newSpeed);
             }
+            previous = current;
             current = previous.add(newSpeed);
         }
     }

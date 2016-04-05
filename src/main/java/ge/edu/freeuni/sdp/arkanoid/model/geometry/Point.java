@@ -75,4 +75,8 @@ public class Point {
             return rounded.add(CENTER_OFFSET.reverse());
         else return this;
     }
+
+    public Point multiply(Point other) {
+        return new Point(X * other.X, Y * other.Y);
+    }
 }

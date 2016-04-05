@@ -9,6 +9,7 @@ import ge.edu.freeuni.sdp.arkanoid.view.LevelView;
 class TerminalLevelView extends LevelView implements LevelSelectionListener {
 
     private final Terminal _terminal;
+    private int selectedLevel = 0;
 
     TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
         super(presenter);
@@ -20,19 +21,22 @@ class TerminalLevelView extends LevelView implements LevelSelectionListener {
         draw();
 
         boolean isAccepted = false;
-        boolean isSelected = false;
 
         while (!isAccepted) {
             Key p = _terminal.readInput();
             if (p == null) continue;
-            if (p.getKind() == Key.Kind.Enter && isSelected) {
+            if (p.getKind() == Key.Kind.Enter) {
                 isAccepted = true;
                 continue;
             }
             char ch = p.getCharacter();
-            if (!Character.isDigit(ch)) continue;
-            int index = Character.getNumericValue(ch) - 1;
-            isSelected = getPresenter().setSelection(index);
+            if (Character.isDigit(ch)) selectedLevel = Character.getNumericValue(ch) - 1;
+            if (p.getKind() == Key.Kind.ArrowDown) selectedLevel++;
+            if (p.getKind() == Key.Kind.ArrowUp) selectedLevel--;
+
+            selectedLevel = Math.floorMod(selectedLevel, getPresenter().getLevelNames().length);
+
+            getPresenter().setSelection(selectedLevel);
         }
     }
 

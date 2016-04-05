@@ -26,4 +26,8 @@ public class Size {
                 current.Y >= 0 &&
                 current.Y < this.getHeight();
     }
+
+    public Point toPoint() {
+        return new Point(getWidth(), getHeight());
+    }
 }
