@@ -31,7 +31,7 @@ public class TestECapsuleLevelBuilder extends TestFrameBuilder {
     }
 
     @Override
-    public void setLevelOverListener(LevelOverListener listener) {
+    public void setLevelClearedListener(LevelClearedListener listener) {
         _countListener.setLevelOverListener(listener);
     }
 }

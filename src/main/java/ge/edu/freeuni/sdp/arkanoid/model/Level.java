@@ -1,7 +1,5 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.ArrayList;
-
 public class Level implements GameLevel {
 
     private final String _name;
@@ -15,8 +13,8 @@ public class Level implements GameLevel {
         _builder = builder;
     }
 
-    public void setLevelOverListener(LevelOverListener listener) {
-        _builder.setLevelOverListener(listener);
+    public void setLevelClearedListener(LevelClearedListener listener) {
+        _builder.setLevelClearedListener(listener);
     }
 
     public String getDescription() {

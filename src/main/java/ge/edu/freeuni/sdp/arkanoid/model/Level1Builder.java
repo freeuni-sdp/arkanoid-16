@@ -3,8 +3,6 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-import java.util.ArrayList;
-
 public class Level1Builder extends FrameBuilder {
 
     private DeathCountListener _countListener;
@@ -27,7 +25,7 @@ public class Level1Builder extends FrameBuilder {
     }
 
     @Override
-    public void setLevelOverListener(LevelOverListener listener) {
+    public void setLevelClearedListener(LevelClearedListener listener) {
         _countListener.setLevelOverListener(listener);
     }
 
