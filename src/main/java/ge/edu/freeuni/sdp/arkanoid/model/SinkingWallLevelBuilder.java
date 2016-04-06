@@ -15,7 +15,7 @@ public class SinkingWallLevelBuilder extends FrameBuilder {
     }
 
     @Override
-    public void setLevelOverListener(LevelOverListener listener) {
+    public void setLevelClearedListener(LevelClearedListener listener) {
         // TODO add listener
     }
 }

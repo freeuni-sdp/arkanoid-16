@@ -22,13 +22,6 @@ public class RoomPresenter extends Presenter {
 
     public void init() {
         Level level = Configuration.getInstance().getSelectedLevel();
-        level.setLevelOverListener(new LevelOverListener() {
-            @Override
-            public void levelOver() {
-                System.out.println("Game over!");       // TODO: Start next level
-            }
-        });
-
         _game.init(level);
     }
 
@@ -61,6 +54,17 @@ public class RoomPresenter extends Presenter {
         }
 
         _game.move(_direction);
+        if (_game.isLevelCleared()) {
+            Configuration conf = Configuration.getInstance();
+
+            int ind = conf.getSelectedLevelIndex();
+
+            if (ind < conf.getLevelNames().length - 1) {
+                conf.setSelectedLevelIndex(ind + 1);
+            }
+
+            _game.init(conf.getSelectedLevel());
+        }
     }
 
     private void scanAndNotify() {

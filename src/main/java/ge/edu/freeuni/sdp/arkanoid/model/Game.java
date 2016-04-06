@@ -12,6 +12,7 @@ public class Game implements GameFacade, PaddleChangedListener {
     private Room _room;
     private Paddle _paddle;
     private Ball _ball;
+    private boolean _levelCleared;
 
     public Game(Size size) {
         this._size = size;
@@ -20,6 +21,15 @@ public class Game implements GameFacade, PaddleChangedListener {
 
     public void init(Level level) {
         _room = new Room();
+        _levelCleared = false;
+
+        level.setLevelClearedListener(new LevelClearedListener() {
+            @Override
+            public void levelCleared() {
+                _levelCleared = true;
+            }
+        });
+
         level.build(_room, _scoreCounter);
         Paddle newPaddle = new Paddle(_size);
         paddleChanged(newPaddle);
@@ -43,6 +53,10 @@ public class Game implements GameFacade, PaddleChangedListener {
 
     public boolean isGameOver() {
         return !_ball.isAlive();
+    }
+
+    public boolean isLevelCleared() {
+        return _levelCleared;
     }
 
     public Size getSize() {

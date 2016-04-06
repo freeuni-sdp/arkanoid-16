@@ -1,9 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by nika on 4/2/16.
@@ -11,14 +8,14 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DeathCountListener implements GobjDeathListener {
 
     private int _count;
-    private ArrayList<LevelOverListener> _overListeners;
+    private ArrayList<LevelClearedListener> _overListeners;
 
     public DeathCountListener(int count) {
         _count = count;
         _overListeners = new ArrayList<>();
     }
 
-    public void setLevelOverListener(LevelOverListener listener) {
+    public void setLevelOverListener(LevelClearedListener listener) {
         _overListeners.add(listener);
     }
 
@@ -33,11 +30,11 @@ public class DeathCountListener implements GobjDeathListener {
     @Override
     public void gobjDied(Gobj obj, String reason) {
         if (--_count == 0)
-            notifyAllLevelOver();
+            notifyAllLevelCleared();
     }
 
-    protected void notifyAllLevelOver() {
-        _overListeners.forEach(LevelOverListener::levelOver);
+    protected void notifyAllLevelCleared() {
+        _overListeners.forEach(LevelClearedListener::levelCleared);
     }
 
 }

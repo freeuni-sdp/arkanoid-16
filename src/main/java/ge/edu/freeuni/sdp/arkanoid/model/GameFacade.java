@@ -14,6 +14,8 @@ public interface GameFacade {
 
     boolean isGameOver();
 
+    boolean isLevelCleared();
+
     Size getSize();
 
     Set<Gobj> getGobjs();
