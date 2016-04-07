@@ -19,7 +19,7 @@ public class ScrollingWallLevelBuilder extends FrameBuilder {
 
     @Override
     FrameBrick createRightFrameBrick(Point point, Size size, Room room) {
-        return new KillerBrick(
+        return new MovementKillerBrick(
                 point,
                 size);
     }

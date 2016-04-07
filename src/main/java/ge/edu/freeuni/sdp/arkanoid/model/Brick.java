@@ -23,8 +23,6 @@ public abstract class Brick extends Gobj<Rectangle> {
 
     public void interact(Gobj other) {
         if (other instanceof Ball) {
-            Ball ball = (Ball) other;
-            ball.bounceFrom(getShape());
             _capsule.release(getPosition());
             _isAlive = false;
             notifyAllDeath("Death");
