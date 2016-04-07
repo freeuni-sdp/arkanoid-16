@@ -29,11 +29,11 @@ public abstract class FrameBuilder implements RoomBuilder {
         Size verticalFrameBrickSize = new Size(1, h + 2);
 
         Point leftFrameBrickPosition = new Point(-1, -1);
-        Brick leftBrick = createFrameBrick(leftFrameBrickPosition, verticalFrameBrickSize);
+        Brick leftBrick = createLeftFrameBrick(leftFrameBrickPosition, verticalFrameBrickSize, room);
         room.add(leftBrick);
 
         Point rightFrameBrickPosition = new Point(w, -1);
-        Brick rightBrick = createFrameBrick(rightFrameBrickPosition, verticalFrameBrickSize);
+        Brick rightBrick = createRightFrameBrick(rightFrameBrickPosition, verticalFrameBrickSize, room);
         room.add(rightBrick);
     }
 
@@ -44,14 +44,18 @@ public abstract class FrameBuilder implements RoomBuilder {
     }
 
     FrameBrick createBottomFrameBrick(Point point, Size size) {
-        return new KillerBrick(
-                point,
-                size);
+        return new KillerBrick(point, size);
     }
 
     FrameBrick createTopFrameBrick(Point point, Size size, Room room) {
-        return new FrameBrick(
-                point,
-                size);
+        return createFrameBrick(point, size);
+    }
+
+    FrameBrick createRightFrameBrick(Point point, Size size, Room room) {
+        return createFrameBrick(point, size);
+    }
+
+    FrameBrick createLeftFrameBrick(Point point, Size size, Room room) {
+        return createFrameBrick(point, size);
     }
 }
