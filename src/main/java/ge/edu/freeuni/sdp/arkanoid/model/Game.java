@@ -55,7 +55,7 @@ public class Game implements GameFacade, PaddleChangedListener {
 
     @Override
     public void pause() {
-        System.out.println("Pause");
+        SoundPlayer.getInstance().play(SoundPlayer.PAUSE);
         //TODO  save state
     }
 

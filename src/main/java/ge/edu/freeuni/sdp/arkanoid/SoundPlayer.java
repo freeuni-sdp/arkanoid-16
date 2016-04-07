@@ -17,6 +17,7 @@ public class SoundPlayer {
     public static final String EXTEND = "extend.wav";
     public static final String START = "start.wav";
     public static final String COLLIDE = "collide.wav";
+    public static final String PAUSE = "pause.wav";
     private static SoundPlayer _instance;
     private final Map<String, Clip> _clipsCache;
     private final ClassLoader _classLoader;
@@ -42,6 +43,7 @@ public class SoundPlayer {
         getOrOpen(EXTEND);
         getOrOpen(START);
         getOrOpen(COLLIDE);
+        getOrOpen(PAUSE);
     }
 
     public void play(String soundName) {
