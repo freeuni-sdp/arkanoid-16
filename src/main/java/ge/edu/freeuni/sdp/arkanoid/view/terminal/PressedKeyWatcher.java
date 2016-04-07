@@ -8,6 +8,7 @@ class PressedKeyWatcher {
     private static volatile boolean rightPressed = false;
     private static volatile boolean spacePressed = false;
     private static volatile boolean escapePressed = false;
+    private static volatile boolean pausedPressed = false;
 
     static boolean isLeftPressed() {
         return leftPressed;
@@ -23,6 +24,10 @@ class PressedKeyWatcher {
 
     static boolean isEscapePressed() {
         return escapePressed;
+    }
+
+    static boolean isPausedPressed() {
+        return pausedPressed;
     }
 
 
@@ -42,6 +47,12 @@ class PressedKeyWatcher {
                     if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         escapePressed = true;
                     }
+                    if (ke.getKeyCode() == KeyEvent.VK_P) {
+                       if(isPausedPressed())
+                           pausedPressed = false;
+                       else
+                           pausedPressed = true;
+                    }
                     break;
 
                 case KeyEvent.KEY_RELEASED:
@@ -57,6 +68,8 @@ class PressedKeyWatcher {
                     if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         escapePressed = false;
                     }
+
+
                     break;
             }
             return false;

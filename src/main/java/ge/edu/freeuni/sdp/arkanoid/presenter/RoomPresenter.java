@@ -12,6 +12,7 @@ public class RoomPresenter extends Presenter {
     private CellUpdateListener _cellUpdateListener;
     private StatusUpdateListener _statusUpdateListener;
     private Direction _direction;
+    private boolean _pause;
 
     RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
         _game = game;
@@ -36,8 +37,8 @@ public class RoomPresenter extends Presenter {
     public void execute(Command command) {
         scanAndNotify();
         _direction = Direction.NONE;
+        _pause = true;
         switch (command) {
-
             case None:
                 break;
             case Stop:
@@ -50,6 +51,9 @@ public class RoomPresenter extends Presenter {
                 break;
             case Fire:
                 _game.fire();
+                break;
+            case Pause:
+                _game.pause();
                 break;
         }
 
@@ -66,6 +70,8 @@ public class RoomPresenter extends Presenter {
             _game.init(conf.getSelectedLevel());
         }
     }
+
+
 
     private void scanAndNotify() {
 
