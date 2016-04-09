@@ -14,7 +14,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
  */
 public class GameOverPresenter extends Presenter {
     
-    private GameFacade _game;
+    private final GameFacade _game;
     private boolean gameIsActive;
  
     public GameOverPresenter(GameFacade gameFacade){
