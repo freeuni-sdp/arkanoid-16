@@ -17,9 +17,9 @@ import ge.edu.freeuni.sdp.arkanoid.presenter.GameOverPresenter;
  */
 public class TerminalGameOverView extends GameOverView {
 
-    private Terminal _terminal;
-    private GameOverPresenter _presenter;
-    private Size _roomSize;
+    private final Terminal _terminal;
+    private final GameOverPresenter _presenter;
+    private final Size _roomSize;
     
     public TerminalGameOverView(GameOverPresenter presenter, Terminal terminal) {
         super(presenter);
@@ -35,11 +35,12 @@ public class TerminalGameOverView extends GameOverView {
         while (true){
             Key input = _terminal.readInput();
             if (input == null) continue;
-            if (input.getKind() == Key.Kind.Enter){
+            if (input.getCharacter() == 'y'){
                 _presenter.setGameActivity(true);
                 break;
             }
-            if (input.getKind() == Key.Kind.Escape) {
+            if (input.getKind() == Key.Kind.Escape ||
+                input.getCharacter() == 'n') {
                 _presenter.setGameActivity(false);
                 break;
             }
@@ -85,8 +86,8 @@ public class TerminalGameOverView extends GameOverView {
     
     private static final String GAME_OVER_MESSAGE =  "Game Over";
     private static final String GAME_OVER_QUESTION = "Do you want to play again?";
-    private static final String GAME_CONTINUE =      "Press Enter to play again.";
-    private static final String GAME_QUIT =          "Press ESC to quit.        ";
+    private static final String GAME_CONTINUE =      "Press Y to play again.    ";
+    private static final String GAME_QUIT =          "Press N or ESC to quit.   ";
     
     private static final int GAME_OVER_TEXTS_COUNT = 4;
 
