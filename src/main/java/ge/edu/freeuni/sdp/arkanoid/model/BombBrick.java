@@ -11,13 +11,13 @@ import java.util.List;
  * Created by giorgi on 4/9/2016.
  */
 public class BombBrick extends NormalBrick {
-    private List<BombExplosionObserver> _bombExplosionObservers;
+    private Room _room;
     private double _explosionWidth;
     private double _explosionHeight;
 
-    public BombBrick(Point position, BrickColor color, Capsule capsule, int explosionRadius) {
+    public BombBrick(Point position, BrickColor color, Capsule capsule, int explosionRadius, Room room) {
         super(position, color, capsule);
-        _bombExplosionObservers = new ArrayList<>();
+        _room = room;
         setupExplosionBoundaries(explosionRadius);
     }
 
@@ -25,25 +25,24 @@ public class BombBrick extends NormalBrick {
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Ball) {
-            notifyBombExploded(other);
+            explodeNeighbours(other);
         }
     }
 
-    public void registerObserver(BombExplosionObserver bombExplosionObserver){
-        _bombExplosionObservers.add(bombExplosionObserver);
+    private void explodeNeighbours(Gobj exploder){
+        _room.getGobjs()
+                .stream()
+                .filter(neighbour -> neighbour instanceof Brick)
+                .filter(neighbour -> neighbour.isAlive())
+                .filter(neighbour -> neighbourIsInExplosionRadius(neighbour))
+                .forEach(neighbour -> neighbour.interact(exploder));
     }
 
-    public boolean neighbourIsInExplosionRadius(Gobj neighbour){
+    private boolean neighbourIsInExplosionRadius(Gobj neighbour){
         Point neighbourPosition = neighbour.getPosition();
         double yCoordinateDifference = Math.abs(neighbourPosition.Y - getPosition().Y);
         double xCoordinateDifference = Math.abs(neighbourPosition.X - getPosition().X);
         return xCoordinateDifference <= _explosionWidth && yCoordinateDifference <= _explosionHeight;
-    }
-
-    private void notifyBombExploded(Gobj exploder){
-        for (BombExplosionObserver bombExplosionObserver : _bombExplosionObservers) {
-            bombExplosionObserver.onBombExploded(exploder, this);
-        }
     }
 
     private void setupExplosionBoundaries(int explosionRadius){

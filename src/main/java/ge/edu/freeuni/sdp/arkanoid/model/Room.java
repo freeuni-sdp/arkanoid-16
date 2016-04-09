@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-class Room implements BombExplosionObserver {
+class Room {
 
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
@@ -57,14 +57,5 @@ class Room implements BombExplosionObserver {
         if (gobj.isKillable())
             _killableLeft++;
         _gobjs.add(gobj);
-    }
-
-    @Override
-    public void onBombExploded(Gobj exploder, BombBrick bombBrick) {
-        getGobjs()
-                .stream()
-                .filter(candidate -> candidate.isAlive())
-                .filter(candidate -> bombBrick.neighbourIsInExplosionRadius(candidate))
-                .forEach(candidate -> candidate.interact(exploder));
     }
 }

@@ -31,10 +31,17 @@ class LevelRegistry {
                 "Wall is scrolling. Make sure it doesnt reach left bound.",
                 new ScrollingWallLevelBuilder(size));
 
+        Level levelBombBricksDemo = new Level(
+                "Level Bomb Bricks Demo",
+                "Approximately 20% of bricks are bombs. If bomb is hit, it explodes neighbours within radius of 2 bricks",
+                new LevelBombBricksDemoBuilder(size)
+        );
+
         levels.add(levelVerySimple);
         levels.add(level1);
         levels.add(levelSinkingWall);
         levels.add(levelScrollingWall);
+        levels.add(levelBombBricksDemo);
 
         return levels;
     }
