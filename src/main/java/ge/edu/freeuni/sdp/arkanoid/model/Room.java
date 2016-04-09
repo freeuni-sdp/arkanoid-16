@@ -23,20 +23,13 @@ class Room implements BombExplosionObserver {
     void interact() {
         Gobj[] snapshot = new Gobj[_gobjs.size()];
         _gobjs.toArray(snapshot);
-        boolean current_alive, other_alive;
 
         for (Gobj current : snapshot) {
             for (Gobj other : snapshot) {
                 if (current == other) continue;
                 boolean hasOverlap = current.getShape().canOverlap(other.getShape());
                 if (hasOverlap) {
-                    current_alive = current.isAlive();
-                    other_alive = other.isAlive();
                     current.interact(other);
-                    if (current.isKillable() && current_alive && !current.isAlive())
-                        _killableLeft--;
-                    if (other.isKillable() && other_alive && !other.isAlive())
-                        _killableLeft--;
                 }
             }
         }
@@ -48,7 +41,7 @@ class Room implements BombExplosionObserver {
                     .stream()
                     .filter(candidate -> !candidate.isAlive())
                     .collect(Collectors.toCollection(Stack::new));
-        
+        zombies.stream().filter(Gobj::isKillable).forEach(zomby -> _killableLeft--);
         _gobjs.removeAll(zombies);
     }
 
@@ -56,7 +49,7 @@ class Room implements BombExplosionObserver {
         return _gobjs;
     }
 
-    public boolean isLevelCleared() {
+    public boolean areKillablesLeft() {
         return _killableLeft <= 0;
     }
 

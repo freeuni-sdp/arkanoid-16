@@ -3,7 +3,6 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 import java.util.Set;
 
@@ -55,7 +54,7 @@ public class Game implements GameFacade, PaddleChangedListener {
     }
 
     public boolean isLevelCleared() {
-        return _room != null && _room.isLevelCleared();
+        return _room != null && _room.areKillablesLeft();
     }
 
     public Size getSize() {
