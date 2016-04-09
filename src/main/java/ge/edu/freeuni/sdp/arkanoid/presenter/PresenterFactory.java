@@ -21,4 +21,8 @@ public class PresenterFactory {
     public RoomPresenter getRoomPresenter() {
         return new RoomPresenter(_gameFacade, new GobjPresenterFactory(_size));
     }
+    
+    public GameOverPresenter getGameOverPresenter(){
+        return new GameOverPresenter(_gameFacade);
+    }
 }

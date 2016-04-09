@@ -11,7 +11,7 @@ class TerminalLevelView extends LevelView implements LevelSelectionListener {
     private final Terminal _terminal;
     private int selectedLevel = 0;
 
-    TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
+    public TerminalLevelView(LevelPresenter presenter, Terminal terminal) {
         super(presenter);
         _terminal = terminal;
         presenter.setLevelSelectionListener(this);
