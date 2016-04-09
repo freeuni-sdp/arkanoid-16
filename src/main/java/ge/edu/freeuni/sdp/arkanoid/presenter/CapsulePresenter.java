@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
+import ge.edu.freeuni.sdp.arkanoid.model.BreakCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.Capsule;
 import ge.edu.freeuni.sdp.arkanoid.model.ExpandCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
@@ -17,6 +18,9 @@ class CapsulePresenter extends RectanglePresenter<Capsule> {
 
         if (capsule instanceof ExpandCapsule) {
             return CellContent.ECapsule;
+        }
+        else if (capsule instanceof BreakCapsule){
+            return CellContent.BCapsule;
         }
         return CellContent.None;
     }
