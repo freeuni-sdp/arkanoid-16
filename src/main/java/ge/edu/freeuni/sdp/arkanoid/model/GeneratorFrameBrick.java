@@ -5,14 +5,15 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public abstract class GeneratorFrameBrick extends FrameBrick {
 
-    private final static int SINKING_DELAY = 10000;
     protected final Room room;
+    private final long generationDelay;
     private long lastGeneratedTime;
 
-    public GeneratorFrameBrick(Point position, Size size, Room room) {
+    public GeneratorFrameBrick(Point position, Size size, Room room, long generationDelay) {
         super(position, size);
         this.room = room;
-        lastGeneratedTime = System.currentTimeMillis();
+        this.generationDelay = generationDelay;
+        this.lastGeneratedTime = System.currentTimeMillis();
         generate();
     }
 
@@ -20,7 +21,7 @@ public abstract class GeneratorFrameBrick extends FrameBrick {
     public void move() {
         long currTime = System.currentTimeMillis();
 
-        if (currTime - lastGeneratedTime >= SINKING_DELAY) {
+        if (currTime - lastGeneratedTime >= generationDelay) {
             generate();
             lastGeneratedTime = currTime;
         }

@@ -12,6 +12,8 @@ public interface GameFacade {
 
     void fire();
 
+    void pause();
+
     boolean isGameOver();
 
     boolean isLevelCleared();

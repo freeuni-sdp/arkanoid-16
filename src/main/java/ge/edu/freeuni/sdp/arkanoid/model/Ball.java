@@ -35,7 +35,10 @@ public class Ball extends Gobj<Circle> {
     }
 
     public void interact(Gobj other) {
-
+        if (other instanceof Brick){
+            Brick brick = (Brick) other;
+            this.bounceFrom(brick.getShape());
+        }
     }
 
     void bounceFrom(Rectangle rectangle) {

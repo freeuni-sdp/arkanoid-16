@@ -29,8 +29,14 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
             if (PressedKeyWatcher.isRightPressed()) command = Command.Right;
             if (PressedKeyWatcher.isLeftPressed()) command = Command.Left;
             if (PressedKeyWatcher.isSpacePressed()) command = Command.Fire;
+            if (PressedKeyWatcher.isPausedPressed()) {
+                command = Command.Pause;
+                presenter.execute(command);
+                do{
+                    sleep();
+                }while (PressedKeyWatcher.isPausedPressed() && !PressedKeyWatcher.isEscapePressed());
+            }
             if (PressedKeyWatcher.isEscapePressed()) break;
-
             presenter.execute(command);
             sleep();
         }

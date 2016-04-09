@@ -1,9 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid;
 
-import ge.edu.freeuni.sdp.arkanoid.model.Level;
-import ge.edu.freeuni.sdp.arkanoid.model.Level1Builder;
-import ge.edu.freeuni.sdp.arkanoid.model.SinkingWallLevelBuilder;
-import ge.edu.freeuni.sdp.arkanoid.model.TestECapsuleLevelBuilder;
+import ge.edu.freeuni.sdp.arkanoid.model.*;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.util.ArrayList;
@@ -29,9 +26,15 @@ class LevelRegistry {
                 "Wall is sinking. Make sure it doesn't reach you.",
                 new SinkingWallLevelBuilder(size));
 
+        Level levelScrollingWall = new Level(
+                "Level 3 Scrolling Wall",
+                "Wall is scrolling. Make sure it doesnt reach left bound.",
+                new ScrollingWallLevelBuilder(size));
+
         levels.add(levelVerySimple);
         levels.add(level1);
         levels.add(levelSinkingWall);
+        levels.add(levelScrollingWall);
 
         return levels;
     }

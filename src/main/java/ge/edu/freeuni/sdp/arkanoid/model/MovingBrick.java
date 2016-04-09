@@ -7,7 +7,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 public class MovingBrick extends NormalBrick {
 
     private Direction direction;
-    private long movementDelay;
+    private final long movementDelay;
     private long lastMovementTime;
 
     public MovingBrick(Point position, BrickColor color, Capsule capsule, Direction direction, long movementDelay) {

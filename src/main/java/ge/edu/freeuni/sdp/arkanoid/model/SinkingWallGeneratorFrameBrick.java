@@ -5,8 +5,10 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class SinkingWallGeneratorFrameBrick extends GeneratorFrameBrick {
 
+    private final static long SINKING_DELAY = 10000;
+
     public SinkingWallGeneratorFrameBrick(Point position, Size size, Room room) {
-        super(position, size, room);
+        super(position, size, room, SINKING_DELAY);
     }
 
     @Override
