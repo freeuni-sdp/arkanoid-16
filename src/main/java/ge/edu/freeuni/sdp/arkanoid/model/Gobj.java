@@ -10,7 +10,6 @@ public abstract class Gobj<TShape extends Shape> {
 
     private Point _position;
     private Speed _speed;
-    private ArrayList<GobjDeathListener> _deathListeners;
 
     Gobj(Point position) {
         this(position, Speed.NULL);
@@ -19,7 +18,6 @@ public abstract class Gobj<TShape extends Shape> {
     Gobj(Point position, Speed speed) {
         _position = position;
         _speed = speed;
-        _deathListeners = new ArrayList<>();
     }
 
     public abstract TShape getShape();
@@ -48,15 +46,10 @@ public abstract class Gobj<TShape extends Shape> {
         this._speed = _speed;
     }
 
-    public void setDeathListener(GobjDeathListener listener) {
-        _deathListeners.add(listener);
-    }
-
-    protected void notifyAllDeath(String reason) {
-        for (GobjDeathListener l : _deathListeners) {
-            l.gobjDied(this, reason);
-        }
-    }
-
     public abstract boolean isAlive();
+
+    public boolean isKillable() {
+        return false;
+    }
+
 }

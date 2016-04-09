@@ -14,8 +14,4 @@ public class SinkingWallLevelBuilder extends FrameBuilder {
         return new SinkingWallGeneratorFrameBrick(point, size, room);
     }
 
-    @Override
-    public void setLevelClearedListener(LevelClearedListener listener) {
-        // TODO add listener
-    }
 }

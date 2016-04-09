@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
 class Room implements BombExplosionObserver {
 
     private final Set<Gobj> _gobjs;
+    private int _killableLeft;
 
     Room() {
         _gobjs = new HashSet<>();
+        _killableLeft = 0;
     }
 
     void move() {
@@ -21,13 +23,20 @@ class Room implements BombExplosionObserver {
     void interact() {
         Gobj[] snapshot = new Gobj[_gobjs.size()];
         _gobjs.toArray(snapshot);
+        boolean current_alive, other_alive;
 
         for (Gobj current : snapshot) {
             for (Gobj other : snapshot) {
                 if (current == other) continue;
                 boolean hasOverlap = current.getShape().canOverlap(other.getShape());
                 if (hasOverlap) {
+                    current_alive = current.isAlive();
+                    other_alive = other.isAlive();
                     current.interact(other);
+                    if (current.isKillable() && current_alive && !current.isAlive())
+                        _killableLeft--;
+                    if (other.isKillable() && other_alive && !other.isAlive())
+                        _killableLeft--;
                 }
             }
         }
@@ -47,7 +56,13 @@ class Room implements BombExplosionObserver {
         return _gobjs;
     }
 
+    public boolean isLevelCleared() {
+        return _killableLeft <= 0;
+    }
+
     public void add(Gobj gobj) {
+        if (gobj.isKillable())
+            _killableLeft++;
         _gobjs.add(gobj);
     }
 

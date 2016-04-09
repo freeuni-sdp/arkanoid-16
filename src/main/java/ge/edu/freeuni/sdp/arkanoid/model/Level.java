@@ -13,10 +13,6 @@ public class Level implements GameLevel {
         _builder = builder;
     }
 
-    public void setLevelClearedListener(LevelClearedListener listener) {
-        _builder.setLevelClearedListener(listener);
-    }
-
     public String getDescription() {
         return _description;
     }

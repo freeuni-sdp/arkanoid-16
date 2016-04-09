@@ -24,8 +24,4 @@ public class ScrollingWallLevelBuilder extends FrameBuilder {
                 size);
     }
 
-    @Override
-    public void setLevelClearedListener(LevelClearedListener listener) {
-        // TODO add listener
-    }
 }

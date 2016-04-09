@@ -14,4 +14,9 @@ public class NormalBrick extends Brick {
     public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(4, 1));
     }
+
+    @Override
+    public boolean isKillable() {
+        return true;
+    }
 }
