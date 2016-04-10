@@ -20,7 +20,7 @@ public class MovementKillerBrick extends FrameBrick {
     @Override
     public void interact(Gobj other) {
         if (other instanceof MovingBrick) {
-            if (!killableLeft()) {
+            if (killableLeft()) {
                 killAllKillable();
                 decreaseLevelIndex();
                 decreasePaddleLifes();
@@ -35,7 +35,7 @@ public class MovementKillerBrick extends FrameBrick {
     }
 
     private boolean killableLeft() {
-        return room.getGobjs().stream().filter(Gobj::isAlive).count() > 0;
+        return room.getGobjs().stream().filter(g -> (g.isAlive() && g.isKillable())).count() > 0;
     }
 
     private void killAllKillable() {
