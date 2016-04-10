@@ -54,7 +54,7 @@ public class Game implements GameFacade, PaddleChangedListener {
     }
 
     public boolean isGameOver() {
-        return !_ball.isAlive();
+        return _liveCounter.getLive() == 0;
     }
 
     public boolean isLevelCleared() {

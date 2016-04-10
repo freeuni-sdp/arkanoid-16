@@ -32,7 +32,7 @@ public class MovementKillerBrick extends FrameBrick {
     }
 
     private void decreasePaddleLifes() {
-        // TODO Decrease paddle lifes
+        room.getLiveCounter().decrease();
     }
 
     private void killAllKillable() {

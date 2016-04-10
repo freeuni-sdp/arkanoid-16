@@ -16,7 +16,7 @@ public class ExtraLiveCapsule extends Capsule {
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle){
-            _room.getLiveCounter().incLive(1);
+            _room.getLiveCounter().increase();
         }
     }
 
