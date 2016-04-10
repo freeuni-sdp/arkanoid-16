@@ -18,7 +18,8 @@ public class BreakCapsule extends Capsule{
 
         if (other instanceof Paddle){
             KillerBrick killer = getKillerBrick();
-            _room.getGobjs().forEach(gobj -> interact(killer));
+            if (killer != null)
+                _room.getGobjs().forEach(gobj -> gobj.interact(killer));
         }
     }
 
