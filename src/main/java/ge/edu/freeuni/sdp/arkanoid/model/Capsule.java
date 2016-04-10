@@ -29,7 +29,7 @@ public abstract class Capsule extends Gobj<Rectangle> {
 
     @Override
     public void interact(Gobj other) {
-        if (!(other instanceof Ball)) {
+        if (other instanceof Paddle || other instanceof FrameBrick) {
             _isAlive = false;
         }
     }
