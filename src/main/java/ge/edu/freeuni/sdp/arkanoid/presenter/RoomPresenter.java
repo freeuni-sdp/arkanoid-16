@@ -16,7 +16,6 @@ public class RoomPresenter extends Presenter {
     private boolean _pause;
 
     RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
-        _lives = 3;
         _game = game;
         _gobjPresenterFactory = gobjPresenterFactory;
         _cellsCache = initCells();
@@ -26,6 +25,7 @@ public class RoomPresenter extends Presenter {
     public void init() {
         Level level = Configuration.getInstance().getSelectedLevel();
         _game.init(level);
+        _lives = _game.geLives();
     }
 
     public void set_cellUpdateListener(CellUpdateListener listener) {

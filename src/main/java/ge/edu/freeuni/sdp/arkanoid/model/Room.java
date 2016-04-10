@@ -62,9 +62,6 @@ class Room {
         _gobjs.add(gobj);
     }
 
-    public void breakCapsuleIsTaken() {
-        _breakCapsuleTaken = true;
-    }
 
     public void setLiveCounter(LiveCounter liveCounter){
         this._liveCounter = liveCounter;

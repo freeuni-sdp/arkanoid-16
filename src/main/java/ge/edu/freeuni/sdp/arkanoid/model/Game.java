@@ -71,7 +71,7 @@ public class Game implements GameFacade, PaddleChangedListener {
 
     @Override
     public int geLives() {
-       return  _room.getLiveCounter().getLive();
+       return  _room.getLives();
     }
 
     public void paddleChanged(Paddle newPaddle) {
