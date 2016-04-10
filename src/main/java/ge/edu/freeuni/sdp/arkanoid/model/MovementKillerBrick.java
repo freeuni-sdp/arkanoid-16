@@ -31,12 +31,12 @@ public class MovementKillerBrick extends FrameBrick {
     }
 
     private void killAllKillable() {
-        // TODO kill all killable objects
+        room.getGobjs().stream().filter(Gobj::isKillable).forEach(g -> g.interact(this));
     }
 
     private void decreaseLevelIndex() {
         // HACK
         int selectedLevelIndex = Configuration.getInstance().getSelectedLevelIndex();
-        Configuration.getInstance().setSelectedLevelIndex(selectedLevelIndex + 1);
+        Configuration.getInstance().setSelectedLevelIndex(selectedLevelIndex - 1);
     }
 }
