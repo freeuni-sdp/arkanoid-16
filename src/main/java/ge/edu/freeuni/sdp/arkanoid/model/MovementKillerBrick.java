@@ -20,7 +20,7 @@ public class MovementKillerBrick extends FrameBrick {
     @Override
     public void interact(Gobj other) {
         if (other instanceof MovingBrick) {
-            if (killableLeft()) {
+            if (!killableLeft()) {
                 killAllKillable();
                 decreaseLevelIndex();
                 decreasePaddleLifes();
