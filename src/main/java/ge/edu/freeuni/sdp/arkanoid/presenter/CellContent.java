@@ -6,5 +6,6 @@ public enum CellContent {
     Paddle,
     Ball,
     ECapsule,
-    BCapsule
+    BCapsule,
+    PCapsule
 }

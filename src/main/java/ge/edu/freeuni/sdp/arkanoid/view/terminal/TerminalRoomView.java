@@ -15,6 +15,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
         PressedKeyWatcher.init();
         _terminal = terminal;
         presenter.set_cellUpdateListener(this);
+        presenter.setStatusUpdateListener(this);
     }
 
     public void show() {
@@ -84,6 +85,10 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
                 _terminal.applyBackgroundColor(Terminal.Color.GREEN);
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
                 _terminal.putCharacter('B');
+            case PCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.GREEN);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('P');
         }
     }
 
@@ -92,8 +97,8 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
     }
 
     public void updateLives(int lives) {
-        _terminal.applyBackgroundColor(Terminal.Color.WHITE);
-        _terminal.applyForegroundColor(Terminal.Color.BLACK);
+        _terminal.applyBackgroundColor(Terminal.Color.BLUE);
+        _terminal.applyForegroundColor(Terminal.Color.WHITE);
 
         for (int i = 0; i < lives; i++) {
             _terminal.moveCursor(i, 0);

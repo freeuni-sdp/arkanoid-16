@@ -10,6 +10,7 @@ class Room {
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
     private boolean _breakCapsuleTaken;
+    private ScoreCounter scoreCounter = null;
 
     Room() {
         _gobjs = new HashSet<>();
@@ -65,5 +66,17 @@ class Room {
 
     public void breakCapsuleIsTaken() {
         _breakCapsuleTaken = true;
+    }
+
+    public void setLiveCounter(ScoreCounter liveCounter){
+        this.scoreCounter = liveCounter;
+    }
+
+    public ScoreCounter getLiveCounter(){
+        return this.scoreCounter;
+    }
+
+    public int getLives(){
+        return this.scoreCounter.getScore();
     }
 }

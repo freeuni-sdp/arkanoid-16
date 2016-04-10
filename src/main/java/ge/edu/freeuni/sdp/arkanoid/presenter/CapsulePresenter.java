@@ -3,6 +3,7 @@ package ge.edu.freeuni.sdp.arkanoid.presenter;
 import ge.edu.freeuni.sdp.arkanoid.model.BreakCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.Capsule;
 import ge.edu.freeuni.sdp.arkanoid.model.ExpandCapsule;
+import ge.edu.freeuni.sdp.arkanoid.model.ExtraLiveCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 class CapsulePresenter extends RectanglePresenter<Capsule> {
@@ -21,7 +22,9 @@ class CapsulePresenter extends RectanglePresenter<Capsule> {
         }
         else if (capsule instanceof BreakCapsule){
             return CellContent.BCapsule;
-        }
+        }else if (capsule instanceof ExtraLiveCapsule)
+            return CellContent.PCapsule;
+
         return CellContent.None;
     }
 }

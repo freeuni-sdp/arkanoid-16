@@ -21,4 +21,6 @@ public interface GameFacade {
     Size getSize();
 
     Set<Gobj> getGobjs();
+
+    int geLives();
 }

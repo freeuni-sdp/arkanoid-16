@@ -65,6 +65,11 @@ public class Game implements GameFacade, PaddleChangedListener {
         return _room.getGobjs();
     }
 
+    @Override
+    public int geLives() {
+       return  _room.getLiveCounter().getScore();
+    }
+
     public void paddleChanged(Paddle newPaddle) {
         _paddle = newPaddle;
         _room.add(_paddle);
