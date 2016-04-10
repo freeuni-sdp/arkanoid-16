@@ -62,6 +62,12 @@ class LevelRegistry {
         );
 
         levels.add(autoPaddleLevel);
+        Level levelWithLives = new Level(
+                "P Capsule",
+                "Contains one brick which is hit when the game starts",
+                new FrameBuilderWithLives(size)
+        );
+
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -70,6 +76,7 @@ class LevelRegistry {
         levels.add(levelScrollingWall);
         levels.add(levelBombBricksDemo);
         levels.add(levelGameEndDemo);
+        levels.add(levelWithLives);
 
         return levels;
     }

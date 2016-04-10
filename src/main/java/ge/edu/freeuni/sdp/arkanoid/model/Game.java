@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class Game implements GameFacade, PaddleChangedListener {
     private final ScoreCounter _scoreCounter;
+    private final LiveCounter _liveCounter;
     private final Size _size;
     private Room _room;
     private Paddle _paddle;
@@ -17,6 +18,8 @@ public class Game implements GameFacade, PaddleChangedListener {
     public Game(Size size) {
         this._size = size;
         _scoreCounter = new ScoreCounter();
+        _liveCounter = new LiveCounter();
+
     }
 
     public void init(Level level) {
@@ -29,6 +32,7 @@ public class Game implements GameFacade, PaddleChangedListener {
         _ball.putOn(newPaddle);
 
         _room.add(_ball);
+        _room.setLiveCounter(_liveCounter);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
     }
 
@@ -63,6 +67,11 @@ public class Game implements GameFacade, PaddleChangedListener {
 
     public Set<Gobj> getGobjs() {
         return _room.getGobjs();
+    }
+
+    @Override
+    public int geLives() {
+       return  _room.getLiveCounter().getLive();
     }
 
     public void paddleChanged(Paddle newPaddle) {

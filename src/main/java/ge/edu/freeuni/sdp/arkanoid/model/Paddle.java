@@ -13,6 +13,7 @@ public class Paddle extends Gobj<Rectangle> {
 
     private final Set<PaddleChangedListener> _listeners;
     private boolean _isAlive;
+    private int extraLive;
     private Point prevPosition;
 
 

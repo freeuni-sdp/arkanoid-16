@@ -9,6 +9,7 @@ class Room {
 
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
+    private LiveCounter _liveCounter = null;
 
     Room() {
         _gobjs = new HashSet<>();
@@ -59,5 +60,21 @@ class Room {
         if (gobj.isKillable())
             _killableLeft++;
         _gobjs.add(gobj);
+    }
+
+    public void breakCapsuleIsTaken() {
+        _breakCapsuleTaken = true;
+    }
+
+    public void setLiveCounter(LiveCounter liveCounter){
+        this._liveCounter = liveCounter;
+    }
+
+    public LiveCounter getLiveCounter(){
+        return this._liveCounter;
+    }
+
+    public int getLives(){
+        return this._liveCounter.getLive();
     }
 }
