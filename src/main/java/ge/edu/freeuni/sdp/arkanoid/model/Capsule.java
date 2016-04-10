@@ -7,7 +7,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 public abstract class Capsule extends Gobj<Rectangle> {
 
-    private final Room _room;
+    protected final Room _room;
     private boolean _isAlive;
 
     Capsule(Point position, Room room) {
