@@ -10,7 +10,6 @@ public class BreakCapsule extends Capsule{
 
     BreakCapsule(Point point, Room room){
         super(point, room);
-
     }
 
     @Override
