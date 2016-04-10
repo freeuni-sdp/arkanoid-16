@@ -54,10 +54,18 @@ class LevelRegistry {
                 new LevelSingleBrickBuilder(size)
         );
 
+        Level levelBreakCapsuleDemo = new Level(
+                "Level Break Capsule Demo",
+                "This level is a test for BreakCapsule thus half of the " +
+                        "bricks contains BreakCapsule",
+                new LevelBreakCapsuleBuilder(size)
+        );
+
         levels.add(autoPaddleLevel);
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
+        levels.add(levelBreakCapsuleDemo);
         levels.add(levelSinkingWall);
         levels.add(levelScrollingWall);
         levels.add(levelBombBricksDemo);
