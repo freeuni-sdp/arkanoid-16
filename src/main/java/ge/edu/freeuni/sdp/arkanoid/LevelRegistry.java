@@ -42,7 +42,6 @@ class LevelRegistry {
                 new LevelBombBricksDemoBuilder(size)
         );
 
-        levels.add(autoPaddleLevel);
         Level levelClearDemo = new Level(
                 "Simulate level clear",
                 "Contains one brick which is hit when the game starts",
