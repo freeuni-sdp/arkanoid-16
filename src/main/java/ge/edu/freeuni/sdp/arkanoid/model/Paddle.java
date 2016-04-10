@@ -63,6 +63,10 @@ public class Paddle extends Gobj<Rectangle> {
         return _isAlive;
     }
 
+    public void setAlive(boolean isAlive){
+        _isAlive = isAlive;
+    }
+
     void exchange(Paddle newPaddle) {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());

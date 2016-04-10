@@ -39,7 +39,7 @@ public class Point {
         return new Point(this.X + point.X, this.Y + point.Y);
     }
 
-    double getDistance(Point other) {
+    public double getDistance(Point other) {
         return Math.hypot(this.X - other.X, this.Y - other.Y);
     }
 

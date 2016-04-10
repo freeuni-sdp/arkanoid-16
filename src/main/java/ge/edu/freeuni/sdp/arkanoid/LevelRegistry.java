@@ -11,6 +11,11 @@ class LevelRegistry {
     static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
 
+        Level autoPaddleLevel = new Level(
+                "Test #6 Autopilot Capsule",
+                "This level is a test for #6 Autopilot Capsule feature.",
+                new TestACapsuleLevelBuilder(size));
+
         Level levelVerySimple = new Level(
                 "Test #3 Expand Capsule",
                 "This level is a test for #3 Expand Capsule feature.",
@@ -37,6 +42,7 @@ class LevelRegistry {
                 new LevelBombBricksDemoBuilder(size)
         );
 
+        levels.add(autoPaddleLevel);
         levels.add(levelVerySimple);
         levels.add(level1);
         levels.add(levelSinkingWall);

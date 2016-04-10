@@ -1,0 +1,38 @@
+package ge.edu.freeuni.sdp.arkanoid.model;
+
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
+
+/**
+ * Created By Nika Doghonadze 4/10/2016.
+ */
+public class ReturnCapsule extends Capsule {
+    private Paddle _oldPaddle;
+
+    ReturnCapsule(Point position, Room room, Paddle oldPaddle) {
+        super(position, room);
+        _oldPaddle = oldPaddle;
+    }
+
+    @Override
+    public void interact(Gobj other) {
+        if (other instanceof Paddle) {
+            Paddle activePaddle = (Paddle) other;
+
+            _oldPaddle.setAlive(true);
+            _room.add(_oldPaddle);
+
+            activePaddle.exchange(_oldPaddle);
+
+            _room.getGobjs()
+                    .stream()
+                    .filter(obj -> obj instanceof Ball)
+                    .forEach(obj -> {
+                        Ball ball = (Ball) obj;
+                        Speed ballSpeed = ball.getSpeed();
+                        ball.setSpeed(new Speed(new Point(ballSpeed.X/2, ballSpeed.Y/2)));
+                    });
+        }
+        super.interact(other);
+    }
+}
