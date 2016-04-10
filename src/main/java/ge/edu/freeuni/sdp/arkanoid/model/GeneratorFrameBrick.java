@@ -28,16 +28,11 @@ public abstract class GeneratorFrameBrick extends FrameBrick {
     }
 
     private void generate() {
-        Size brickSize = getNormalBrickSize();
         Size roomSize = Configuration.getInstance().getSize();
-
-        generate(brickSize, roomSize);
+        generate(roomSize);
     }
 
-    private Size getNormalBrickSize() {
-        return new NormalBrick(null, BrickColor.Red, null).getShape().getSize();
-    }
 
-    protected abstract void generate(Size brickSize, Size roomSize);
+    protected abstract void generate(Size roomSize);
 
 }

@@ -12,12 +12,17 @@ public class SinkingWallGeneratorFrameBrick extends GeneratorFrameBrick {
     }
 
     @Override
-    protected void generate(Size brickSize, Size roomSize) {
-        for (int i = 0; i < roomSize.getWidth(); i += brickSize.getWidth()) {
+    protected void generate(Size roomSize) {
+        int brickWidth = getSinkingBrickWidth();
+        for (int i = 0; i < roomSize.getWidth(); i += brickWidth) {
             Point position = new Point(i, 0);
             Capsule capsule = new ExpandCapsule(position, room);
             Brick current = new SinkingBrick(position, BrickColor.Red, capsule);
             room.add(current);
         }
+    }
+
+    private int getSinkingBrickWidth() {
+        return new SinkingBrick(null, BrickColor.Red, null).getShape().getSize().getWidth();
     }
 }

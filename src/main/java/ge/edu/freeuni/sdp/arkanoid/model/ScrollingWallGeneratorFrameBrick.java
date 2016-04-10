@@ -16,7 +16,7 @@ public class ScrollingWallGeneratorFrameBrick extends GeneratorFrameBrick{
     }
 
     @Override
-    protected void generate(Size brickSize, Size roomSize) {
+    protected void generate(Size roomSize) {
         for (int i = 0; i < COLUMN_LENGTH; i += GAP) {
             Point position = new Point(0, i);
             Capsule capsule = new ExpandCapsule(position, room);
