@@ -4,9 +4,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 public class KillerBrick extends MovementKillerBrick {
-    public KillerBrick(Point position, Size size) {
-
-        super(position, size);
+    public KillerBrick(Point position, Size size, Room room) {
+        super(position, size, room);
     }
 
     @Override

@@ -25,7 +25,7 @@ public abstract class Brick extends Gobj<Rectangle> {
         if (other instanceof Ball) {
             _capsule.release(getPosition());
             _isAlive = false;
-        } else if (other instanceof KillerBrick){
+        } else if (other instanceof MovementKillerBrick){
             _isAlive = false;
         }
     }
