@@ -84,10 +84,12 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
                 _terminal.applyBackgroundColor(Terminal.Color.GREEN);
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
                 _terminal.putCharacter('B');
+                break;
             case ACapsule:
                 _terminal.applyBackgroundColor(Terminal.Color.RED);
                 _terminal.applyBackgroundColor(Terminal.Color.CYAN);
                 _terminal.putCharacter('A');
+                break;
         }
     }
 
