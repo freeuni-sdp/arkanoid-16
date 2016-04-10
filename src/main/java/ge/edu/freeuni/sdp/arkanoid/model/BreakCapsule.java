@@ -1,7 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.Capsule;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+
 
 /**
  * Created by Giorgi on 4/10/2016.
@@ -15,9 +15,21 @@ public class BreakCapsule extends Capsule{
     @Override
     public void interact(Gobj other){
         super.interact(other);
+
         if (other instanceof Paddle){
-            _room.breakCapsuleIsTaken();
+            KillerBrick killer = getKillerBrick();
+            _room.getGobjs().forEach(gobj -> interact(killer));
         }
+    }
+
+    private KillerBrick getKillerBrick(){
+        for (Gobj obj:  _room.getGobjs()){
+           if (obj instanceof KillerBrick){
+                return (KillerBrick) obj;
+            }
+        }
+        return null; //TODO throw noKillerBrickException or get killerBrick
+        //TODO another way
     }
 
 }
