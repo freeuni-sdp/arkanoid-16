@@ -42,7 +42,7 @@ class Room {
                     .filter(candidate -> !candidate.isAlive())
                     .collect(Collectors.toCollection(Stack::new));
 
-        zombies.stream().filter(Gobj::isKillable).forEach(zomby -> _killableLeft--);
+        _killableLeft -= zombies.stream().filter(Gobj::isKillable).count();
 
         _gobjs.removeAll(zombies);
     }
