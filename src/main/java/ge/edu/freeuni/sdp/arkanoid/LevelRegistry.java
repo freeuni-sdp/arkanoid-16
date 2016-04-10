@@ -43,11 +43,26 @@ class LevelRegistry {
         );
 
         levels.add(autoPaddleLevel);
+        Level levelClearDemo = new Level(
+                "Simulate level clear",
+                "Contains one brick which is hit when the game starts",
+                new LevelSingleBrickBuilder(size)
+        );
+
+        Level levelGameEndDemo = new Level(
+                "Simulate game finish",
+                "Contains one brick which is hit when the game starts",
+                new LevelSingleBrickBuilder(size)
+        );
+
+        levels.add(autoPaddleLevel);
+        levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
         levels.add(levelSinkingWall);
         levels.add(levelScrollingWall);
         levels.add(levelBombBricksDemo);
+        levels.add(levelGameEndDemo);
 
         return levels;
     }

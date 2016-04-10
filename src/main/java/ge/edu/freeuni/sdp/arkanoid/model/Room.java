@@ -9,12 +9,10 @@ class Room {
 
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
-    private boolean _breakCapsuleTaken;
 
     Room() {
         _gobjs = new HashSet<>();
         _killableLeft = 0;
-        _breakCapsuleTaken = false;
     }
 
     void move() {
@@ -43,7 +41,9 @@ class Room {
                     .stream()
                     .filter(candidate -> !candidate.isAlive())
                     .collect(Collectors.toCollection(Stack::new));
+
         zombies.stream().filter(Gobj::isKillable).forEach(zomby -> _killableLeft--);
+
         _gobjs.removeAll(zombies);
     }
 
@@ -52,16 +52,12 @@ class Room {
     }
 
     public boolean areKillablesLeft() {
-        return _killableLeft <= 0 || _breakCapsuleTaken;
+        return _killableLeft <= 0;
     }
 
     public void add(Gobj gobj) {
         if (gobj.isKillable())
             _killableLeft++;
         _gobjs.add(gobj);
-    }
-
-    public void breakCapsuleIsTaken() {
-        _breakCapsuleTaken = true;
     }
 }
