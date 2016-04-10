@@ -19,7 +19,9 @@ public class BreakCapsule extends Capsule{
         if (other instanceof Paddle){
             KillerBrick killer = getKillerBrick();
             if (killer != null)
-                _room.getGobjs().forEach(gobj -> gobj.interact(killer));
+                _room.getGobjs().stream()
+                        .filter(Gobj::isKillable)
+                        .forEach(gobj -> gobj.interact(killer));
         }
     }
 
