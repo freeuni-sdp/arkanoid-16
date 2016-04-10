@@ -15,7 +15,6 @@ public class FrameBuilderWithLives extends FrameBuilder {
     @Override
     public void build(Room room, ScoreCounter scoreCounter) {
         super.build(room, scoreCounter);
-        room.setLiveCounter(scoreCounter);
         createBrick(room,5);
     }
 
