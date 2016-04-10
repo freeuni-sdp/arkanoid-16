@@ -43,7 +43,9 @@ class Room {
                     .stream()
                     .filter(candidate -> !candidate.isAlive())
                     .collect(Collectors.toCollection(Stack::new));
+
         zombies.stream().filter(Gobj::isKillable).forEach(zomby -> _killableLeft--);
+
         _gobjs.removeAll(zombies);
     }
 
