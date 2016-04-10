@@ -7,13 +7,36 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
  * Created by misho on 4/7/2016.
  */
 public class MovementKillerBrick extends FrameBrick {
-    public MovementKillerBrick(Point position, Size size) {
+
+    private final Room room;
+
+    public MovementKillerBrick(Point position, Size size, Room room) {
         super(position, size);
+        this.room = room;
     }
 
     @Override
     public void interact(Gobj other) {
-        //TODO kill the ball if other instanceof MovingBrick
-        super.interact(other);
+        if (other instanceof MovingBrick) {
+            killAllKillable();
+            decreaseLevelIndex();
+            decreasePaddleLifes();
+        } else {
+            super.interact(other);
+        }
+    }
+
+    private void decreasePaddleLifes() {
+        // TODO Decrease paddle lifes
+    }
+
+    private void killAllKillable() {
+        // TODO kill all killable objects
+    }
+
+    private void decreaseLevelIndex() {
+        // HACK
+        int selectedLevelIndex = Configuration.getInstance().getSelectedLevelIndex();
+        Configuration.getInstance().setSelectedLevelIndex(selectedLevelIndex + 1);
     }
 }

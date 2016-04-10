@@ -13,5 +13,4 @@ public class SinkingWallLevelBuilder extends FrameBuilder {
     FrameBrick createTopFrameBrick(Point point, Size size, Room room) {
         return new SinkingWallGeneratorFrameBrick(point, size, room);
     }
-
 }

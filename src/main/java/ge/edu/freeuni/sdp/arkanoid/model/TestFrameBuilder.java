@@ -11,7 +11,7 @@ public class TestFrameBuilder extends FrameBuilder {
     }
 
     @Override
-    protected FrameBrick createBottomFrameBrick(Point bottomFrameBrickPosition, Size horizontalFrameBrickSize) {
+    protected FrameBrick createBottomFrameBrick(Point bottomFrameBrickPosition, Size horizontalFrameBrickSize, Room room) {
         return new FrameBrick(bottomFrameBrickPosition, horizontalFrameBrickSize);
     }
 }
