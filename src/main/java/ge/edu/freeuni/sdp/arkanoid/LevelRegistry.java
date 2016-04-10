@@ -12,8 +12,8 @@ class LevelRegistry {
         List<Level> levels = new ArrayList<>();
 
         Level autoPaddleLevel = new Level(
-                "Test #6 Autopilot Capsule",
-                "This level is a test for #6 Autopilot Capsule feature.",
+                "Test #12 Autopilot Capsule",
+                "This level is a test for #12 Autopilot Capsule feature.",
                 new TestACapsuleLevelBuilder(size));
 
         Level levelVerySimple = new Level(
