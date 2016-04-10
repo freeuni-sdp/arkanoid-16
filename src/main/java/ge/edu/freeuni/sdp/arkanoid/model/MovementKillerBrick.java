@@ -3,6 +3,8 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
+import java.util.stream.Stream;
+
 /**
  * Created by misho on 4/7/2016.
  */
@@ -18,9 +20,11 @@ public class MovementKillerBrick extends FrameBrick {
     @Override
     public void interact(Gobj other) {
         if (other instanceof MovingBrick) {
-            killAllKillable();
-            decreaseLevelIndex();
-            decreasePaddleLifes();
+            if (killableLeft()) {
+                killAllKillable();
+                decreaseLevelIndex();
+                decreasePaddleLifes();
+            }
         } else {
             super.interact(other);
         }
@@ -30,12 +34,16 @@ public class MovementKillerBrick extends FrameBrick {
         // TODO Decrease paddle lifes
     }
 
+    private boolean killableLeft() {
+        return room.getGobjs().stream().filter(Gobj::isAlive).count() > 0;
+    }
+
     private void killAllKillable() {
         room.getGobjs().stream().filter(Gobj::isKillable).forEach(g -> g.interact(this));
     }
 
     private void decreaseLevelIndex() {
-        // HACK
+        // HACK solution
         int selectedLevelIndex = Configuration.getInstance().getSelectedLevelIndex();
         Configuration.getInstance().setSelectedLevelIndex(selectedLevelIndex - 1);
     }
