@@ -9,9 +9,11 @@ public class SpeedingBall extends Ball {
 
     private int BRICK_COLLISION_COUNTER = 0;
 
-    private final int SPEED_BOOST_THRESHOLD = 10;
+    private final int SPEED_BOOST_THRESHOLD = 2;
 
     private final int BALL_SPEED_MULTIPLIER = 2;
+
+    private final double MAXIMUM_LENGTH = 2.1;
 
     @Override
     public void interact(Gobj other) {
@@ -21,8 +23,11 @@ public class SpeedingBall extends Ball {
             if (BRICK_COLLISION_COUNTER == SPEED_BOOST_THRESHOLD) {
                 BRICK_COLLISION_COUNTER = 0;
                 Speed ballSpeed = this.getSpeed();
-                ballSpeed.setLength(BALL_SPEED_MULTIPLIER*ballSpeed.getLength());
-                this.setSpeed(ballSpeed);
+                double length = BALL_SPEED_MULTIPLIER*ballSpeed.getLength();
+                if (length > MAXIMUM_LENGTH) {
+                    length = MAXIMUM_LENGTH;
+                }
+                ballSpeed.setLength(length);
             }
         }
     }
