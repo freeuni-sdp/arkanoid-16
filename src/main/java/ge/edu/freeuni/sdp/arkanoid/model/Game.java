@@ -5,6 +5,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class Game implements GameFacade, PaddleChangedListener {
@@ -29,9 +30,15 @@ public class Game implements GameFacade, PaddleChangedListener {
         level.build(_room, _scoreCounter);
         Paddle newPaddle = new Paddle(_size);
         paddleChanged(newPaddle);
-        _ball = new SpeedingBall();
-        _ball.putOn(newPaddle);
 
+        ArrayList<Ball> balls = _room.getBalls();
+        if (balls.size() > 0) {
+            _ball = balls.get(0);
+        }
+        else {
+            _ball = new SpeedingBall();
+        }
+        _ball.putOn(newPaddle);
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
