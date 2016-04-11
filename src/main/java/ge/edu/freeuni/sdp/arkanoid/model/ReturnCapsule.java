@@ -31,7 +31,7 @@ public class ReturnCapsule extends Capsule {
                     .forEach(obj -> {
                         Ball ball = (Ball) obj;
                         Speed ballSpeed = ball.getSpeed();
-                        ball.setSpeed(new Speed(new Point(ballSpeed.X/2, ballSpeed.Y/2)));
+                        ballSpeed.setLength(ballSpeed.getLength()/2);
                     });
             SoundPlayer.getInstance().play(SoundPlayer.AUTOPILOT_EXPIRE);
         }
