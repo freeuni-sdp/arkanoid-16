@@ -6,8 +6,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 class ExpandedPaddle extends Paddle {
 
-    private static final int _expandedWidth = 9;
-    private static final int _expandedHeight = 1;
+    private static final int EXPANDED_WIDTH = 9;
+    private static final int EXPANDED_HEIGHT = 1;
 
     ExpandedPaddle(Point position) {
         super(position);
@@ -17,9 +17,9 @@ class ExpandedPaddle extends Paddle {
     public void interact(Gobj other){
         super.interact(other);
         if (other instanceof FrameBrick){
-            if (other.getPosition().X < getPosition().X + _expandedWidth &&
+            if (other.getPosition().X < getPosition().X + EXPANDED_WIDTH &&
                     other.getPosition().X > getPosition().X){
-                setPosition(new Point(other.getPosition().X - _expandedWidth,
+                setPosition(new Point(other.getPosition().X - EXPANDED_WIDTH,
                         getPosition().Y));
             }
         }
@@ -27,7 +27,7 @@ class ExpandedPaddle extends Paddle {
 
     @Override
     public Rectangle getShape() {
-        return new Rectangle(getPosition(), new Size(_expandedWidth,
-                _expandedHeight));
+        return new Rectangle(getPosition(), new Size(EXPANDED_WIDTH,
+                EXPANDED_HEIGHT));
     }
 }
