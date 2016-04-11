@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
@@ -28,6 +29,7 @@ public class AutopilotCapsule extends Capsule {
                 Speed ballSpeed = ball.getSpeed();
                 ball.setSpeed(new Speed(new Point(2 * ballSpeed.X, 2 * ballSpeed.Y)));
             });
+            SoundPlayer.getInstance().play(SoundPlayer.AUTOPILOT_START);
         }
     }
 }
