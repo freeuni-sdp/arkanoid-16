@@ -83,4 +83,10 @@ public class Paddle extends Gobj<Rectangle> {
     void addListener(PaddleChangedListener listener) {
         _listeners.add(listener);
     }
+
+    @Override
+    void setPosition(Point position) {
+        super.setPosition(position);
+        prevPosition = position;
+    }
 }
