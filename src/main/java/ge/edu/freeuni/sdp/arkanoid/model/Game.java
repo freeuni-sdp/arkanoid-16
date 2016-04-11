@@ -4,6 +4,7 @@ import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
+import java.io.File;
 import java.util.Set;
 
 public class Game implements GameFacade, PaddleChangedListener {
@@ -13,13 +14,13 @@ public class Game implements GameFacade, PaddleChangedListener {
     private Room _room;
     private Paddle _paddle;
     private Ball _ball;
+    private boolean isPaused;
 
 
     public Game(Size size) {
         this._size = size;
         _scoreCounter = new ScoreCounter();
         _liveCounter = new LiveCounter();
-
     }
 
     public void init(Level level) {
@@ -50,16 +51,28 @@ public class Game implements GameFacade, PaddleChangedListener {
     @Override
     public void pause() {
         SoundPlayer.getInstance().play(SoundPlayer.PAUSE);
-        GameState gameState = new GameState();
-        gameState.setPaddle(_paddle);
-        gameState.setSize(_size);
-        gameState.setLevelIndex(Configuration.getInstance().getSelectedLevelIndex());
-        gameState.setBall(_ball);
-        gameState.setScoreCounter(_scoreCounter);
-        Originator originator = new Originator();
-        originator.set(gameState);
-        GameStateTaker taker = new GameStateTaker();
-        taker.saveMemento(originator.saveToMemento());
+        if(isPaused) isPaused = false;
+        else  isPaused = true;
+        if(!isPaused){
+            deleteStateFile();
+            return;
+        }else {
+            GameState gameState = new GameState();
+            gameState.setPaddle(_paddle);
+            gameState.setSize(_size);
+            gameState.setLevelIndex(Configuration.getInstance().getSelectedLevelIndex());
+            gameState.setBall(_ball);
+            gameState.setScoreCounter(_scoreCounter);
+            Originator originator = new Originator();
+            originator.set(gameState);
+            GameStateTaker taker = new GameStateTaker();
+            taker.saveMemento(originator.saveToMemento());
+        }
+    }
+
+    private void deleteStateFile() {
+        File file = new File("resources/state.properties");
+        if(file.exists()) file.delete();
     }
 
     public boolean isGameOver() {
