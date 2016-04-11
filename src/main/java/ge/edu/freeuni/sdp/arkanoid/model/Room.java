@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -60,6 +61,16 @@ class Room {
         if (gobj.isKillable())
             _killableLeft++;
         _gobjs.add(gobj);
+    }
+
+    public ArrayList<Ball> getBalls() {
+        ArrayList<Ball> balls = new ArrayList<Ball>();
+        for (Gobj obj : _gobjs) {
+            if (obj instanceof Ball) {
+                balls.add((Ball) obj);
+            }
+        }
+        return balls;
     }
 
 
