@@ -50,7 +50,16 @@ public class Game implements GameFacade, PaddleChangedListener {
     @Override
     public void pause() {
         SoundPlayer.getInstance().play(SoundPlayer.PAUSE);
-        //TODO  save state
+        GameState gameState = new GameState();
+        gameState.setPaddle(_paddle);
+        gameState.setSize(_size);
+        gameState.setLevelIndex(Configuration.getInstance().getSelectedLevelIndex());
+        gameState.setBall(_ball);
+        gameState.setScoreCounter(_scoreCounter);
+        Originator originator = new Originator();
+        originator.set(gameState);
+        GameStateTaker taker = new GameStateTaker();
+        taker.saveMemento(originator.saveToMemento());
     }
 
     public boolean isGameOver() {
