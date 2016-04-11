@@ -38,7 +38,9 @@ class LevelRegistry {
 
         Level levelBombBricksDemo = new Level(
                 "Level Bomb Bricks Demo",
-                "Approximately 20% of bricks are bombs. If bomb is hit, it explodes neighbours within radius of 2 bricks",
+                "Approximately 20% of bricks are bombs. If bomb is hit, " +
+                        "it explodes neighbours within radius of 2 bricks" +
+                        "(bomb bricks are Blue)",
                 new LevelBombBricksDemoBuilder(size)
         );
 

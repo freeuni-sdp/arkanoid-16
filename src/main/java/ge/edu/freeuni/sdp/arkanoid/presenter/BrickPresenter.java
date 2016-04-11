@@ -22,6 +22,8 @@ class BrickPresenter extends RectanglePresenter<Brick> {
         switch (color) {
             case Red:
                 return CellContent.RedBrick;
+            case Blue:
+                return CellContent.BlueBrick;
         }
         return CellContent.None;
     }

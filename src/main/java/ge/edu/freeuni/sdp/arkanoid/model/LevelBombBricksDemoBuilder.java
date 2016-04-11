@@ -34,7 +34,7 @@ public class LevelBombBricksDemoBuilder extends FrameBuilder {
         Point position = new Point(xCoord, yCoord);
         Brick current;
         if (Math.random() <= _bombProbability){
-            current = new BombBrick(position, BrickColor.Red, new NullCapsule(null),
+            current = new BombBrick(position, BrickColor.Blue, new NullCapsule(null),
                     _bombExplosionRadius, room);
         } else {
             current = new NormalBrick(position, BrickColor.Red, new NullCapsule(null));
