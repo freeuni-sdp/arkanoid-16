@@ -6,8 +6,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 class ExpandedPaddle extends Paddle {
 
-    private int _expandedWidth = 9;
-    private int _expandedHeight = 1;
+    private static final int _expandedWidth = 9;
+    private static final int _expandedHeight = 1;
 
     ExpandedPaddle(Point position) {
         super(position);
