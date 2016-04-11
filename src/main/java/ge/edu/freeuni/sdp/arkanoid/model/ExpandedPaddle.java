@@ -5,6 +5,10 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 class ExpandedPaddle extends Paddle {
+
+    private int _expandedWidth = 9;
+    private int _expandedHeight = 1;
+
     ExpandedPaddle(Point position) {
         super(position);
     }
@@ -13,15 +17,17 @@ class ExpandedPaddle extends Paddle {
     public void interact(Gobj other){
         super.interact(other);
         if (other instanceof FrameBrick){
-            if (other.getPosition().X < getPosition().X + 9){
-                setPosition(new Point(other.getPosition().X - 9, getPosition()
-                        .Y));
+            if (other.getPosition().X < getPosition().X + _expandedWidth &&
+                    other.getPosition().X > getPosition().X){
+                setPosition(new Point(other.getPosition().X - _expandedWidth,
+                        getPosition().Y));
             }
         }
     }
 
     @Override
     public Rectangle getShape() {
-        return new Rectangle(getPosition(), new Size(9, 1));
+        return new Rectangle(getPosition(), new Size(_expandedWidth,
+                _expandedHeight));
     }
 }
