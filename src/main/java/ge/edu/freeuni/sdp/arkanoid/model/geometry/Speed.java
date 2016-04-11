@@ -31,7 +31,7 @@ public final class Speed extends Point {
         return getDistance(new Point(0, 0));
     }
 
-    private void setLength(double length) {
+    public void setLength(double length) {
         double angle = getAngle();
         X = Math.cos(angle) * length;
         Y = Math.sin(angle) * length;

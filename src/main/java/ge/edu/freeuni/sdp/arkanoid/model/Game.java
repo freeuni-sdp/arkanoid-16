@@ -29,7 +29,7 @@ public class Game implements GameFacade, PaddleChangedListener {
         level.build(_room, _scoreCounter);
         Paddle newPaddle = new Paddle(_size);
         paddleChanged(newPaddle);
-        _ball = new Ball();
+        _ball = new SpeedingBall();
         _ball.putOn(newPaddle);
 
         _room.add(_ball);
