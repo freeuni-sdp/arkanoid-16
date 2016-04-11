@@ -11,6 +11,11 @@ public class Point {
         Y = y;
     }
 
+    public Point(Point other) {
+        X = other.X;
+        Y = other.Y;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
