@@ -68,6 +68,12 @@ class LevelRegistry {
                 new FrameBuilderWithLives(size)
         );
 
+        Level levelBoss = new Level(
+                "Level Boss",
+                "Monster contains every capsule in the game",
+                new LevelBossBuilder(size)
+        );
+
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -77,6 +83,7 @@ class LevelRegistry {
         levels.add(levelBombBricksDemo);
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
+        levels.add(levelBoss);
 
         return levels;
     }
