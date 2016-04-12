@@ -116,6 +116,7 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
         _paddle = newPaddle;
         _room.add(_paddle);
         _paddle.addListener(this);
+        _paddle.addLifeLostListener(this);
     }
 
     @Override
