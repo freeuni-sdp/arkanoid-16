@@ -115,7 +115,7 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
     public int getScore() {
         return _room.getScore();
     }
-    
+
     @Override
     public void lifeLost(){
         _liveCounter.decrease();

@@ -10,12 +10,15 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     private final Terminal _terminal;
 
+    private String _currentScore;
+
     TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
         PressedKeyWatcher.init();
         _terminal = terminal;
         presenter.set_cellUpdateListener(this);
         presenter.setStatusUpdateListener(this);
+        _currentScore = null;
     }
 
     public void show() {
@@ -145,9 +148,14 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
     }
 
     public void updateScore(int score) {
-        //TODO: Add implementation
-        // change score
+        _currentScore = "Score: "+score;
+        for(int i=_currentScore.length()-1; i>=0; i--){
+            _terminal.moveCursor(_terminal.getTerminalSize().getRows() * 3 - _currentScore.length() + i, 0);
+            _terminal.putCharacter(_currentScore.charAt(i));
+        }
     }
+
+
 
     public void updateLives(int lives) {
         _terminal.applyBackgroundColor(Terminal.Color.BLUE);
