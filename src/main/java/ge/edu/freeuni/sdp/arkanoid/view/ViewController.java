@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.view;
 
 
+import ge.edu.freeuni.sdp.arkanoid.model.*;
 import ge.edu.freeuni.sdp.arkanoid.presenter.GameOverPresenter;
 import ge.edu.freeuni.sdp.arkanoid.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.arkanoid.presenter.PresenterFactory;
@@ -23,10 +24,15 @@ public class ViewController {
         while(gameContinue){
             IntroView introView = _viewFactory.getIntroView();
             introView.show();
-
-            LevelPresenter levelPresenter = _presenterFactory.getLevelPresenter();
-            LevelView levelView = _viewFactory.getLevelView(levelPresenter);
-            levelView.show();
+            Memento memento = new Memento();
+            new Originator().restoreFromMemento(memento);
+            if(!memento.getSavedState().isExistState()) {
+                LevelPresenter levelPresenter = _presenterFactory.getLevelPresenter();
+                LevelView levelView = _viewFactory.getLevelView(levelPresenter);
+                levelView.show();
+            }else {
+                Configuration.getInstance().setSelectedLevelIndex(memento.getSavedState().getLevelIndex());
+            }
 
             RoomPresenter roomPresenter = _presenterFactory.getRoomPresenter();
             RoomView roomView = _viewFactory.getRoomView(roomPresenter);

@@ -7,12 +7,14 @@ public abstract class Brick extends Gobj<Rectangle> {
 
     private final BrickColor _color;
     private final Capsule _capsule;
+    private final int _score;
     private boolean _isAlive;
 
     Brick(Point position, BrickColor color, Capsule capsule) {
         super(position);
         _color = color;
         _capsule = capsule;
+        _score = 50;
         _isAlive = true;
     }
 
@@ -28,6 +30,10 @@ public abstract class Brick extends Gobj<Rectangle> {
         } else if (other instanceof MovementKillerBrick){
             _isAlive = false;
         }
+    }
+
+    public int getScore() {
+        return this._score;
     }
 
 

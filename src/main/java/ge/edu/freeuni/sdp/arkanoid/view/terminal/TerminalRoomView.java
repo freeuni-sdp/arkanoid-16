@@ -71,6 +71,41 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
                 _terminal.applyForegroundColor(Terminal.Color.BLUE);
                 _terminal.putCharacter('█');
                 break;
+            case WhiteBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('█');
+                break;
+            case OrangeBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.MAGENTA);
+                _terminal.putCharacter('█');
+                break;
+            case LightBlueBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.CYAN);
+                _terminal.putCharacter('█');
+                break;
+            case GreenBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.GREEN);
+                _terminal.putCharacter('█');
+                break;
+            case DarkBlueBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.BLUE);
+                _terminal.putCharacter('█');
+                break;
+            case LightOrangeBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.MAGENTA);
+                _terminal.putCharacter('█');
+                break;
+            case YellowBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
+                _terminal.putCharacter('█');
+                break;
             case Paddle:
                 _terminal.applyBackgroundColor(Terminal.Color.BLACK);
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
