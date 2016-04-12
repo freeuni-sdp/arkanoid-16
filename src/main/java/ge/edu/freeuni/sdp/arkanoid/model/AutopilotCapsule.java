@@ -16,7 +16,7 @@ public class AutopilotCapsule extends Capsule {
         super.interact(other);
         if (other instanceof Paddle) {
             Paddle oldPaddle = (Paddle) other;
-            Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle);
+            Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle, 0.5);
             Paddle newPaddle = new AutopilotPaddle(other.getPosition(), 5000, returnCapsule, _room);
             oldPaddle.exchange(newPaddle);
 

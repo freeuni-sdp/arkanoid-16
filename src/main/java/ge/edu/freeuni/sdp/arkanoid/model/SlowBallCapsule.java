@@ -16,11 +16,14 @@ public class SlowBallCapsule extends Capsule {
         super.interact(other);
 
         if (other instanceof Paddle) {
+
+            Paddle oldPaddle = (Paddle) other;
+            Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle, 2);
+            Paddle newPaddle = new TimerPaddle(other.getPosition(), 5000, returnCapsule);
+            oldPaddle.exchange(newPaddle);
+
             //slow down ball
-            _room.getGobjs()
-            .stream()
-            .filter(obj -> obj instanceof Ball)
-            .forEach(obj -> {
+            _room.getGobjs().stream().filter(obj -> obj instanceof Ball).forEach(obj -> {
                 Ball ball = (Ball) obj;
                 Speed ballSpeed = ball.getSpeed();
                 ballSpeed.setLength(ballSpeed.getLength()/2);
