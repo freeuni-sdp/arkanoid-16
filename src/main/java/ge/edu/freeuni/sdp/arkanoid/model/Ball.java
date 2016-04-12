@@ -7,7 +7,6 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 
@@ -19,7 +18,7 @@ public class Ball extends Gobj<Circle> {
 
     private final Set<LifeLostListener> _listeners = new HashSet<LifeLostListener>();
 
-    private final Set<BallDeadListener> _ballListeners = new HashSet<BallDeadListener>();
+    private final Set<BallListener> _ballListeners = new HashSet<BallListener>();
 
     public Ball() {
         this(new Point(0, 0));
@@ -33,6 +32,7 @@ public class Ball extends Gobj<Circle> {
         super(position, speed);
     }
 
+    private boolean isAlive = true;
     @Override
     public Circle getShape() {
         double RADIUS = (float) 0.5;
@@ -45,17 +45,17 @@ public class Ball extends Gobj<Circle> {
     }
 
     public void interact(Gobj other) {
-        System.out.println("aq shemovida1");
         if(other instanceof KillerBrick){
             decreaseNumBalls();
+
             if(_numBalls == 0) {
                 for (LifeLostListener listener : _listeners)
                     listener.lifeLost();
             }
-            System.out.println("aq shemovida");
-            for (BallDeadListener listener : _ballListeners)
+            else {
+                for (BallListener listener : _ballListeners)
                     listener.ballDied(this);
-
+            }
         }
         else if (other instanceof Brick){
             Brick brick = (Brick) other;
@@ -67,6 +67,11 @@ public class Ball extends Gobj<Circle> {
         }
     }
 
+    void addBall(Ball ball){
+
+        for (BallListener listener : _ballListeners)
+            listener.ballAdded(ball);
+    }
     void bounceFrom(Rectangle rectangle) {
         Point leftTop = rectangle.getPosition();
         Point rightBottom = rectangle.getBottomRight();
@@ -116,6 +121,7 @@ public class Ball extends Gobj<Circle> {
 
     @Override
     public boolean isAlive() {
+        //return isAlive;
         return true;
     }
 
@@ -130,7 +136,7 @@ public class Ball extends Gobj<Circle> {
     void addListener(LifeLostListener listener) {
         _listeners.add(listener);
     }
-    void addBallDeadListener(BallDeadListener listener) {
+    void addBallDeadListener(BallListener listener) {
         _ballListeners.add(listener);
     }
     public static int getNumBalls(){

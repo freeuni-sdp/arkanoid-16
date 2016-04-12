@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 
-public class Game implements GameFacade, PaddleChangedListener, BallDeadListener, LifeLostListener {
+public class Game implements GameFacade, PaddleChangedListener, BallListener, LifeLostListener {
 
     private final ScoreCounter _scoreCounter;
     private final LiveCounter _liveCounter;
@@ -126,17 +126,27 @@ public class Game implements GameFacade, PaddleChangedListener, BallDeadListener
 
     @Override
     public void ballDied(Ball ball) {
-        System.out.print("gaqra  ");
+
         if (ball.equals(_ball)) {
             ArrayList<Ball> balls = _room.getBalls();
-            if (balls.size() > 0) {
-                _ball = balls.get(0);
-                _ball.addBallDeadListener(this);
-                System.out.println("da sheicvala pirveli");
+            if (balls.size() > 1) {
+                _ball = balls.get(1);
             }
         }
-        System.out.println();
+
     }
+
+    @Override
+    public void ballAdded(Ball ball) {
+
+        ball.addBallDeadListener(this);
+        ball.addListener(this);
+        _room.add(ball);
+        ball.increaseNumBalls();
+
+
+    }
+
 
     @Override
     public int getScore() {
