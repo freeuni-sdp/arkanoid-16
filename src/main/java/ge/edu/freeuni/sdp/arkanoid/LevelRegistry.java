@@ -81,6 +81,18 @@ class LevelRegistry {
                 new LevelBossBuilder(size)
         );
 
+        Level levelWormhole = new Level(
+                "Level Wormhole",
+                "This level contains two portals",
+                new LevelWormholeBuilder(size)
+        );
+
+        Level levelKillCapsuleDemo = new Level(
+                "Kill Capsule!",
+                "Bricks contain killer capsules, that you must avoid",
+                new LevelKillCapsuleBuilder(size)
+        );
+
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -91,6 +103,8 @@ class LevelRegistry {
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
         levels.add(levelBoss);
+        levels.add(levelWormhole);
+        levels.add(levelKillCapsuleDemo);
         levels.add(slowBall);
 
         return levels;

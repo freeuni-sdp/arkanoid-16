@@ -82,6 +82,11 @@ public class Paddle extends Gobj<Rectangle> {
         //TODO: Laser goes here
     }
 
+    void lifeLost() {
+        for (LifeLostListener listener: _lifeLostListeners) {
+            listener.lifeLost();
+        }
+    }
     void addListener(PaddleChangedListener listener) {
         _paddleListeners.add(listener);
     }
