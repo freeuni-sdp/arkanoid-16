@@ -87,6 +87,7 @@ public class RoomPresenter extends Presenter {
             _statusUpdateListener.updateScore(score);
             _score = score;
         }
+
     }
 
 
