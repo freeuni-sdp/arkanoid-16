@@ -40,7 +40,7 @@ public class Game implements GameFacade, PaddleChangedListener, BallListener, Li
         _room = new Room();
 
         level.build(_room, _scoreCounter);
-        Paddle newPaddle = new Paddle(_size);
+        Paddle newPaddle = new CornerDeflectingPaddle(_size);
         paddleChanged(newPaddle);
         _ball = getBall();
         if(_ball == null)
