@@ -102,7 +102,7 @@ class LevelRegistry {
         Level levelLaserCapsuleDemo = new Level(
                 "Laser Capsule!",
                 "laser capsules generate laser beam if catched by paddle",
-                new LevelKillCapsuleBuilder(size)
+                new LevelLaserCapsuleBuilder(size)
         );
         
         levels.add(levelTestGray);
