@@ -39,6 +39,10 @@ public class Ball extends Gobj<Circle> {
             Brick brick = (Brick) other;
             this.bounceFrom(brick.getShape());
         }
+        if (other instanceof Ball){
+            Ball ball = (Ball) other;
+            this.bounceFrom(ball.getShape());
+        }
     }
 
     void bounceFrom(Rectangle rectangle) {
@@ -67,6 +71,14 @@ public class Ball extends Gobj<Circle> {
             previous = current;
             current = previous.add(newSpeed);
         }
+    }
+    void bounceFrom(Circle circle) {
+
+            Speed newSpeed = getSpeed();
+            newSpeed = newSpeed.mirrorY();
+            SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+            setSpeed(newSpeed);
+
     }
 
     @Override

@@ -76,6 +76,11 @@ class LevelRegistry {
                 new LevelBossBuilder(size)
         );
 
+        Level DisruptionCapsuleLevel = new Level(
+                "Test Disruption Capsule",
+                "This level is a test for #12 Autopilot Capsule feature.",
+                new TestDCapsuleLevelBuilder(size));
+
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -86,7 +91,7 @@ class LevelRegistry {
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
         levels.add(levelBoss);
-
+        levels.add(DisruptionCapsuleLevel);
         return levels;
     }
 }

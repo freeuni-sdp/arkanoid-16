@@ -63,6 +63,8 @@ class Room {
         _gobjs.add(gobj);
     }
 
+
+
     public ArrayList<Ball> getBalls() {
         ArrayList<Ball> balls = new ArrayList<Ball>();
         for (Gobj obj : _gobjs) {
