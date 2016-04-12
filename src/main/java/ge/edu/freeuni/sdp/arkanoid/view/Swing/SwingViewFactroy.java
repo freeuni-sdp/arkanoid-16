@@ -31,7 +31,7 @@ public class SwingViewFactroy implements ViewFactory{
 
     @Override
     public RoomView getRoomView(RoomPresenter roomPresenter) {
-        return new SwingRoomView(roomPresenter, frame);
+        return new null;
     }
 
     @Override
