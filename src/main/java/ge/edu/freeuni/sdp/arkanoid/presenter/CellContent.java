@@ -17,5 +17,6 @@ public enum CellContent {
     GreenBrick,
     DarkBlueBrick,
     LightOrangeBrick,
-    YellowBrick
+    YellowBrick,
+    KillCapsule
 }
