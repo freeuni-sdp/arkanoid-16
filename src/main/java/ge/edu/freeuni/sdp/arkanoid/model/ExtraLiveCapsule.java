@@ -13,6 +13,11 @@ public class ExtraLiveCapsule extends Capsule {
     }
 
     @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new ExtraLiveCapsule(position, room);
+    }
+
+    @Override
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle){

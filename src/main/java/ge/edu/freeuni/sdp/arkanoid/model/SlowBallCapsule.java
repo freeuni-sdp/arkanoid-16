@@ -12,6 +12,11 @@ public class SlowBallCapsule extends Capsule {
         super(position, room);
     }
 
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new SlowBallCapsule(position, room);
+    }
+
     public void interact(Gobj other) {
         super.interact(other);
 

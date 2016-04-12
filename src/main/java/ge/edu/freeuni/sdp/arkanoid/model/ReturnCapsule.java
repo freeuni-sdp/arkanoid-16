@@ -18,6 +18,11 @@ public class ReturnCapsule extends Capsule {
     }
 
     @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new ReturnCapsule(position, room, _oldPaddle, _ballSpeed);
+    }
+
+    @Override
     public void interact(Gobj other) {
         if (other instanceof Paddle) {
             Paddle activePaddle = (Paddle) other;

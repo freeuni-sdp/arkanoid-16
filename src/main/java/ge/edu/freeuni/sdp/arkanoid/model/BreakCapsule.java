@@ -14,6 +14,11 @@ public class BreakCapsule extends Capsule{
     }
 
     @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new BreakCapsule(position, room);
+    }
+
+    @Override
     public void interact(Gobj other){
         super.interact(other);
 
