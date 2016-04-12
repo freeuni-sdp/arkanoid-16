@@ -10,7 +10,12 @@ class LevelRegistry {
 
     static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
-
+        
+        Level levelTestGray = new Level(
+                "Test Level gray brick",
+                "Test Level gray brick.",
+                new GrayTestLevelBuilder(size));
+        
         Level slowBall = new Level(
                 "Test Slow ball Capsule",
                 "This level is a test for slow down ball Capsule feature.",
@@ -92,7 +97,8 @@ class LevelRegistry {
                 "Bricks contain killer capsules, that you must avoid",
                 new LevelKillCapsuleBuilder(size)
         );
-
+        
+        levels.add(levelTestGray);
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
