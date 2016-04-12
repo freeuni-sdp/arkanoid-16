@@ -4,9 +4,6 @@ import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
-/**
- * Created By Nika Doghonadze 4/10/2016.
- */
 public class LaserCapsule extends Capsule {
     LaserCapsule(Point point, Room room) {
         super(point, room);
