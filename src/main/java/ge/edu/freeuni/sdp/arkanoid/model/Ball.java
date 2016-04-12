@@ -44,8 +44,11 @@ public class Ball extends Gobj<Circle> {
 
     public void interact(Gobj other) {
         if(other instanceof KillerBrick){
-            for (LifeLostListener listener : _listeners)
-                listener.lifeLost();
+            decreaseNumBalls();
+            if(_numBalls == 0) {
+                for (LifeLostListener listener : _listeners)
+                    listener.lifeLost();
+            }
         }
         else if (other instanceof Brick){
             Brick brick = (Brick) other;
