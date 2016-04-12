@@ -6,7 +6,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 class BeamPresenter extends RectanglePresenter<Beam> {
 
-    BeamPresenter(Size size, Beam gameObject) {
+    BeamPresenter(Beam gameObject, Size size) {
         super(gameObject, size);
     }
 
