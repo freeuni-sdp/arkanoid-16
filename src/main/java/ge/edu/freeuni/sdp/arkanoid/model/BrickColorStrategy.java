@@ -25,6 +25,8 @@ abstract class BrickColorStrategy {
                 return new LightOrangeBrickStrategy();
             case Yellow:
                 return new YellowBrickStrategy();
+            case Gold:
+                return new GoldBrickStrategy();
             default:
                 return null;
         }
@@ -101,4 +103,12 @@ class YellowBrickStrategy extends BrickColorStrategy{
         return 50;
     }
 
+}
+
+class GoldBrickStrategy extends BrickColorStrategy {
+
+    @Override
+    public int getScore() {
+        return 0;
+    }
 }

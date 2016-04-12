@@ -24,6 +24,9 @@ public abstract class Brick extends Gobj<Rectangle> {
     }
 
     public void interact(Gobj other) {
+        if (_color == BrickColor.Gold) {
+            return;
+        }
         if (other instanceof Ball) {
             _capsule.release(getPosition());
             _isAlive = false;
