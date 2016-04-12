@@ -9,6 +9,7 @@ class Room {
 
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
+    private int _numBalls = 0;
     private LiveCounter _liveCounter = null;
 
     Room() {
@@ -59,6 +60,8 @@ class Room {
     public void add(Gobj gobj) {
         if (gobj.isKillable())
             _killableLeft++;
+        if(gobj instanceof Ball)
+            _numBalls++;
         _gobjs.add(gobj);
     }
 
@@ -74,4 +77,8 @@ class Room {
     public int getLives(){
         return this._liveCounter.getLive();
     }
+
+    public int getBalls() { return this._numBalls; }
+
+
 }
