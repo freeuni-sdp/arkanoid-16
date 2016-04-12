@@ -8,6 +8,11 @@ public class NullCapsule extends Capsule {
     }
 
     @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new NullCapsule(position);
+    }
+
+    @Override
     public void release(Point position) {
         //DO nothing
     }
