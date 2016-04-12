@@ -64,8 +64,6 @@ public class Memento {
             ScoreCounter score = new ScoreCounter();
             score.incScore((Integer.parseInt(properties.getProperty("game.score"))));
             gameState.setScoreCounter(score);
-            File file = new File("resources/state.properties");
-            if(file.exists()) file.delete();
         }else {
             gameState.setExistState(false);
         }

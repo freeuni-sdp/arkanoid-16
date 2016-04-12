@@ -25,23 +25,27 @@ public class Game implements GameFacade, PaddleChangedListener {
     }
 
     public void init(Level level) {
+        Memento memento = new Memento();
+        new Originator().restoreFromMemento(memento);
         _room = new Room();
-
-        level.build(_room, _scoreCounter);
-        Paddle newPaddle = new Paddle(_size);
+        level.build(_room, memento.getSavedState().isExistState() ? memento.getSavedState().getScoreCounter(): _scoreCounter);
+        Paddle newPaddle = memento.getSavedState().isExistState() ? memento.getSavedState().getPaddle() : new Paddle(_size);
         paddleChanged(newPaddle);
-
         ArrayList<Ball> balls = _room.getBalls();
-        if (balls.size() > 0) {
-            _ball = balls.get(0);
+        if(!memento.getSavedState().isExistState()) {
+            if (balls.size() > 0) {
+                _ball = balls.get(0);
+            } else {
+                _ball = new SpeedingBall();
+            }
+            _ball.putOn(newPaddle);
+        }else {
+            _ball = memento.getSavedState().getBall();
         }
-        else {
-            _ball = new SpeedingBall();
-        }
-        _ball.putOn(newPaddle);
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
+        deleteStateFile();
     }
 
     public void move(Direction direction) {
