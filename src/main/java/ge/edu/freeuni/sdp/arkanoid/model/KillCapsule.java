@@ -10,7 +10,12 @@ public class KillCapsule extends Capsule {
     KillCapsule(Point position, Room room) {
         super(position, room);
     }
-
+    
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new KillCapsule(position, room);
+    }
+    
     @Override
     public void interact(Gobj other) {
         super.interact(other);
