@@ -16,6 +16,11 @@ public class DisruptionCapsule extends Capsule {
         super(position, room);
     }
 
+
+    public Capsule createCapsule(Point position, Room room) {
+        return new DisruptionCapsule(position, room);
+    }
+
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle) {
@@ -23,7 +28,7 @@ public class DisruptionCapsule extends Capsule {
             if (balls.size() > 0) {
                 if (balls.size() == 1) {
                     Point position = balls.get(0).getPosition();
-                    balls.get(0).increaseNumBalls();
+
                     Ball newBall1  =  new Ball();
                     Ball newBall2  =  new Ball();
                     newBall1.setPosition(position);
