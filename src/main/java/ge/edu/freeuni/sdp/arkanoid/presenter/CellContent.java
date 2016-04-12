@@ -10,5 +10,12 @@ public enum CellContent {
     BCapsule,
     PCapsule,
     ACapsule,
-    Beam
+    Beam,
+    WhiteBrick,
+    OrangeBrick,
+    LightBlueBrick,
+    GreenBrick,
+    DarkBlueBrick,
+    LightOrangeBrick,
+    YellowBrick
 }

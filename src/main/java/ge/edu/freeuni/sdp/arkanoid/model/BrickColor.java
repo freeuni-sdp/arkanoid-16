@@ -3,5 +3,12 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 public enum BrickColor {
     Gold,
     Red,
-    Blue
+    Blue,
+    White,
+    Orange,
+    LightBlue,
+    Green,
+    DarkBlue,
+    LightOrange,
+    Yellow
 }

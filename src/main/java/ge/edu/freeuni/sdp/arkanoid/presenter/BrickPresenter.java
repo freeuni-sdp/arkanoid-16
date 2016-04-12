@@ -24,6 +24,21 @@ class BrickPresenter extends RectanglePresenter<Brick> {
                 return CellContent.RedBrick;
             case Blue:
                 return CellContent.BlueBrick;
+            case White:
+                return CellContent.WhiteBrick;
+            case Orange:
+                return CellContent.OrangeBrick;
+            case LightBlue:
+                return CellContent.LightBlueBrick;
+            case Green:
+                return CellContent.GreenBrick;
+            case DarkBlue:
+                return CellContent.DarkBlueBrick;
+            case LightOrange:
+                return CellContent.LightOrangeBrick;
+            case Yellow:
+                return CellContent.YellowBrick;
+
         }
         return CellContent.None;
     }
