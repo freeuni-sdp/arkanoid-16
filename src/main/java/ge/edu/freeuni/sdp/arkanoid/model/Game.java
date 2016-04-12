@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 
-public class Game implements GameFacade, PaddleChangedListener {
+public class Game implements GameFacade, PaddleChangedListener, LifeLostListener {
     private final ScoreCounter _scoreCounter;
     private final LiveCounter _liveCounter;
     private final Size _size;
@@ -38,6 +38,7 @@ public class Game implements GameFacade, PaddleChangedListener {
         else {
             _ball = new SpeedingBall();
         }
+        _ball.addListener(this);
         _ball.putOn(newPaddle);
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
@@ -109,4 +110,19 @@ public class Game implements GameFacade, PaddleChangedListener {
         _paddle.addListener(this);
     }
 
+
+    @Override
+    public void lifeLost() {
+        _liveCounter.decrease();
+        if(_liveCounter.getLive() == 0){
+            //game over;
+        }
+        else{
+            //TODO: remove the old ball & paddle, create new ball
+            Paddle newPaddle = new Paddle(_size);
+            paddleChanged(newPaddle);
+            _ball.putOn(newPaddle);
+            _room.add(_ball);
+        }
+    }
 }
