@@ -47,6 +47,7 @@ public class Game implements GameFacade, PaddleChangedListener, BallDeadListener
             _ball = new SpeedingBall();
 
         _ball.addListener(this);
+        _ball.addBallDeadListener(this);
         _ball.putOn(newPaddle);
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
@@ -125,12 +126,16 @@ public class Game implements GameFacade, PaddleChangedListener, BallDeadListener
 
     @Override
     public void ballDied(Ball ball) {
+        System.out.print("gaqra  ");
         if (ball.equals(_ball)) {
             ArrayList<Ball> balls = _room.getBalls();
             if (balls.size() > 0) {
                 _ball = balls.get(0);
+                _ball.addBallDeadListener(this);
+                System.out.println("da sheicvala pirveli");
             }
         }
+        System.out.println();
     }
 
     @Override

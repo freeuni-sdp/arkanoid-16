@@ -29,6 +29,7 @@ public class DisruptionCapsule extends Capsule {
                     newBall1.setSpeed(new Speed(-60));
                     newBall2.setPosition(position);
                     newBall2.setSpeed(new Speed(210));
+
                     _room.add(newBall1);
                     _room.add(newBall2);
                 }

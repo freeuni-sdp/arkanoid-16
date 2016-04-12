@@ -19,6 +19,8 @@ public class Ball extends Gobj<Circle> {
 
     private final Set<LifeLostListener> _listeners = new HashSet<LifeLostListener>();
 
+    private final Set<BallDeadListener> _ballListeners = new HashSet<BallDeadListener>();
+
     public Ball() {
         this(new Point(0, 0));
     }
@@ -43,12 +45,17 @@ public class Ball extends Gobj<Circle> {
     }
 
     public void interact(Gobj other) {
+        System.out.println("aq shemovida1");
         if(other instanceof KillerBrick){
             decreaseNumBalls();
             if(_numBalls == 0) {
                 for (LifeLostListener listener : _listeners)
                     listener.lifeLost();
             }
+            System.out.println("aq shemovida");
+            for (BallDeadListener listener : _ballListeners)
+                    listener.ballDied(this);
+
         }
         else if (other instanceof Brick){
             Brick brick = (Brick) other;
@@ -123,7 +130,9 @@ public class Ball extends Gobj<Circle> {
     void addListener(LifeLostListener listener) {
         _listeners.add(listener);
     }
-
+    void addBallDeadListener(BallDeadListener listener) {
+        _ballListeners.add(listener);
+    }
     public static int getNumBalls(){
         return _numBalls;
     }
