@@ -8,6 +8,15 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
  * Created By Nika Doghonadze 4/10/2016.
  */
 public class AutopilotCapsule extends Capsule {
+
+    static {
+        CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.Autopilot, new AutopilotCapsule());
+    }
+
+    private AutopilotCapsule() {
+        super(null, null);
+    }
+
     AutopilotCapsule(Point point, Room room) {
         super(point, room);
     }

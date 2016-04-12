@@ -8,6 +8,14 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
  */
 public class SlowBallCapsule extends Capsule {
 
+    static {
+        CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.SlowBall, new SlowBallCapsule());
+    }
+
+    private SlowBallCapsule() {
+        super(null, null);
+    }
+
     SlowBallCapsule(Point position, Room room) {
         super(position, room);
     }

@@ -5,6 +5,14 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 
 public class ExpandCapsule extends Capsule {
 
+    static {
+        CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.Expand, new ExpandCapsule());
+    }
+
+    private ExpandCapsule() {
+        super(null, null);
+    }
+
     ExpandCapsule(Point position, Room room) {
         super(position, room);
     }
