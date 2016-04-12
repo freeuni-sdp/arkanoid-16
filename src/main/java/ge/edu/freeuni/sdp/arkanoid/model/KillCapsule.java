@@ -7,6 +7,14 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
  */
 public class KillCapsule extends Capsule {
 
+    static {
+        CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.Kill, new KillCapsule());
+    }
+
+    private KillCapsule() {
+        super(null, null);
+    }
+
     KillCapsule(Point position, Room room) {
         super(position, room);
     }

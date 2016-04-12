@@ -23,7 +23,7 @@ public class ReturnCapsule extends Capsule {
 
     @Override
     public Capsule createCapsule(Point position, Room room) {
-        return new ReturnCapsule(position, room, _oldPaddle, _ballSpeed);
+        return new ReturnCapsule(position, room);
     }
 
     @Override
