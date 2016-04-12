@@ -72,7 +72,11 @@ class Room {
         _gobjs.add(gobj);
     }
 
-    /*public ArrayList<Ball> getBalls() {
+
+
+
+
+    public ArrayList<Ball> getBalls() {
         ArrayList<Ball> balls = new ArrayList<Ball>();
         for (Gobj obj : _gobjs) {
             if (obj instanceof Ball) {
@@ -80,7 +84,7 @@ class Room {
             }
         }
         return balls;
-    }*/
+    }
 
 
     public void setLiveCounter(LiveCounter liveCounter){

@@ -9,6 +9,7 @@ public enum CellContent {
     ECapsule,
     BCapsule,
     PCapsule,
+    DCapsule,
     ACapsule,
     SCapsule,
     LCapsule,

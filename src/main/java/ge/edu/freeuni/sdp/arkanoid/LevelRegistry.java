@@ -81,6 +81,12 @@ class LevelRegistry {
                 new LevelBossBuilder(size)
         );
 
+
+        Level DisruptionCapsuleLevel = new Level(
+                "Test Disruption Capsule",
+                "This level is a test for #12 Autopilot Capsule feature.",
+                new TestDCapsuleLevelBuilder(size));
+
         Level levelWormhole = new Level(
                 "Level Wormhole",
                 "This level contains two portals",
@@ -110,6 +116,7 @@ class LevelRegistry {
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
         levels.add(levelBoss);
+        levels.add(DisruptionCapsuleLevel);
         levels.add(levelWormhole);
         levels.add(levelKillCapsuleDemo);
         levels.add(levelLaserCapsuleDemo);

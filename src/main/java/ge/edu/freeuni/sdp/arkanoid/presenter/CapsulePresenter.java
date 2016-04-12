@@ -29,7 +29,9 @@ class CapsulePresenter extends RectanglePresenter<Capsule> {
             return CellContent.ACapsule;
         } else if (capsule instanceof ExtraLiveCapsule) {
             return CellContent.PCapsule;
-        } else if (capsule instanceof  KillCapsule) {
+        } else if (capsule instanceof DisruptionCapsule) {
+            return CellContent.DCapsule;
+        } else if (capsule instanceof KillCapsule) {
             return CellContent.KillCapsule;
         } else if (capsule instanceof SlowBallCapsule) {
             return CellContent.SCapsule;
