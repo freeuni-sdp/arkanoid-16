@@ -10,7 +10,7 @@ class LevelRegistry {
 
     static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
-        
+
         Level levelTestGray = new Level(
                 "Test Level gray brick",
                 "Test Level gray brick.",
@@ -92,6 +92,12 @@ class LevelRegistry {
                 "Bricks contain killer capsules, that you must avoid",
                 new LevelKillCapsuleBuilder(size)
         );
+
+        Level levelLaserCapsuleDemo = new Level(
+                "Laser Capsule!",
+                "laser capsules generate laser beam if catched by paddle",
+                new LevelKillCapsuleBuilder(size)
+        );
         
         levels.add(levelTestGray);
         levels.add(levelClearDemo);
@@ -106,6 +112,7 @@ class LevelRegistry {
         levels.add(levelBoss);
         levels.add(levelWormhole);
         levels.add(levelKillCapsuleDemo);
+        levels.add(levelLaserCapsuleDemo);
 
         return levels;
     }
