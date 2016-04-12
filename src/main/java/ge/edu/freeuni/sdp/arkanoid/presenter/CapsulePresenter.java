@@ -9,6 +9,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.ExtraLiveCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.KillCapsule;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.model.SlowBallCapsule;
+import ge.edu.freeuni.sdp.arkanoid.model.DisruptionCapsule;
+import ge.edu.freeuni.sdp.arkanoid.model.LaserCapsule;
 
 class CapsulePresenter extends RectanglePresenter<Capsule> {
 

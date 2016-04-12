@@ -2,8 +2,9 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
-public abstract class Beam extends Gobj<Rectangle> {
+public class Beam extends Gobj<Rectangle> {
 
     private boolean _isAlive;
     private Room _room;
