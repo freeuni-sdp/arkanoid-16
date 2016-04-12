@@ -111,14 +111,13 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
         _paddle.addListener(this);
     }
 
-<<<<<<< HEAD
     @Override
-    public int getScore(){
+    public int getScore() {
         return _room.getScore();
-=======
-
+    }
+    
     @Override
-    public void lifeLost() {
+    public void lifeLost(){
         _liveCounter.decrease();
         if(_liveCounter.getLive() == 0){
             //game over;
@@ -130,6 +129,5 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
             _ball.putOn(newPaddle);
             _room.add(_ball);
         }
->>>>>>> 57ae4b605b2e55f2bcdec48ccbad6b58887b41d7
     }
 }
