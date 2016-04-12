@@ -14,6 +14,8 @@ public class Memento {
 
     private GameState gameState;
 
+    public Memento(){}
+
     public Memento(GameState gameState){
         this.gameState = gameState;
         initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
@@ -97,9 +99,9 @@ public class Memento {
         try {
             InputStream is = GameState.class.getClassLoader().getResourceAsStream("state.properties");
             if(is != null) {
-                Properties dbProp = new Properties();
-                dbProp.load(is);
-                return dbProp;
+                Properties stateProp = new Properties();
+                stateProp.load(is);
+                return stateProp;
             }
             return null;
         } catch (IOException e) {

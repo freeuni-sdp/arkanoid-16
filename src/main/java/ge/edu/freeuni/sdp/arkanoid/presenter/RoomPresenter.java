@@ -14,6 +14,7 @@ public class RoomPresenter extends Presenter {
     private Direction _direction;
     private int _lives ;
     private boolean _pause;
+    private int _score;
 
     RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
         _game = game;
@@ -26,6 +27,7 @@ public class RoomPresenter extends Presenter {
         Level level = Configuration.getInstance().getSelectedLevel();
         _game.init(level);
         _lives = _game.geLives();
+        _score = _game.getScore();
     }
 
     public void set_cellUpdateListener(CellUpdateListener listener) {
@@ -79,6 +81,13 @@ public class RoomPresenter extends Presenter {
             _statusUpdateListener.updateLives(lives);
             _lives = lives;
         }
+
+        int score = this._game.getScore();
+        if (this._score != score){
+            _statusUpdateListener.updateScore(score);
+            _score = score;
+        }
+
     }
 
 

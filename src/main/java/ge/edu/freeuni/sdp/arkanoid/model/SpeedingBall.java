@@ -9,9 +9,9 @@ public class SpeedingBall extends Ball {
 
     private int BRICK_COLLISION_COUNTER = 0;
 
-    private final int SPEED_BOOST_THRESHOLD = 2;
+    private final int SPEED_BOOST_THRESHOLD = 10;
 
-    private final int BALL_SPEED_MULTIPLIER = 2;
+    private final double BALL_SPEED_MULTIPLIER = 2;
 
     private final double MAXIMUM_LENGTH = 2.1;
 

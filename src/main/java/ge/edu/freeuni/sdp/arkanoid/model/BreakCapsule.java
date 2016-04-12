@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 
 /**
@@ -17,22 +18,12 @@ public class BreakCapsule extends Capsule{
         super.interact(other);
 
         if (other instanceof Paddle){
-            KillerBrick killer = getKillerBrick();
-            if (killer != null)
-                _room.getGobjs().stream()
-                        .filter(Gobj::isKillable)
-                        .forEach(gobj -> gobj.interact(killer));
-        }
-    }
 
-    private KillerBrick getKillerBrick(){
-        for (Gobj obj:  _room.getGobjs()){
-           if (obj instanceof KillerBrick){
-                return (KillerBrick) obj;
-            }
-        }
-        return null; //TODO throw noKillerBrickException or get killerBrick
-        //TODO another way
+            KillerBrick killer = new KillerBrick(new Point(0, 0),
+                    new Size(0, 0), _room);
+            _room.getGobjs().stream()
+                    .filter(Gobj::isKillable)
+                    .forEach(gobj -> gobj.interact(killer));
     }
-
+    }
 }

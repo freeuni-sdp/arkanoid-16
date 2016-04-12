@@ -11,6 +11,11 @@ class LevelRegistry {
     static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
 
+        Level slowBall = new Level(
+                "Test Slow ball Capsule",
+                "This level is a test for slow down ball Capsule feature.",
+                new TestSCapsule(size));
+
         Level autoPaddleLevel = new Level(
                 "Test #12 Autopilot Capsule",
                 "This level is a test for #12 Autopilot Capsule feature.",
@@ -38,7 +43,9 @@ class LevelRegistry {
 
         Level levelBombBricksDemo = new Level(
                 "Level Bomb Bricks Demo",
-                "Approximately 20% of bricks are bombs. If bomb is hit, it explodes neighbours within radius of 2 bricks",
+                "Approximately 20% of bricks are bombs. If bomb is hit, " +
+                        "it explodes neighbours within radius of 2 bricks" +
+                        "(bomb bricks are Blue)",
                 new LevelBombBricksDemoBuilder(size)
         );
 
@@ -68,6 +75,18 @@ class LevelRegistry {
                 new FrameBuilderWithLives(size)
         );
 
+        Level levelBoss = new Level(
+                "Level Boss",
+                "Monster contains every capsule in the game",
+                new LevelBossBuilder(size)
+        );
+
+        Level levelKillCapsuleDemo = new Level(
+                "Kill Capsule!",
+                "Bricks contain killer capsules, that you must avoid",
+                new LevelKillCapsuleBuilder(size)
+        );
+
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -77,6 +96,9 @@ class LevelRegistry {
         levels.add(levelBombBricksDemo);
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
+        levels.add(levelBoss);
+        levels.add(levelKillCapsuleDemo);
+        levels.add(slowBall);
 
         return levels;
     }
