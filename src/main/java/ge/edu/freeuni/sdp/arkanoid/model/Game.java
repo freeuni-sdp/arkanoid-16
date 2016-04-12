@@ -24,20 +24,27 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
         _liveCounter = new LiveCounter();
     }
 
+
+    private Ball getBall(){
+        Set<Gobj> _gobjs =  _room.getGobjs();
+        for (Gobj obj : _gobjs) {
+            if (obj instanceof Ball) {
+                return (Ball)obj;
+            }
+        }
+        return null;
+    }
+
     public void init(Level level) {
         _room = new Room();
 
         level.build(_room, _scoreCounter);
         Paddle newPaddle = new Paddle(_size);
         paddleChanged(newPaddle);
-
-        ArrayList<Ball> balls = _room.getBalls();
-        if (balls.size() > 0) {
-            _ball = balls.get(0);
-        }
-        else {
+        _ball = getBall();
+        if(_ball == null)
             _ball = new SpeedingBall();
-        }
+
         _ball.addListener(this);
         _ball.putOn(newPaddle);
         _room.add(_ball);
