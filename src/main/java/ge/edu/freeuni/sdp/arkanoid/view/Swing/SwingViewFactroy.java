@@ -13,7 +13,8 @@ import javax.swing.*;
  */
 public class SwingViewFactroy implements ViewFactory{
 
-    JFrame frame;
+    private final JFrame frame;
+    
     public SwingViewFactroy(JFrame frame){
         this.frame = frame;
     }
@@ -35,6 +36,6 @@ public class SwingViewFactroy implements ViewFactory{
 
     @Override
     public IntroView getIntroView() {
-        return new SwingIntroView(null, frame);
+        return null;
     }
 }
