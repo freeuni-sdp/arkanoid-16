@@ -12,6 +12,11 @@ public class AutopilotCapsule extends Capsule {
         super(point, room);
     }
 
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new AutopilotCapsule(position, room);
+    }
+
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle) {
