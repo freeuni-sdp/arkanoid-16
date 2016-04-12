@@ -146,6 +146,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     public void updateScore(int score) {
         //TODO: Add implementation
+        // change score
     }
 
     public void updateLives(int lives) {

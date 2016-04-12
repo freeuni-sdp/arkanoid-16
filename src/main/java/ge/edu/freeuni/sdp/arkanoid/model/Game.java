@@ -44,6 +44,7 @@ public class Game implements GameFacade, PaddleChangedListener {
         }
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
+        _room.setScoreCounter(_scoreCounter);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
         deleteStateFile();
     }
@@ -113,4 +114,8 @@ public class Game implements GameFacade, PaddleChangedListener {
         _paddle.addListener(this);
     }
 
+    @Override
+    public int getScore(){
+        return _room.getScore();
+    }
 }
