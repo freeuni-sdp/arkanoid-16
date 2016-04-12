@@ -19,6 +19,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
         presenter.set_cellUpdateListener(this);
         presenter.setStatusUpdateListener(this);
         _currentScore = null;
+
     }
 
     public void show() {
