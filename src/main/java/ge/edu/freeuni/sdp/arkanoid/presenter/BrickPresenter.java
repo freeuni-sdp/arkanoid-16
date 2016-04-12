@@ -38,6 +38,8 @@ class BrickPresenter extends RectanglePresenter<Brick> {
                 return CellContent.LightOrangeBrick;
             case Yellow:
                 return CellContent.YellowBrick;
+            case Gray:
+                return CellContent.GrayBrick;
 
         }
         return CellContent.None;

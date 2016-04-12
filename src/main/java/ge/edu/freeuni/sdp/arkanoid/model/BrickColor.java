@@ -10,5 +10,6 @@ public enum BrickColor {
     Green,
     DarkBlue,
     LightOrange,
-    Yellow
+    Yellow,
+    Gray
 }

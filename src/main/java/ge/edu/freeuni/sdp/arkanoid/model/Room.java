@@ -10,6 +10,7 @@ class Room {
 
     private final Set<Gobj> _gobjs;
     private int _killableLeft;
+    private int _numBalls = 0;
     private LiveCounter _liveCounter = null;
     private ScoreCounter _scoreCounter = null;
 
@@ -66,10 +67,12 @@ class Room {
     public void add(Gobj gobj) {
         if (gobj.isKillable())
             _killableLeft++;
+        if(gobj instanceof Ball)
+            _numBalls++;
         _gobjs.add(gobj);
     }
 
-    public ArrayList<Ball> getBalls() {
+    /*public ArrayList<Ball> getBalls() {
         ArrayList<Ball> balls = new ArrayList<Ball>();
         for (Gobj obj : _gobjs) {
             if (obj instanceof Ball) {
@@ -77,7 +80,7 @@ class Room {
             }
         }
         return balls;
-    }
+    }*/
 
 
     public void setLiveCounter(LiveCounter liveCounter){
