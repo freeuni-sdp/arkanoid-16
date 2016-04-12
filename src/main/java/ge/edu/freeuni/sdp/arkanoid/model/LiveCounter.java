@@ -7,7 +7,7 @@ public class LiveCounter {
     private int _live;
 
     public LiveCounter(){
-        this._live = 1;
+        this._live = 3;
     }
 
     public LiveCounter(int lives){
