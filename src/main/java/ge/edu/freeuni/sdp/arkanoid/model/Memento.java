@@ -14,6 +14,8 @@ public class Memento {
 
     private GameState gameState;
 
+    public Memento(){}
+
     public Memento(GameState gameState){
         this.gameState = gameState;
         initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
@@ -62,6 +64,8 @@ public class Memento {
             ScoreCounter score = new ScoreCounter();
             score.incScore((Integer.parseInt(properties.getProperty("game.score"))));
             gameState.setScoreCounter(score);
+            File file = new File("resources/state.properties");
+            if(file.exists()) file.delete();
         }else {
             gameState.setExistState(false);
         }
@@ -97,9 +101,9 @@ public class Memento {
         try {
             InputStream is = GameState.class.getClassLoader().getResourceAsStream("state.properties");
             if(is != null) {
-                Properties dbProp = new Properties();
-                dbProp.load(is);
-                return dbProp;
+                Properties stateProp = new Properties();
+                stateProp.load(is);
+                return stateProp;
             }
             return null;
         } catch (IOException e) {
