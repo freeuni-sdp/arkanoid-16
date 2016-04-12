@@ -127,14 +127,8 @@ public class Game implements GameFacade, PaddleChangedListener, LifeLostListener
     @Override
     public void lifeLost(){
         _liveCounter.decrease();
-        if(_liveCounter.getLive() == 0){
-            //game over;
-        }
-        else{
-            //TODO: remove the old ball & paddle, create new ball
-            Paddle newPaddle = new Paddle(_size);
-            paddleChanged(newPaddle);
-            _ball.putOn(newPaddle);
+        if(_liveCounter.getLive() != 0){
+            _ball.putOn(_paddle);
             _room.add(_ball);
         }
     }
