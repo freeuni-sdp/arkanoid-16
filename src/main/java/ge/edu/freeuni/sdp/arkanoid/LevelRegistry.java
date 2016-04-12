@@ -15,11 +15,6 @@ class LevelRegistry {
                 "Test Level gray brick",
                 "Test Level gray brick.",
                 new GrayTestLevelBuilder(size));
-        
-        Level slowBall = new Level(
-                "Test Slow ball Capsule",
-                "This level is a test for slow down ball Capsule feature.",
-                new TestSCapsule(size));
 
         Level autoPaddleLevel = new Level(
                 "Test #12 Autopilot Capsule",
@@ -111,7 +106,6 @@ class LevelRegistry {
         levels.add(levelBoss);
         levels.add(levelWormhole);
         levels.add(levelKillCapsuleDemo);
-        levels.add(slowBall);
 
         return levels;
     }
