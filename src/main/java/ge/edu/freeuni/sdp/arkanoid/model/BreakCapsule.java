@@ -9,8 +9,21 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
  */
 public class BreakCapsule extends Capsule{
 
+    static {
+        CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.Break, new BreakCapsule());
+    }
+
+    private BreakCapsule() {
+        super(null, null);
+    }
+
     BreakCapsule(Point point, Room room){
         super(point, room);
+    }
+
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new BreakCapsule(position, room);
     }
 
     @Override

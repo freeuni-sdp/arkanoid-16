@@ -17,6 +17,15 @@ public class ReturnCapsule extends Capsule {
         _ballSpeed = ballSpeed;
     }
 
+    ReturnCapsule(Point position, Room room) {
+        super(position, room);
+    }
+
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new ReturnCapsule(position, room);
+    }
+
     @Override
     public void interact(Gobj other) {
         if (other instanceof Paddle) {
@@ -37,5 +46,13 @@ public class ReturnCapsule extends Capsule {
             SoundPlayer.getInstance().play(SoundPlayer.AUTOPILOT_EXPIRE);
         }
         super.interact(other);
+    }
+
+    public void setOldPaddle(Paddle oldPaddle) {
+        _oldPaddle = oldPaddle;
+    }
+
+    public void setBallSpeed(double ballSpeed) {
+        _ballSpeed = ballSpeed;
     }
 }
