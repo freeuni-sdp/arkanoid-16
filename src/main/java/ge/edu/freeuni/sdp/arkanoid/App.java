@@ -10,29 +10,41 @@ import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.arkanoid.view.ViewController;
+import ge.edu.freeuni.sdp.arkanoid.view.swing.SwingViewFactory;
 import ge.edu.freeuni.sdp.arkanoid.view.terminal.TerminalViewFactory;
 
+
+import javax.swing.*;
+import java.awt.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
 class App {
-
+    
     public static void main(String[] args) {
-
+        
         Terminal terminal = getTerminal();
-        SoundPlayer soundPlayer = SoundPlayer.getInstance();
+        // SoundPlayer soundPlayer = SoundPlayer.getInstance();
         Size size = getSize(terminal);
 
         List<Level> levels = LevelRegistry.getLevels(size);
 
         Configuration.init(size, levels);
-        TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
+        //TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        frame.setBounds(0,0,500,500);
+        frame.setLayout(new FlowLayout());
+
+        SwingViewFactory viewFactory = new SwingViewFactory(frame);
+
         GameFacade gameFacade = new Game(size);
         PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
         ViewController controller = new ViewController(viewFactory, presenterFactory);
         controller.run();
 
-        soundPlayer.close();
+        // soundPlayer.close();
         terminal.exitPrivateMode();
     }
 
@@ -45,6 +57,7 @@ class App {
         terminal.setCursorVisible(false);
         return terminal;
     }
+
 
     private static Size getSize(Terminal terminal) {
         TerminalSize terminalSize = terminal.getTerminalSize();
