@@ -37,6 +37,8 @@ public class LevelWormholeBuilder extends FrameBuilder{
         room.add(new WormholeBall(portals));
     }
 
+
+    /*creates bricks. the portals are stored in the arraylist, each nth portal(where n is even) is connected with n+1-th portal.*/
     private Brick createBrick(double i, double j, ArrayList<Point> points){
         Point p = new Point(i, j);
         if(points.contains(p)){
@@ -78,12 +80,7 @@ public class LevelWormholeBuilder extends FrameBuilder{
             }
             portalPoints.add(tmp);
         }
-       /* for(int i=0; i< portalPoints.size(); i++){
-            System.out.print(portalPoints.get(i).X);
-            System.out.print(" ");
-            System.out.print(portalPoints.get(i).Y);
-            System.out.print(" " );
-        }*/
+
         return portalPoints;
     }
 

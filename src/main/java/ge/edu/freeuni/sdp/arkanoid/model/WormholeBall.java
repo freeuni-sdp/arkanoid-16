@@ -14,7 +14,7 @@ public class WormholeBall extends Ball {
         this.portals = portals;
         _last = null;
     }
-
+    //the portals are stored in the arraylist, each nth portal(where n is even) is connected with n+1-th portal
     private PortalBrick pairedPortal(PortalBrick portal){
         int indx = portals.indexOf(portal);
         if(indx == -1) return null;
@@ -24,16 +24,13 @@ public class WormholeBall extends Ball {
 
     @Override
     public void interact(Gobj other) {
-
         if(other instanceof PortalBrick){
-            //if (other.equals(_last)) { System.out.print(" same "); return;}
+            if (other.equals(_last)) {
+                return;
+            }
             PortalBrick pair = pairedPortal((PortalBrick)other);
-            if(getSpeed().Y > 0)
-                setPosition(new Point(pair.getPosition().X, pair.getPosition().Y - pair.getShape().getSize().getHeight()));
-            else
-                setPosition(new Point(pair.getPosition().X, pair.getPosition().Y + pair.getShape().getSize().getHeight()));
+            setPosition(new Point(pair.getPosition().X, pair.getPosition().Y));
             _last = pair;
-            System.out.print(" a ");
         }
         else {
             _last = null;
