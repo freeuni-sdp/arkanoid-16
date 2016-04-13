@@ -21,7 +21,10 @@ public class Beam extends Gobj<Rectangle> {
     }
 
     public void interact(Gobj other) {
-
+        if(other instanceof Brick) {
+            Brick brick = (Brick) other;
+            brick.interact(new Ball());
+        }
     }
 
     @Override
@@ -29,7 +32,7 @@ public class Beam extends Gobj<Rectangle> {
         int height = (int) getHeight();
         System.out.print(height);
         Size size = new Size(1, height);
-        return new Rectangle(getPosition(), size);
+        return new Rectangle(new Point(getPosition().X, getPosition().Y - height), size);
     }
 
     @Override
@@ -44,7 +47,6 @@ public class Beam extends Gobj<Rectangle> {
             if(obj instanceof  Brick) {
                 Brick brick = (Brick) obj;
                 double brickY = brick.getPosition().Y;
-                //Todo get lowest brick position at piont.Y
                 int brickWidth = brick.getShape().getSize().getWidth();
                 double beamY = getPosition().Y;
                 if (beamY >= brickY && beamY <= brickY + brickWidth) {
@@ -54,11 +56,8 @@ public class Beam extends Gobj<Rectangle> {
                         lowestBrick = brick;
                 }
             }
-
         }
-        //Todo return distance from lowest brick to paddle
-
-        return lowestBrick.getPosition().X - getPosition().X;
+        return Math.abs(lowestBrick.getPosition().X - getPosition().X);
     }
 
 }
