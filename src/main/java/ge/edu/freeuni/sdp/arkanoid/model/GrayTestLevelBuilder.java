@@ -14,7 +14,6 @@ public class GrayTestLevelBuilder extends FrameBuilder {
     public void build(Room room, ScoreCounter scoreCounter) {
         super.build(room, scoreCounter);
         int brickDistance = getNormalBrickWidth();
-        System.out.println("width: " + brickDistance);
         int roomWidth = Configuration.getInstance().getSize().getWidth();
 
         createRow(room, brickDistance, roomWidth, 5);

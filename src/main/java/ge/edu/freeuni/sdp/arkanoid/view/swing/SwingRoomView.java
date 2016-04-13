@@ -8,16 +8,18 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kaneki on 4/12/16.
  */
 public class SwingRoomView extends RoomView implements CellUpdateListener, StatusUpdateListener {
 
-    private KeyListener key;
+    private final int PRECISION = 5;
+    private volatile KeyListener key;
     private JFrame frame;
-    private JPanel main_panel;
-    private ArrayList<ArrayList<JPanel>> panels;
+    private JPanel mainPanel;
+    private List<List<JPanel>> panels;
 
 
     private boolean left = false;
@@ -77,29 +79,27 @@ public class SwingRoomView extends RoomView implements CellUpdateListener, Statu
         presenter.set_cellUpdateListener(this);
         presenter.setStatusUpdateListener(this);
 
-        //Panel on which all the visual will be drawn
-        main_panel = new JPanel();
+        int width = frame.getWidth() / PRECISION;
+        int height = frame.getHeight() / PRECISION;
 
-        panels = new ArrayList<ArrayList<JPanel>>();
-
-        int width = frame.getWidth()/ 10;
-        int height = frame.getHeight() / 10;
-
-        main_panel.setLayout(new GridLayout(height, width));
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(height, width));
+        panels = new ArrayList<>();
 
         JPanel panel;
-        for (int k = 0; k < height; k++){
-            panels.add(new ArrayList<JPanel>());
-            for (int i = 0; i < width; i++) {
+        for (int i = 0; i < height; i++){
+            List<JPanel> row = new ArrayList<>();
+            for (int j = 0; j < width; j++) {
                 panel = new JPanel();
                 panel.setBackground(Color.BLACK);
-                main_panel.add(panel);
-                panels.get(k).add(panel);
+                row.add(panel);
+                mainPanel.add(panel);
             }
+            panels.add(row);
         }
         
+        frame.add(mainPanel);
         frame.addKeyListener(key);
-        frame.add(main_panel);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class SwingRoomView extends RoomView implements CellUpdateListener, Statu
             sleep();
         }
 
-        main_panel.setVisible(false);
+        mainPanel.setVisible(false);
     }
 
     private void sleep() {
@@ -154,7 +154,7 @@ public class SwingRoomView extends RoomView implements CellUpdateListener, Statu
     @Override
     public void updateCell(CellPosition position, CellContent content) {
 
-        JPanel panel = panels.get(position.y).get(position.x);
+        JPanel panel = panels.get(position.y / PRECISION).get(position.x / PRECISION);
         panel.setVisible(false);
 
         switch (content) {

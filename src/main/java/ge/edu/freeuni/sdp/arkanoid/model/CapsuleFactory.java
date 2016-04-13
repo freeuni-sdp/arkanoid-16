@@ -31,7 +31,6 @@ public class CapsuleFactory {
 
     public void registerCapsuleType(CapsuleType capsuleType, Capsule instance) {
         capsuleRegistry.put(capsuleType, instance);
-        System.out.println(capsuleRegistry.size());
     }
 
     public Capsule createCapsule(CapsuleType capsuleType, Point position, Room room) {

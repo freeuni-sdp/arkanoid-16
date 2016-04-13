@@ -38,7 +38,6 @@ public class Beam extends Gobj<Rectangle> {
     @Override
     public Rectangle getShape() {
         int height = (int) getHeight();
-        System.out.print(height);
         Size size = new Size(1, height);
         return new Rectangle(new Point(getPosition().X, getPosition().Y - height), size);
     }

@@ -18,8 +18,8 @@ public class SwingLevelView extends LevelView implements LevelSelectionListener{
 
     private final JFrame _frame;
     private int selectedLevel = 0;
-    private Key p = null;
-    private ArrayList<JLabel> labels = new ArrayList<JLabel>();
+    private volatile Key p = null;
+    private ArrayList<JLabel> labels = new ArrayList<>();
 
     public SwingLevelView(LevelPresenter presenter, JFrame frame) {
         super(presenter);

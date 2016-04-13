@@ -22,7 +22,7 @@ class SwingIntroView extends IntroView{
     private final ClassLoader _classLoader;
     private JFrame _frame;
     private int _row;
-    private Key key = null;
+    private volatile Key key = null;
 
     SwingIntroView(IntroPresenter presenter, JFrame frame) {
         super(presenter);
@@ -62,10 +62,7 @@ class SwingIntroView extends IntroView{
 
         _frame.addKeyListener(listener);
 
-        while (true) {
-             System.out.println();
-            if (key != null) break;
-        }
+        while (key == null);
 
 
         _frame.removeKeyListener(listener);
