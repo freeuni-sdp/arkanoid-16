@@ -40,12 +40,10 @@ class SwingIntroView extends IntroView{
 
         // SoundPlayer.getInstance().loop(SoundPlayer.INTRO);
 
-        System.out.println("adding listener");
-
         KeyListener listener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("typed");
+
             }
 
             @Override
@@ -53,19 +51,19 @@ class SwingIntroView extends IntroView{
 
                 key = new Key(e.getKeyChar());
 
-                System.out.println("pressed");
+
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("released");
+
             }
         };
 
         _frame.addKeyListener(listener);
 
         while (true) {
-            System.out.println();
+             System.out.println();
             if (key != null) break;
         }
 
@@ -74,7 +72,7 @@ class SwingIntroView extends IntroView{
         _frame.getContentPane().removeAll();
         _frame.repaint();
 
-        System.out.println("show ended");
+
         // SoundPlayer.getInstance().stopAll();
         //SoundPlayer.getInstance().play(SoundPlayer.START);
     }
