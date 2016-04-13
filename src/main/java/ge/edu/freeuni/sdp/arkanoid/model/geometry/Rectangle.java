@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
-public class Rectangle extends Shape {
+public class Rectangle implements Shape, ShapeVisitor{
     private final Point _position;
     private final Size _size;
 
@@ -40,21 +40,20 @@ public class Rectangle extends Shape {
                 l1.Y < r2.Y &&
                 r1.Y > l2.Y;
     }
-
-    private boolean canOverlap(Circle other) {
-        return other.canOverlap(this);
+    @Override
+    public boolean visit(Circle elem) {
+        return canOverlap(elem.getCenter());
     }
 
-    public boolean canOverlap(Shape other) {
-        if (other instanceof Circle) {
-            return canOverlap((Circle) other);
-        }
+    @Override
+    public boolean visit(Rectangle elem) {
+        return canOverlap(elem);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (other instanceof Rectangle) {
-            return canOverlap((Rectangle) other);
-        }
-
-        return false;
+    @Override
+    public boolean canOverlap(ShapeVisitor other) {
+        if (other instanceof Circle)
+            return visit((Circle)other);
+        return other.visit(this);
     }
 }

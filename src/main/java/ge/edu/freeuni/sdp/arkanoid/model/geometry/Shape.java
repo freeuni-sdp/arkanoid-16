@@ -1,5 +1,5 @@
 package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
-public abstract class Shape {
-    public abstract boolean canOverlap(Shape other);
+public interface  Shape {
+    boolean canOverlap(ShapeVisitor other);
 }

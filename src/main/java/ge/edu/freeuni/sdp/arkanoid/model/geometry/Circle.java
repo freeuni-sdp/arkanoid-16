@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
-public class Circle extends Shape {
+public class Circle implements Shape, ShapeVisitor {
     private final double _radius;
     private final Point _center;
 
@@ -13,21 +13,8 @@ public class Circle extends Shape {
         return _radius;
     }
 
-    private Point getCenter() {
+    public Point getCenter() {
         return _center;
-    }
-
-    public boolean canOverlap(Shape other) {
-        if (other instanceof Circle) {
-            return canOverlap((Circle) other);
-        }
-
-        //noinspection SimplifiableIfStatement
-        if (other instanceof Rectangle) {
-            return canOverlap((Rectangle) other);
-        }
-
-        return false;
     }
 
     private boolean canOverlap(Circle other) {
@@ -37,7 +24,14 @@ public class Circle extends Shape {
         return distance < this.getRadius() + other.getRadius();
     }
 
-    boolean canOverlap(Rectangle rectangle) {
-        return rectangle.canOverlap(_center);
+
+    @Override
+    public boolean canOverlap(ShapeVisitor other) {
+        return other.visit(this);
+    }
+
+    @Override
+    public boolean visit(Circle elem) {
+        return canOverlap(elem);
     }
 }

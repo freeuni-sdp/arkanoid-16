@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import java.util.ArrayList;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.ShapeVisitor;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -32,7 +33,7 @@ class Room {
         for (Gobj current : snapshot) {
             for (Gobj other : snapshot) {
                 if (current == other) continue;
-                boolean hasOverlap = current.getShape().canOverlap(other.getShape());
+                boolean hasOverlap = current.getShape().canOverlap((ShapeVisitor) other.getShape());
                 if (hasOverlap) {
                     current.interact(other);
                 }
