@@ -83,7 +83,7 @@ public class Paddle extends Gobj<Rectangle> {
     }
 
     void fire(Room room) {
-        Beam beam = new Beam(getPosition, _room);
+        Beam beam = new Beam(getPosition(), room);
         room.add(beam);
     }
 
