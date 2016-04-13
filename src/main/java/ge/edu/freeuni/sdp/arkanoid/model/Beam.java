@@ -27,6 +27,7 @@ public class Beam extends Gobj<Rectangle> {
     @Override
     public Rectangle getShape() {
         int height = (int) getHeight();
+        System.out.print(height);
         Size size = new Size(1, height);
         return new Rectangle(getPosition(), size);
     }
