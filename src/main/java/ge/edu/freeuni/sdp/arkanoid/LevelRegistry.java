@@ -120,7 +120,7 @@ class LevelRegistry {
         levels.add(levelWormhole);
         levels.add(levelKillCapsuleDemo);
         levels.add(levelLaserCapsuleDemo);
-
+        //
         return levels;
     }
 }
