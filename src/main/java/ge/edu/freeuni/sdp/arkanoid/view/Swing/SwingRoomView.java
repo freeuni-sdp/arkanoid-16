@@ -161,7 +161,7 @@ public class SwingRoomView extends RoomView implements CellUpdateListener, Statu
 
         switch (content) {
             case None:
-                panel.setBackground(Color.WHITE);
+                panel.setBackground(Color.BLACK);
                 break;
             case GrayBrick:
                 panel.setBackground(Color.YELLOW);
@@ -197,7 +197,7 @@ public class SwingRoomView extends RoomView implements CellUpdateListener, Statu
                 panel.setBackground(Color.YELLOW);
                 break;
             case Paddle:
-                panel.setBackground(Color.WHITE);
+                panel.setBackground(Color.GREEN);
                 break;
             case Ball:
                 panel.setBackground(Color.WHITE);
