@@ -39,18 +39,21 @@ public class Beam extends Gobj<Rectangle> {
     private double getHeight() {
         Brick lowestBrick = null;
 
-        for(obj:_room.getGobjs().stream().filter(obj -> obj instanceof Brick)) {
-            Brick brick = (Brick) obj;
-            double brickY = brick.getPosition().Y;
-            //Todo get lowest brick position at piont.Y
-            int brickWidth = brick.getShape().getSize().getWidth();
-            double beamY = getPosition().Y;
-            if (beamY >= brickY && beamY <= brickY + brickWidth) {
-                if (lowestBrick == null)
-                    lowestBrick = brick;
-                else if (lowestBrick.getPosition().X > brick.getPosition().X)
-                    lowestBrick = brick;
+        for(Gobj obj : _room.getGobjs()) {
+            if(obj instanceof  Brick) {
+                Brick brick = (Brick) obj;
+                double brickY = brick.getPosition().Y;
+                //Todo get lowest brick position at piont.Y
+                int brickWidth = brick.getShape().getSize().getWidth();
+                double beamY = getPosition().Y;
+                if (beamY >= brickY && beamY <= brickY + brickWidth) {
+                    if (lowestBrick == null)
+                        lowestBrick = brick;
+                    else if (lowestBrick.getPosition().X > brick.getPosition().X)
+                        lowestBrick = brick;
+                }
             }
+
         }
         //Todo return distance from lowest brick to paddle
 
