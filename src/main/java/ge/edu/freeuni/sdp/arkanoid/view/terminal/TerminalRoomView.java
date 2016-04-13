@@ -10,12 +10,16 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     private final Terminal _terminal;
 
+    private String _currentScore;
+
     TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
         PressedKeyWatcher.init();
         _terminal = terminal;
         presenter.set_cellUpdateListener(this);
         presenter.setStatusUpdateListener(this);
+        _currentScore = null;
+
     }
 
     public void show() {
@@ -61,9 +65,59 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
                 _terminal.putCharacter(' ');
                 break;
+            case GrayBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
+                _terminal.putCharacter('█');
+                break;
             case RedBrick:
                 _terminal.applyBackgroundColor(Terminal.Color.BLACK);
                 _terminal.applyForegroundColor(Terminal.Color.RED);
+                _terminal.putCharacter('█');
+                break;
+            case BlueBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.BLUE);
+                _terminal.putCharacter('█');
+                break;
+            case WhiteBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('█');
+                break;
+            case OrangeBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.MAGENTA);
+                _terminal.putCharacter('█');
+                break;
+            case LightBlueBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.CYAN);
+                _terminal.putCharacter('█');
+                break;
+            case GreenBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.GREEN);
+                _terminal.putCharacter('█');
+                break;
+            case DarkBlueBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.BLUE);
+                _terminal.putCharacter('█');
+                break;
+            case LightOrangeBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.MAGENTA);
+                _terminal.putCharacter('█');
+                break;
+            case YellowBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
+                _terminal.putCharacter('█');
+                break;
+            case GoldBrick:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
                 _terminal.putCharacter('█');
                 break;
             case Paddle:
@@ -95,12 +149,49 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
                 _terminal.applyBackgroundColor(Terminal.Color.GREEN);
                 _terminal.applyForegroundColor(Terminal.Color.WHITE);
                 _terminal.putCharacter('P');
+                break;
+            case DCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.GREEN);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('D');
+                break;
+            case Beam:
+                _terminal.applyBackgroundColor(Terminal.Color.BLACK);
+                _terminal.applyForegroundColor(Terminal.Color.RED);
+                _terminal.putCharacter('|');
+                break;
+            case KillCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.RED);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('K');
+                break;
+            case SCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.MAGENTA);
+                _terminal.applyForegroundColor(Terminal.Color.WHITE);
+                _terminal.putCharacter('S');
+                break;
+            case LCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.GREEN);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
+                _terminal.putCharacter('L');
+                break;
+            case CCapsule:
+                _terminal.applyBackgroundColor(Terminal.Color.GREEN);
+                _terminal.applyForegroundColor(Terminal.Color.YELLOW);
+                _terminal.putCharacter('C');
+                break;
         }
     }
 
     public void updateScore(int score) {
-        //TODO: Add implementation
+        _currentScore = "Score: "+score;
+        for(int i=_currentScore.length()-1; i>=0; i--){
+            _terminal.moveCursor(_terminal.getTerminalSize().getRows() * 3 - _currentScore.length() + i, 0);
+            _terminal.putCharacter(_currentScore.charAt(i));
+        }
     }
+
+
 
     public void updateLives(int lives) {
         _terminal.applyBackgroundColor(Terminal.Color.BLUE);

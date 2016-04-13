@@ -14,6 +14,8 @@ public class RoomPresenter extends Presenter {
     private Direction _direction;
     private int _lives ;
     private boolean _pause;
+    private int _score;
+    private boolean _are_levels_over;
 
     RoomPresenter(GameFacade game, GobjPresenterFactory gobjPresenterFactory) {
         _game = game;
@@ -26,6 +28,8 @@ public class RoomPresenter extends Presenter {
         Level level = Configuration.getInstance().getSelectedLevel();
         _game.init(level);
         _lives = _game.geLives();
+        _score = _game.getScore();
+        _are_levels_over = false;
     }
 
     public void set_cellUpdateListener(CellUpdateListener listener) {
@@ -33,7 +37,7 @@ public class RoomPresenter extends Presenter {
     }
     public void setStatusUpdateListener(StatusUpdateListener listener){_statusUpdateListener = listener;}
     public boolean isGameOver() {
-        return _game.isGameOver();
+        return _game.isGameOver() || _are_levels_over;
     }
 
     public void execute(Command command) {
@@ -69,9 +73,11 @@ public class RoomPresenter extends Presenter {
 
             if (ind < conf.getLevelNames().length - 1) {
                 conf.setSelectedLevelIndex(ind + 1);
+                _game.init(conf.getSelectedLevel());
+            } else {
+                _are_levels_over = true;
             }
 
-            _game.init(conf.getSelectedLevel());
         }
 
         int lives  = this._game.geLives();
@@ -79,6 +85,13 @@ public class RoomPresenter extends Presenter {
             _statusUpdateListener.updateLives(lives);
             _lives = lives;
         }
+
+        int score = this._game.getScore();
+        if (this._score != score){
+            _statusUpdateListener.updateScore(score);
+            _score = score;
+        }
+
     }
 
 

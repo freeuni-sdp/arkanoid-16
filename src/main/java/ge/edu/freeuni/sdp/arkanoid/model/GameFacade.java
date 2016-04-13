@@ -23,4 +23,7 @@ public interface GameFacade {
     Set<Gobj> getGobjs();
 
     int geLives();
+
+
+    int getScore();
 }

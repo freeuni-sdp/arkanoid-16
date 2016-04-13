@@ -10,8 +10,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.arkanoid.view.ViewController;
-import ge.edu.freeuni.sdp.arkanoid.view.swing.SwingViewFactory;
-import ge.edu.freeuni.sdp.arkanoid.view.terminal.TerminalViewFactory;
+import ge.edu.freeuni.sdp.arkanoid.view.swing.SwingViewFactory; 
 
 
 import javax.swing.*;
@@ -26,6 +25,9 @@ class App {
         Terminal terminal = getTerminal();
         // SoundPlayer soundPlayer = SoundPlayer.getInstance();
         Size size = getSize(terminal);
+//        Calls for Swing View
+//        Size size = new Size(80, 50);
+//        SwingViewFactroy viewFactory = new SwingViewFactroy(getFrame());
 
         List<Level> levels = LevelRegistry.getLevels(size);
 
@@ -58,6 +60,12 @@ class App {
         return terminal;
     }
 
+    private static JFrame getFrame(){
+        JFrame frame = new JFrame();
+        frame.setSize(800, 500);
+        frame.setResizable(false);
+        return frame;
+    }
 
     private static Size getSize(Terminal terminal) {
         TerminalSize terminalSize = terminal.getTerminalSize();

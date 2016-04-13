@@ -17,6 +17,8 @@ public abstract class Capsule extends Gobj<Rectangle> {
         _room = room;
     }
 
+    public abstract Capsule createCapsule(Point position, Room room);
+
     @Override
     public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(1, 1));

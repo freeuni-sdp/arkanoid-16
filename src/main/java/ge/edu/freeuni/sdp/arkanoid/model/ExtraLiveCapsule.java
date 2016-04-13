@@ -6,10 +6,17 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
  * Created by rezo on 4/10/16.
  */
 public class ExtraLiveCapsule extends Capsule {
+
     private Room _room;
+
     ExtraLiveCapsule(Point position, Room room) {
         super(position, room);
         this._room = room;
+    }
+
+    @Override
+    public Capsule createCapsule(Point position, Room room) {
+        return new ExtraLiveCapsule(position, room);
     }
 
     @Override

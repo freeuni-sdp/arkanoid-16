@@ -23,6 +23,8 @@ class GobjPresenterFactory {
                 return new BallPresenter((Ball) gobj, _size);
             case Capsule:
                 return new CapsulePresenter((Capsule) gobj, _size);
+            case Beam:
+                return new BeamPresenter((Beam) gobj, _size);
         }
         return new NullPresenter(gobj, _size);
     }

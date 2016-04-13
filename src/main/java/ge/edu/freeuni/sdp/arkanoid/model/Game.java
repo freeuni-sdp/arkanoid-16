@@ -5,9 +5,11 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Set;
 
-public class Game implements GameFacade, PaddleChangedListener {
+public class Game implements GameFacade, PaddleChangedListener, BallListener, LifeLostListener {
+
     private final ScoreCounter _scoreCounter;
     private final LiveCounter _liveCounter;
     private final Size _size;
@@ -23,17 +25,33 @@ public class Game implements GameFacade, PaddleChangedListener {
         _liveCounter = new LiveCounter();
     }
 
+
+    private Ball getBall(){
+        Set<Gobj> _gobjs =  _room.getGobjs();
+        for (Gobj obj : _gobjs) {
+            if (obj instanceof Ball) {
+                return (Ball)obj;
+            }
+        }
+        return null;
+    }
+
     public void init(Level level) {
         _room = new Room();
 
         level.build(_room, _scoreCounter);
-        Paddle newPaddle = new Paddle(_size);
+        Paddle newPaddle = new CornerDeflectingPaddle(_size);
         paddleChanged(newPaddle);
-        _ball = new SpeedingBall();
-        _ball.putOn(newPaddle);
+        _ball = getBall();
+        if(_ball == null)
+            _ball = new SpeedingBall();
 
+        _ball.addListener(this);
+        _ball.addBallDeadListener(this);
+        _ball.putOn(newPaddle);
         _room.add(_ball);
         _room.setLiveCounter(_liveCounter);
+        _room.setScoreCounter(_scoreCounter);
         SoundPlayer.getInstance().play(SoundPlayer.PARRY);
     }
 
@@ -100,6 +118,47 @@ public class Game implements GameFacade, PaddleChangedListener {
         _paddle = newPaddle;
         _room.add(_paddle);
         _paddle.addListener(this);
+        _paddle.addLifeLostListener(this);
     }
 
+
+
+
+    @Override
+    public void ballDied(Ball ball) {
+
+        if (ball.equals(_ball)) {
+            ArrayList<Ball> balls = _room.getBalls();
+            if (balls.size() > 1) {
+                _ball = balls.get(1);
+            }
+        }
+
+    }
+
+    @Override
+    public void ballAdded(Ball ball) {
+
+        ball.addBallDeadListener(this);
+        ball.addListener(this);
+        _room.add(ball);
+        ball.increaseNumBalls();
+
+
+    }
+
+
+    @Override
+    public int getScore() {
+        return _room.getScore();
+    }
+
+    @Override
+    public void lifeLost(){
+        _liveCounter.decrease();
+        if(_liveCounter.getLive() != 0){
+            _ball.putOn(_paddle);
+            _room.add(_ball);
+        }
+    }
 }

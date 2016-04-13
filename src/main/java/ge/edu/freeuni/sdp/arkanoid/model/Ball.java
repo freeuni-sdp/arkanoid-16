@@ -6,10 +6,19 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Ball extends Gobj<Circle> {
 
+    private static int _numBalls;
+
     private Point _prevPosition;
+
+    private final Set<LifeLostListener> _listeners = new HashSet<LifeLostListener>();
+
+    private final Set<BallListener> _ballListeners = new HashSet<BallListener>();
 
     public Ball() {
         this(new Point(0, 0));
@@ -23,6 +32,7 @@ public class Ball extends Gobj<Circle> {
         super(position, speed);
     }
 
+    private boolean isAlive = true;
     @Override
     public Circle getShape() {
         double RADIUS = (float) 0.5;
@@ -35,12 +45,33 @@ public class Ball extends Gobj<Circle> {
     }
 
     public void interact(Gobj other) {
-        if (other instanceof Brick){
+        if(other instanceof KillerBrick){
+            decreaseNumBalls();
+
+            if(_numBalls == 0) {
+                for (LifeLostListener listener : _listeners)
+                    listener.lifeLost();
+            }
+            else {
+                for (BallListener listener : _ballListeners)
+                    listener.ballDied(this);
+            }
+        }
+        else if (other instanceof Brick){
             Brick brick = (Brick) other;
             this.bounceFrom(brick.getShape());
         }
+        if (other instanceof Ball){
+            Ball ball = (Ball) other;
+            this.bounceFrom(ball.getShape());
+        }
     }
 
+    void addBall(Ball ball){
+
+        for (BallListener listener : _ballListeners)
+            listener.ballAdded(ball);
+    }
     void bounceFrom(Rectangle rectangle) {
         Point leftTop = rectangle.getPosition();
         Point rightBottom = rectangle.getBottomRight();
@@ -68,6 +99,14 @@ public class Ball extends Gobj<Circle> {
             current = previous.add(newSpeed);
         }
     }
+    void bounceFrom(Circle circle) {
+
+            Speed newSpeed = getSpeed();
+            newSpeed = newSpeed.mirrorY();
+            SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+            setSpeed(newSpeed);
+
+    }
 
     @Override
     public void move() {
@@ -82,6 +121,7 @@ public class Ball extends Gobj<Circle> {
 
     @Override
     public boolean isAlive() {
+        //return isAlive;
         return true;
     }
 
@@ -91,5 +131,28 @@ public class Ball extends Gobj<Circle> {
         double radius = getShape().getRadius();
         Point position = new Point(p.X + width / 2, p.Y - radius);
         setPosition(position);
+    }
+
+    void addListener(LifeLostListener listener) {
+        _listeners.add(listener);
+    }
+    void addBallDeadListener(BallListener listener) {
+        _ballListeners.add(listener);
+    }
+    public static int getNumBalls(){
+        return _numBalls;
+    }
+
+    public static void increaseNumBalls(){
+        _numBalls++;
+    }
+
+    public static void decreaseNumBalls(){
+        if(_numBalls>=1)
+            _numBalls--;
+    }
+
+    public static void setNumBalls(int num){
+        _numBalls = num;
     }
 }

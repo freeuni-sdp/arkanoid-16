@@ -11,6 +11,11 @@ class LevelRegistry {
     static List<Level> getLevels(Size size) {
         List<Level> levels = new ArrayList<>();
 
+        Level levelTestGray = new Level(
+                "Test Level gray brick",
+                "Test Level gray brick.",
+                new GrayTestLevelBuilder(size));
+
         Level autoPaddleLevel = new Level(
                 "Test #12 Autopilot Capsule",
                 "This level is a test for #12 Autopilot Capsule feature.",
@@ -38,7 +43,9 @@ class LevelRegistry {
 
         Level levelBombBricksDemo = new Level(
                 "Level Bomb Bricks Demo",
-                "Approximately 20% of bricks are bombs. If bomb is hit, it explodes neighbours within radius of 2 bricks",
+                "Approximately 20% of bricks are bombs. If bomb is hit, " +
+                        "it explodes neighbours within radius of 2 bricks" +
+                        "(bomb bricks are Blue)",
                 new LevelBombBricksDemoBuilder(size)
         );
 
@@ -74,6 +81,31 @@ class LevelRegistry {
                 new LevelBossBuilder(size)
         );
 
+
+        Level DisruptionCapsuleLevel = new Level(
+                "Test Disruption Capsule",
+                "This level is a test for #12 Autopilot Capsule feature.",
+                new TestDCapsuleLevelBuilder(size));
+
+        Level levelWormhole = new Level(
+                "Level Wormhole",
+                "This level contains two portals",
+                new LevelWormholeBuilder(size)
+        );
+
+        Level levelKillCapsuleDemo = new Level(
+                "Kill Capsule!",
+                "Bricks contain killer capsules, that you must avoid",
+                new LevelKillCapsuleBuilder(size)
+        );
+
+        Level levelLaserCapsuleDemo = new Level(
+                "Laser Capsule!",
+                "laser capsules generate laser beam if catched by paddle",
+                new TestLCapsuleLevelBuilder(size)
+        );
+        
+        levels.add(levelTestGray);
         levels.add(levelClearDemo);
         levels.add(levelVerySimple);
         levels.add(level1);
@@ -84,7 +116,11 @@ class LevelRegistry {
         levels.add(levelGameEndDemo);
         levels.add(levelWithLives);
         levels.add(levelBoss);
-
+        levels.add(DisruptionCapsuleLevel);
+        levels.add(levelWormhole);
+        levels.add(levelKillCapsuleDemo);
+        levels.add(levelLaserCapsuleDemo);
+        //
         return levels;
     }
 }

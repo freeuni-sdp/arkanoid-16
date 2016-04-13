@@ -7,6 +7,7 @@ public abstract class Brick extends Gobj<Rectangle> {
 
     private final BrickColor _color;
     private final Capsule _capsule;
+    private BrickColorStrategy _strategy;
     private boolean _isAlive;
 
     Brick(Point position, BrickColor color, Capsule capsule) {
@@ -14,6 +15,7 @@ public abstract class Brick extends Gobj<Rectangle> {
         _color = color;
         _capsule = capsule;
         _isAlive = true;
+        _strategy = BrickColorStrategy.getStrategy(_color);
     }
 
     @Override
@@ -22,6 +24,9 @@ public abstract class Brick extends Gobj<Rectangle> {
     }
 
     public void interact(Gobj other) {
+        if (_color == BrickColor.Gold) {
+            return;
+        }
         if (other instanceof Ball) {
             _capsule.release(getPosition());
             _isAlive = false;
@@ -30,7 +35,13 @@ public abstract class Brick extends Gobj<Rectangle> {
         }
     }
 
+    public void setBrickColor(BrickColorStrategy strategy) {
+        _strategy = strategy;
+    }
 
+    public int getScore() {
+        return _strategy.getScore();
+    }
     @Override
     public boolean isAlive() {
         return _isAlive;

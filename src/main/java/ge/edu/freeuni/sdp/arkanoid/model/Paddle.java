@@ -11,7 +11,8 @@ import java.util.Set;
 
 public class Paddle extends Gobj<Rectangle> {
 
-    private final Set<PaddleChangedListener> _listeners;
+    private final Set<PaddleChangedListener> _paddleListeners;
+    private final Set<LifeLostListener> _lifeLostListeners;
     private boolean _isAlive;
     private int extraLive;
     private Point prevPosition;
@@ -24,7 +25,8 @@ public class Paddle extends Gobj<Rectangle> {
     Paddle(Point position) {
         super(position);
         _isAlive = true;
-        _listeners = new HashSet<>();
+        _paddleListeners = new HashSet<>();
+        _lifeLostListeners = new HashSet<>();
         prevPosition = position;
     }
 
@@ -71,7 +73,7 @@ public class Paddle extends Gobj<Rectangle> {
     void exchange(Paddle newPaddle) {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());
-        for (PaddleChangedListener listener : _listeners) {
+        for (PaddleChangedListener listener : _paddleListeners) {
             listener.paddleChanged(newPaddle);
         }
     }
@@ -80,7 +82,25 @@ public class Paddle extends Gobj<Rectangle> {
         //TODO: Laser goes here
     }
 
-    void addListener(PaddleChangedListener listener) {
-        _listeners.add(listener);
+    void lifeLost() {
+        for (LifeLostListener listener: _lifeLostListeners) {
+            listener.lifeLost();
+        }
     }
+    void addListener(PaddleChangedListener listener) {
+        _paddleListeners.add(listener);
+    }
+
+    void addLifeLostListener(LifeLostListener listener){_lifeLostListeners.add(listener); }
+
+    @Override
+    void setPosition(Point position) {
+        super.setPosition(position);
+        prevPosition = position;
+    }
+
+    public Point getPrevPosition(){
+        return prevPosition;
+    }
+
 }

@@ -4,5 +4,6 @@ public enum GobjKind {
     Brick,
     Paddle,
     Ball,
-    Capsule
+    Capsule,
+    Beam
 }
