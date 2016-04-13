@@ -4,6 +4,10 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+
 public class LevelBossBuilder extends FrameBuilder {
 
     // will be changed when new bricks are introduces in issue #8
@@ -32,8 +36,25 @@ public class LevelBossBuilder extends FrameBuilder {
         { BrickColor.Red, null, BrickColor.Red, null, null, null, null, null, BrickColor.Red, null, BrickColor.Red }
     };
 
+    private CapsuleFactory capsuleFactory;
+    private List<CapsuleType> capsuleTypes;
+    private Random random;
+
     public LevelBossBuilder(Size size) {
         super(size);
+        random = new Random();
+        capsuleFactory = CapsuleFactory.getInstance();
+        capsuleTypes = new ArrayList<>(CapsuleFactory.getInstance().getCapsuleTypes());
+        prepareCapsuleTypeList();
+    }
+
+    private void prepareCapsuleTypeList() {
+        int listLength = capsuleTypes.size();
+        // 70% of list should be null capsules
+        int addNullCapsules = (int)((listLength-1) * 0.7);
+        for (int i = 0; i < addNullCapsules; ++i) {
+            capsuleTypes.add(CapsuleType.Null);
+        }
     }
 
     public void build(Room room, ScoreCounter scoreCounter) {
@@ -56,7 +77,8 @@ public class LevelBossBuilder extends FrameBuilder {
                 if (monsterAppearance[i][j] != null) {
                     Point position = new Point(upperLeftX + j * brickWidth, upperLeftY + i * brickHeight);
                     Brick current = new NormalBrick(position, monsterAppearance[i][j],
-                            new NullCapsule(null)); // TODO add every concrete type of capsule wp 0.3
+                            capsuleFactory.createCapsule(capsuleTypes.get
+                                    (random.nextInt(capsuleTypes.size())), position, room));
                     room.add(current);
                 }
             }
