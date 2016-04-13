@@ -19,7 +19,7 @@ class TerminalLevelView extends LevelView implements LevelSelectionListener {
 
     public void show() {
         draw();
-
+        
         boolean isAccepted = false;
 
         while (!isAccepted) {

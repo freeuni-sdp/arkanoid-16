@@ -24,6 +24,7 @@ public class ViewController {
         while(gameContinue){
             IntroView introView = _viewFactory.getIntroView();
             introView.show();
+
             Memento memento = new Memento();
             new Originator().restoreFromMemento(memento);
             if(!memento.getSavedState().isExistState()) {

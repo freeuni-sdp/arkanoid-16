@@ -1,9 +1,7 @@
-package ge.edu.freeuni.sdp.arkanoid.view.Swing;
+package ge.edu.freeuni.sdp.arkanoid.view.swing;
 
 import ge.edu.freeuni.sdp.arkanoid.presenter.*;
 import ge.edu.freeuni.sdp.arkanoid.view.RoomView;
-import ge.edu.freeuni.sdp.arkanoid.view.terminal.*;
-import javafx.embed.swing.JFXPanel;
 
 import javax.swing.*;
 import java.awt.*;

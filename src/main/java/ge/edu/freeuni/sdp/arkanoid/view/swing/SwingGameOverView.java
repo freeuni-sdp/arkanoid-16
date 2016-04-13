@@ -1,7 +1,6 @@
-package ge.edu.freeuni.sdp.arkanoid.view.Swing;
+package ge.edu.freeuni.sdp.arkanoid.view.swing;
 
 import ge.edu.freeuni.sdp.arkanoid.presenter.GameOverPresenter;
-import ge.edu.freeuni.sdp.arkanoid.presenter.Presenter;
 import ge.edu.freeuni.sdp.arkanoid.view.GameOverView;
 
 import javax.swing.*;
