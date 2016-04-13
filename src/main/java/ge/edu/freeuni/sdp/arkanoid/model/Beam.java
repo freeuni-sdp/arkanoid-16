@@ -46,18 +46,18 @@ public class Beam extends Gobj<Rectangle> {
         for(Gobj obj : _room.getGobjs()) {
             if(obj instanceof  Brick) {
                 Brick brick = (Brick) obj;
-                double brickY = brick.getPosition().Y;
+                double brickX = brick.getPosition().X;
                 int brickWidth = brick.getShape().getSize().getWidth();
-                double beamY = getPosition().Y;
-                if (beamY >= brickY && beamY <= brickY + brickWidth) {
+                double beamX = getPosition().X;
+                if (beamX >= brickX && beamX <= brickX + brickWidth) {
                     if (lowestBrick == null)
                         lowestBrick = brick;
-                    else if (lowestBrick.getPosition().X > brick.getPosition().X)
+                    else if (lowestBrick.getPosition().Y > brick.getPosition().Y)
                         lowestBrick = brick;
                 }
             }
         }
-        return Math.abs(lowestBrick.getPosition().X - getPosition().X);
+        return Math.abs(lowestBrick.getPosition().Y - getPosition().Y);
     }
 
 }
