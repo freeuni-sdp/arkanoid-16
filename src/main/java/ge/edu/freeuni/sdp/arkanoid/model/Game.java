@@ -63,7 +63,7 @@ public class Game implements GameFacade, PaddleChangedListener, BallListener, Li
     }
 
     public void fire() {
-        _paddle.fire();
+        _paddle.fire(_room);
     }
 
     @Override
