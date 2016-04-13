@@ -35,7 +35,7 @@ public class SwingLevelView extends LevelView implements LevelSelectionListener{
 
 
         while (!isAccepted) {
-            System.out.print("show show");
+
             if (p == null) continue;
             if (p.getKind() == Key.Kind.Enter) {
                 isAccepted = true;
@@ -77,12 +77,12 @@ public class SwingLevelView extends LevelView implements LevelSelectionListener{
         _frame.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("typed");
+
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("enter code is : " + e.getKeyCode());
+
                 if(e.getKeyCode() == 10) {
                     p = new Key(Key.Kind.Enter);
                 }
@@ -96,11 +96,9 @@ public class SwingLevelView extends LevelView implements LevelSelectionListener{
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("released");
+
             }
         });
-
-        System.out.println("starting drawing levels");
 
         for (int i = 0; i < names.length; i++) {
             String prefix = "";

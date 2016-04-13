@@ -28,6 +28,7 @@ public class TerminalViewFactory implements ViewFactory {
     }
 
     public RoomView getRoomView(RoomPresenter roomPresenter) {
+
         return new TerminalRoomView(roomPresenter, _terminal);
     }
 

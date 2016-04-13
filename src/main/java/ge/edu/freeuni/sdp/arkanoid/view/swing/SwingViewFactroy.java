@@ -1,6 +1,5 @@
-package ge.edu.freeuni.sdp.arkanoid.view.Swing;
+package ge.edu.freeuni.sdp.arkanoid.view.swing;
 
-import com.googlecode.lanterna.terminal.Terminal;
 import ge.edu.freeuni.sdp.arkanoid.presenter.GameOverPresenter;
 import ge.edu.freeuni.sdp.arkanoid.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.arkanoid.presenter.RoomPresenter;
@@ -21,21 +20,24 @@ public class SwingViewFactroy implements ViewFactory{
 
     @Override
     public GameOverView getGameOverView(GameOverPresenter presenter) {
+
         return new SwingGameOverView(presenter, frame);
     }
 
     @Override
     public LevelView getLevelView(LevelPresenter presenter) {
-        return null;
+
+        return new SwingLevelView(presenter, frame);
     }
 
     @Override
     public RoomView getRoomView(RoomPresenter roomPresenter) {
-        return null;
+
+        return new SwingRoomView(roomPresenter, frame);
     }
 
     @Override
     public IntroView getIntroView() {
-        return null;
+        return new SwingIntroView(null, frame);
     }
 }

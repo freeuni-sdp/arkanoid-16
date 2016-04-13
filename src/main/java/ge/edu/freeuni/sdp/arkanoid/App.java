@@ -10,7 +10,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.Level;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.arkanoid.view.ViewController;
-import ge.edu.freeuni.sdp.arkanoid.view.swing.SwingViewFactory; 
+import ge.edu.freeuni.sdp.arkanoid.view.swing.SwingViewFactroy;
 
 
 import javax.swing.*;
@@ -39,7 +39,7 @@ class App {
         frame.setBounds(0,0,500,500);
         frame.setLayout(new FlowLayout());
 
-        SwingViewFactory viewFactory = new SwingViewFactory(frame);
+        SwingViewFactroy viewFactory = new SwingViewFactroy(frame);
 
         GameFacade gameFacade = new Game(size);
         PresenterFactory presenterFactory = new PresenterFactory(gameFacade, size);
@@ -64,6 +64,7 @@ class App {
         JFrame frame = new JFrame();
         frame.setSize(800, 500);
         frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return frame;
     }
 
