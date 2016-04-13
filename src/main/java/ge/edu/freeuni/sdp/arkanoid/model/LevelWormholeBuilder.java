@@ -14,7 +14,7 @@ public class LevelWormholeBuilder extends FrameBuilder{
     private final double _distX = 0;
     private final int _nrows = 1;
     private ArrayList<PortalBrick> portals;
-    private final int _nPortals = 4;
+    private final int _nPortals = 2;
 
     public LevelWormholeBuilder(Size size){
         super(size);
@@ -59,7 +59,7 @@ public class LevelWormholeBuilder extends FrameBuilder{
     }
 
 
-    /* randomizes Portal objects.*/
+    /* randomizes Portal objects. makes sure two interconnected portals are not positioned next to each other*/
     private ArrayList<Point> randomizePortals(int maxX, int maxY){
         ArrayList<Point> portalPoints =  new ArrayList<Point>();
         Random rand = new Random();
