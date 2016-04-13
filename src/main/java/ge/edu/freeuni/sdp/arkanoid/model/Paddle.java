@@ -16,7 +16,7 @@ public class Paddle extends Gobj<Rectangle> {
     private boolean _isAlive;
     private int extraLive;
     private Point prevPosition;
-
+    private boolean _isFirable;
 
     public Paddle(Size roomSize) {
         this(new Point(roomSize.getWidth() / 2, roomSize.getHeight() - 2));
@@ -70,6 +70,10 @@ public class Paddle extends Gobj<Rectangle> {
         _isAlive = isAlive;
     }
 
+    public boolean isFirable() { return _isFirable; }
+
+    public void setFirable(boolean isFirable) { _isFirable = isFirable; }
+
     void exchange(Paddle newPaddle) {
         _isAlive = false;
         newPaddle.setPosition(this.getPosition());
@@ -78,8 +82,9 @@ public class Paddle extends Gobj<Rectangle> {
         }
     }
 
-    void fire() {
-        //TODO: Laser goes here
+    void fire(Room room) {
+        Beam beam = new Beam(getPosition, _room);
+        room.add(beam);
     }
 
     void lifeLost() {
