@@ -18,9 +18,8 @@ public class LaserCapsule extends Capsule {
         super.interact(other);
         if (other instanceof Paddle) {
             //Todo paddle may fire
-            Point paddlePosition = other.getPosition();
-            Beam beam = new Beam(paddlePosition, _room);
-            _room.add(beam);
+            Paddle paddle = (Paddle) other;
+            paddle.setFirable(true);
         }
     }
 }
