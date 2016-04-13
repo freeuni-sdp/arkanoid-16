@@ -13,6 +13,7 @@ public enum CellContent {
     ACapsule,
     SCapsule,
     LCapsule,
+    CCapsule,
     Beam,
     WhiteBrick,
     OrangeBrick,

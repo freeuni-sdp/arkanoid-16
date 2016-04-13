@@ -98,4 +98,9 @@ public class Paddle extends Gobj<Rectangle> {
         super.setPosition(position);
         prevPosition = position;
     }
+
+    public Point getPrevPosition(){
+        return prevPosition;
+    }
+
 }

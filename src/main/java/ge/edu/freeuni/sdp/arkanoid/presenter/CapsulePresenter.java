@@ -1,16 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.presenter;
 
 
-import ge.edu.freeuni.sdp.arkanoid.model.AutopilotCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.BreakCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.Capsule;
-import ge.edu.freeuni.sdp.arkanoid.model.ExpandCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.ExtraLiveCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.KillCapsule;
+import ge.edu.freeuni.sdp.arkanoid.model.*;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.SlowBallCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.DisruptionCapsule;
-import ge.edu.freeuni.sdp.arkanoid.model.LaserCapsule;
 
 class CapsulePresenter extends RectanglePresenter<Capsule> {
 
@@ -39,7 +31,10 @@ class CapsulePresenter extends RectanglePresenter<Capsule> {
             return CellContent.SCapsule;
         } else if (capsule instanceof LaserCapsule) {
             return CellContent.LCapsule;
+        } else if (capsule instanceof StickyPaddleCapsule) {
+            return CellContent.CCapsule;
         }
+
         return CellContent.None;
     }
 }
