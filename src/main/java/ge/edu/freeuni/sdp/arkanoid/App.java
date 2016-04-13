@@ -12,6 +12,7 @@ import ge.edu.freeuni.sdp.arkanoid.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.arkanoid.view.ViewController;
 import ge.edu.freeuni.sdp.arkanoid.view.terminal.TerminalViewFactory;
 
+import javax.swing.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -22,6 +23,9 @@ class App {
         Terminal terminal = getTerminal();
         SoundPlayer soundPlayer = SoundPlayer.getInstance();
         Size size = getSize(terminal);
+//        Calls for Swing View
+//        Size size = new Size(80, 50);
+//        SwingViewFactroy viewFactory = new SwingViewFactroy(getFrame());
 
         List<Level> levels = LevelRegistry.getLevels(size);
 
@@ -44,6 +48,13 @@ class App {
         terminal.clearScreen();
         terminal.setCursorVisible(false);
         return terminal;
+    }
+
+    private static JFrame getFrame(){
+        JFrame frame = new JFrame();
+        frame.setSize(800, 500);
+        frame.setResizable(false);
+        return frame;
     }
 
     private static Size getSize(Terminal terminal) {
