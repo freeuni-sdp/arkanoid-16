@@ -50,8 +50,8 @@ public class StickyPaddle extends Paddle {
     }
 
     @Override
-    void fire(){
-        super.fire();
+    void fire(Room room){
+        super.fire(room);
         if(stickedBall != null) {
             stickedBall.getBall().setSpeed(stickedBall.getSpeed().mirrorY());
             stickedBall = null;
