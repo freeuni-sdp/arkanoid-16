@@ -8,11 +8,19 @@ public class Beam extends Gobj<Rectangle> {
 
     private boolean _isAlive;
     private Room _room;
+    private int life_left = 3;
 
     Beam(Point position, Room room) {
         super(position);
         _isAlive = true;
         _room = room;
+    }
+
+    @Override
+    public void move() {
+        life_left--;
+        if (life_left == 0)
+            _isAlive = false;
     }
 
     @Override
