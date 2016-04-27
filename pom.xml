@@ -7,7 +7,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>arkanoid-16</name>
     <url>http://maven.apache.org</url>
-    <dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
