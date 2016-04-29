@@ -12,13 +12,22 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     private String _currentScore;
 
+    private DefaultPressedKeyWatcher _pressedKeyWatcher;
+
     TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
-        PressedKeyWatcher.init();
+        _pressedKeyWatcher = DefaultPressedKeyWatcher.getInstance();
+        _pressedKeyWatcher.init();
         _terminal = terminal;
         presenter.set_cellUpdateListener(this);
         presenter.setStatusUpdateListener(this);
         _currentScore = null;
+
+    }
+
+    TerminalRoomView(RoomPresenter presenter, Terminal terminal, DefaultPressedKeyWatcher watcher) {
+        this(presenter,terminal);
+        _pressedKeyWatcher = watcher;
 
     }
 
@@ -31,17 +40,17 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
             Command command = Command.None;
             if (presenter.isGameOver()) break;
 
-            if (PressedKeyWatcher.isRightPressed()) command = Command.Right;
-            if (PressedKeyWatcher.isLeftPressed()) command = Command.Left;
-            if (PressedKeyWatcher.isSpacePressed()) command = Command.Fire;
-            if (PressedKeyWatcher.isPausedPressed()) {
+            if (_pressedKeyWatcher.isRightPressed()) command = Command.Right;
+            if (_pressedKeyWatcher.isLeftPressed()) command = Command.Left;
+            if (_pressedKeyWatcher.isSpacePressed()) command = Command.Fire;
+            if (_pressedKeyWatcher.isPausedPressed()) {
                 command = Command.Pause;
                 presenter.execute(command);
                 do{
                     sleep();
-                }while (PressedKeyWatcher.isPausedPressed() && !PressedKeyWatcher.isEscapePressed());
+                }while (_pressedKeyWatcher.isPausedPressed() && !_pressedKeyWatcher.isEscapePressed());
             }
-            if (PressedKeyWatcher.isEscapePressed()) break;
+            if (_pressedKeyWatcher.isEscapePressed()) break;
             presenter.execute(command);
             sleep();
         }
