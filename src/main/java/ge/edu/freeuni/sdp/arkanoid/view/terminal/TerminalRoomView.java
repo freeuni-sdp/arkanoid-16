@@ -13,6 +13,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
     private String _currentScore;
 
     private DefaultPressedKeyWatcher _pressedKeyWatcher;
+    private long _millis = 10;
 
     TerminalRoomView(RoomPresenter presenter, Terminal terminal) {
         super(presenter);
@@ -25,9 +26,10 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     }
 
-    TerminalRoomView(RoomPresenter presenter, Terminal terminal, DefaultPressedKeyWatcher watcher) {
+    TerminalRoomView(RoomPresenter presenter, Terminal terminal, DefaultPressedKeyWatcher watcher,long millis) {
         this(presenter,terminal);
         _pressedKeyWatcher = watcher;
+        _millis = millis;
 
     }
 
@@ -58,7 +60,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
 
     private void sleep() {
         try {
-            Thread.sleep(10);
+            Thread.sleep(_millis);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

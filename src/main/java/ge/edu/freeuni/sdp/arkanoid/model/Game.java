@@ -69,11 +69,10 @@ public class Game implements GameFacade, PaddleChangedListener, BallListener, Li
     @Override
     public void pause() {
         SoundPlayer.getInstance().play(SoundPlayer.PAUSE);
-        if(isPaused) isPaused = false;
-        else  isPaused = true;
+        isPaused = !isPaused;
         if(!isPaused){
             deleteStateFile();
-            return;
+
         }else {
             GameState gameState = new GameState();
             gameState.setPaddle(_paddle);
