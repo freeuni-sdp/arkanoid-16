@@ -33,16 +33,6 @@ public class AutopilotCapsuleTest {
     private int speedAngle;
     private Room realRoom;
     
-//    @BeforeClass
-//    public static void setUpClass() {
-//        System.out.println("setUpClass");
-//    }
-//    
-//    @AfterClass
-//    public static void tearDownClass() {
-//    }
-    
-    
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -51,25 +41,22 @@ public class AutopilotCapsuleTest {
         realRoom = new Room();
     }
     
-//    @After
-//    public void tearDown() {
-//    }
-
     @Test
-    public void testIsAlive() {
+    public void capsulCanBeKilled() {
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         assertTrue(capsule.isAlive());
     }
     
     @Test
-    public void testCapsuleKind(){
+    public void kindIsCapsule(){
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         assertEquals(GobjKind.Capsule, capsule.getKind());
     }
     
     @Test
-    public void testCapsule_Release_addToRoom(){
+    public void releaseCapsuleInRoom(){
         Capsule capsule = new AutopilotCapsule(point, realRoom);
+        
         capsule.release(point);
         
         boolean contains = realRoom.getGobjs().contains(capsule);
@@ -77,8 +64,8 @@ public class AutopilotCapsuleTest {
     }
     
     @Test
-    public void testCapsule_Release_setPosition(){
-        Capsule capsule = new AutopilotCapsule(point, realRoom);
+    public void capsuleReleaseOnAppropriatePosition(){
+        Capsule capsule = new AutopilotCapsule(point, room);
         Point position = new Point(10, 10);
         capsule.release(position);
         
@@ -86,7 +73,7 @@ public class AutopilotCapsuleTest {
     }
     
     @Test
-    public void testCreateCapsule() {
+    public void createCapsuleMethod() {
         Point otherPoint = new Point(1, 1);
         
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
@@ -98,7 +85,7 @@ public class AutopilotCapsuleTest {
     }
     
     @Test
-    public void testInteract_exchangePaddle_isAliveOldPaddle() {
+    public void interactCapsuleAndPaddle_KilledPaddle() {
         Paddle mockPaddle = mock(Paddle.class);
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         capsule.interact(mockPaddle);
@@ -106,7 +93,7 @@ public class AutopilotCapsuleTest {
     }
     
     @Test
-    public void testInteract_BallDoubleSpeed() {
+    public void interactCapsule_BallDoubleSpeed() {
         addBallBySpecialSpeed();
         when(room.getGobjs()).thenReturn(new HashSet<>(balls));
         
