@@ -85,22 +85,6 @@ public class AutopilotCapsuleTest {
         assertFalse(mockPaddle.isAlive());
     }
     
-//    @Test
-//    public void testInteract_exchangePaddle_setPaddlePositions() {
-//        Point position = new Point(1, 1);
-//        Paddle mockPaddle = mock(Paddle.class);
-//        when(mockPaddle.getPosition()).thenReturn(position);
-//        
-////        List<PaddleChangedListener> observers = new ArrayList<>();
-////        when().then
-//        
-//        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
-//        capsule.interact(mockPaddle);
-//        
-//        verify(mockPaddle).setPosition(position);
-//        assertFalse(mockPaddle.isAlive());
-//    }
-    
     @Test
     public void testInteract_BallDoubleSpeed() {
         addBallBySpecialSpeed();
