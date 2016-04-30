@@ -31,6 +31,7 @@ public class AutopilotCapsuleTest {
     
     private List<Ball> balls;
     private int speedAngle;
+    private Room realRoom;
     
 //    @BeforeClass
 //    public static void setUpClass() {
@@ -47,6 +48,7 @@ public class AutopilotCapsuleTest {
         MockitoAnnotations.initMocks(this);
         balls = new ArrayList<>();
         speedAngle = 30;
+        realRoom = new Room();
     }
     
 //    @After
@@ -63,6 +65,24 @@ public class AutopilotCapsuleTest {
     public void testCapsuleKind(){
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         assertEquals(GobjKind.Capsule, capsule.getKind());
+    }
+    
+    @Test
+    public void testCapsule_Release_addToRoom(){
+        Capsule capsule = new AutopilotCapsule(point, realRoom);
+        capsule.release(point);
+        
+        boolean contains = realRoom.getGobjs().contains(capsule);
+        assertTrue(contains);
+    }
+    
+    @Test
+    public void testCapsule_Release_setPosition(){
+        Capsule capsule = new AutopilotCapsule(point, realRoom);
+        Point position = new Point(10, 10);
+        capsule.release(position);
+        
+        assertTrue(capsule.getPosition().equals(position));
     }
     
     @Test
