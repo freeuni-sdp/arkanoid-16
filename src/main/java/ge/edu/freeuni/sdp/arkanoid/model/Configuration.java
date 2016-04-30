@@ -51,4 +51,9 @@ public class Configuration {
         }
         return result;
     }
+
+    // for testing
+    public static void setInstanceForTesting(Configuration c) {
+        _singleton = c;
+    }
 }
