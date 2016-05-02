@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 import org.junit.Before;
@@ -18,6 +19,7 @@ public class ReturnCapsuleTest {
     @Mock Paddle oldPaddleMock, activePaddleMock;
     @Mock Point pointMock;
     @Mock Room roomMock;
+    @Mock SoundPlayer soundPlayerMock;
 
     private ReturnCapsule returnCapsule;
 
@@ -25,6 +27,7 @@ public class ReturnCapsuleTest {
     public void setup(){
         MockitoAnnotations.initMocks(this);
         returnCapsule = new ReturnCapsule(pointMock, roomMock, oldPaddleMock, 0.5);
+        SoundPlayer.setSoundPlayer(soundPlayerMock);
     }
 
     @Test
