@@ -29,7 +29,7 @@ public class ReturnCapsule extends Capsule {
     @Override
     public void interact(Gobj other) {
         if (other instanceof Paddle) {
-            Paddle activePaddle = (Paddle) other;
+            Paddle activePaddle = (Paddle)other;
 
             _oldPaddle.setAlive(true);
             _room.add(_oldPaddle);
@@ -39,7 +39,7 @@ public class ReturnCapsule extends Capsule {
                     .stream()
                     .filter(obj -> obj instanceof Ball)
                     .forEach(obj -> {
-                        Ball ball = (Ball) obj;
+                        Ball ball = (Ball)obj;
                         Speed ballSpeed = ball.getSpeed();
                         ballSpeed.setLength(ballSpeed.getLength() * _ballSpeed);
                     });
