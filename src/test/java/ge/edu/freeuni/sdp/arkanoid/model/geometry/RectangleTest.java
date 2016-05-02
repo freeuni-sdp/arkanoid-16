@@ -109,4 +109,13 @@ public class RectangleTest {
 
         assertFalse(target.canOverlap(otherRect));
     }
+
+    @Test
+    public void testOtherShapeNotOverlaps() {
+        Shape shape = mock(Shape.class);
+
+        Rectangle target = new Rectangle(position, size);
+
+        assertFalse(target.canOverlap(shape));
+    }
 }
