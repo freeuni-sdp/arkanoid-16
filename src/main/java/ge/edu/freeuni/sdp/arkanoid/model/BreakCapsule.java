@@ -29,6 +29,6 @@ public class BreakCapsule extends Capsule{
             _room.getGobjs().stream()
                     .filter(Gobj::isKillable)
                     .forEach(gobj -> gobj.interact(killer));
-    }
+        }
     }
 }
