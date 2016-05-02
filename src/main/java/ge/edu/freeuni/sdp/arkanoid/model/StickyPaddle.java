@@ -30,7 +30,7 @@ public class StickyPaddle extends Paddle {
     @Override
     public void move() {
         super.move();
-        Point currPoint = super.getPrevPosition();
+        Point currPoint = getPosition();
         if (stickedBall != null)
             stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
     }
