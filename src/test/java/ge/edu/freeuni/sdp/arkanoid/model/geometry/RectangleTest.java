@@ -6,11 +6,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class RectangleTest {
 
-    @Mock
-    Point point;
+    @Mock Point point;
     @Mock Size size;
 
     @Before
@@ -19,12 +19,14 @@ public class RectangleTest {
     }
 
     @Test
-    public void testPositionSetting() {
-        Point positionSet = new Point(1,123);
+    public void testBottomRightCorner() {
+        Point upperLeft = new Point(0, 0);
+        Size rectSize = new Size(1, 2);
 
-        Rectangle rectangle = new Rectangle(positionSet, size);
-        Point positionGot = rectangle.getPosition();
+        Rectangle rectangle = new Rectangle(upperLeft, rectSize);
+        Point bottomRight = new Point(upperLeft.X + rectSize.getWidth(), upperLeft.Y + rectSize.getHeight());
 
-        assertEquals(positionGot, positionSet);
+        assertEquals(bottomRight, rectangle.getBottomRight());
     }
+
 }
