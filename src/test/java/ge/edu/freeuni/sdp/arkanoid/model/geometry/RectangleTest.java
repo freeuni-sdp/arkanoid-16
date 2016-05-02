@@ -2,21 +2,24 @@ package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class RectangleTest {
 
-    private Size size;
+    @Mock Size size;
     private Point position;
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         position = new Point(0,0);
-        size = new Size(2,3);
+        when(size.getWidth()).thenReturn(2);
+        when(size.getHeight()).thenReturn(3);
     }
 
     @Test
@@ -46,7 +49,6 @@ public class RectangleTest {
         assertTrue(target.canOverlap(pointInside));
     }
 
-
     @Test
     public void testNoOverlap() {
         Point pointInside = new Point(position.X + size.getWidth() + 10, position.Y + size.getHeight() + 10);
@@ -54,5 +56,25 @@ public class RectangleTest {
         Rectangle target = new Rectangle(position, size);
 
         assertFalse(target.canOverlap(pointInside));
+    }
+
+    @Test
+    public void testCircleOverlap() {
+        Circle circle = mock(Circle.class);
+
+        Rectangle target = new Rectangle(position, size);
+        when(circle.canOverlap(target)).thenReturn(true);
+
+        assertTrue(target.canOverlap(circle));
+    }
+
+    @Test
+    public void testCircleNotOverlap() {
+        Circle circle = mock(Circle.class);
+
+        Rectangle target = new Rectangle(position, size);
+        when(circle.canOverlap(target)).thenReturn(false);
+
+        assertFalse(target.canOverlap(circle));
     }
 }
