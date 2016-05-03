@@ -42,7 +42,7 @@ public class KillCapsuleTest {
     @Test
     public void testGetShape(){
         KillCapsule capsule = new KillCapsule(point, room);
-        assertTrue(capsule.getShape() instanceof Rectangle);
+        assertTrue(capsule.getShape().getClass() == Rectangle.class);
         Size size = capsule.getShape().getSize();
         assertEquals(size.getHeight(), 1);
         assertEquals(size.getWidth(), 1);
@@ -86,29 +86,7 @@ public class KillCapsuleTest {
         Paddle paddle = mock(Paddle.class);
         capsule.interact(paddle);
         verify(paddle).lifeLost();
-
-       /* Paddle paddle2 = new Paddle(mock(Size.class));
-        LifeLostListener lifeLostListener = mock(LifeLostListener.class);
-        Game game = new Game(mock(Size.class));
-        game.init(mock(Level.class));
-        int lives = game.geLives();
-        paddle.addLifeLostListener(game);
-        capsule.interact(paddle2);
-        int live2= game.geLives();
-        assertEquals(lives, 3);
-        assertEquals(live2, 3);*/
-
-        /*Paddle paddle2 = new Paddle(mock(Size.class));
-        KillCapsule capsule2 = new KillCapsule(point, room);
-
-        Game game = mock(Game.class);
-        paddle.addLifeLostListener(game);
-        capsule2.interact(paddle2);
-        verify(game).lifeLost();*/
-
-
-
-
+        assertFalse(capsule.isAlive());
     }
 
 
