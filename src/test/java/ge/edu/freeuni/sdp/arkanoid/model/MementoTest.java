@@ -25,22 +25,23 @@ public class MementoTest {
     
     @Before
     public void setUp() {
+        stubWriter = new StubGameStateWriter();
     }
 
     /**
      * Test of initialGameState method, of class Memento.
      */
-    @Test
-    public void initialGameStateSaving() {
-        Memento memento = new Memento(gameState, stubWriter);
-        memento.initialGameState(ball, paddle, new ScoreCounter(), new Size(10, 10));
-    }
+//    @Test
+//    public void initialGameStateSaving() {
+////        Memento memento = new Memento(gameState, stubWriter);
+////        memento.initialGameState(ball, paddle, new ScoreCounter(), new Size(10, 10));
+//    }
 
     /**
      * Test of getSavedState method, of class Memento.
      */
-    @Test
-    public void getSavedState() {
-    }
+//    @Test
+//    public void getSavedState() {
+//    }
     
 }
