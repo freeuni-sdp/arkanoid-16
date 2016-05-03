@@ -24,17 +24,21 @@ public class StickyPaddle extends Paddle {
         }
 
         if ((other instanceof FrameBrick) && stickedBall != null) {
-            Point currPoint = getPosition();
-            stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
+            updateStickedBallPosition();
         }
     }
 
     @Override
     public void move() {
         super.move();
+        if (stickedBall != null) {
+            updateStickedBallPosition();
+        }
+    }
+
+    private void updateStickedBallPosition() {
         Point currPoint = getPosition();
-        if (stickedBall != null)
-            stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
+        stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
     }
 
     @Override
