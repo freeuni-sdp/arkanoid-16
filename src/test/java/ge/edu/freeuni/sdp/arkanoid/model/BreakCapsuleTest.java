@@ -1,21 +1,20 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
-import org.mockito.Mock;
-import static org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by misho on 5/1/2016.
