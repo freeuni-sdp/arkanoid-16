@@ -7,17 +7,9 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
  * Created by nino on 12.04.2016.
  */
 public class SlowBallCapsule extends Capsule {
-    private PaddleFactory _paddleFactory;
 
     SlowBallCapsule(Point position, Room room) {
         super(position, room);
-        _paddleFactory = PaddleFactory.getInstance();
-    }
-
-    // added injecting constructor for testing
-    public SlowBallCapsule(Point position, Room room, PaddleFactory paddleFactory){
-        super(position, room);
-        _paddleFactory = paddleFactory;
     }
 
     @Override
@@ -31,7 +23,8 @@ public class SlowBallCapsule extends Capsule {
         if (other instanceof Paddle) {
 
             Paddle oldPaddle = (Paddle) other;
-            Paddle newPaddle = _paddleFactory.createBallSpeedRestoringTimerPaddle(getPosition(), _room, oldPaddle);
+            Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle, 2);
+            Paddle newPaddle = new TimerPaddle(other.getPosition(), 5000, returnCapsule);
             oldPaddle.exchange(newPaddle);
 
             //slow down ball
