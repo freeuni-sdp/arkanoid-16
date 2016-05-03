@@ -8,6 +8,8 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import org.junit.After;
@@ -29,7 +31,7 @@ public class AutopilotCapsuleTest {
     @Mock private Point point;
     @Mock private Room room;
     
-    private List<Ball> balls;
+    private List<Gobj> balls;
     private int speedAngle;
     private Room realRoom;
     
@@ -84,12 +86,35 @@ public class AutopilotCapsuleTest {
         assertTrue(expected.equals(actualCapsule));
     }
     
+//    @Test
+//    public void interactCapsuleAndPaddle_KilledPaddle() {
+//        Paddle mockPaddle = mock(Paddle.class);
+//        System.out.println("mockPaddle alive:   " + mockPaddle.isAlive());
+//        
+//        System.out.println("mock paddle is alive:   " + mockPaddle.isAlive());
+//        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
+//        
+////        capsule.interact(mockPaddle);
+//        assertFalse(mockPaddle.isAlive());
+//    }
+    
     @Test
-    public void interactCapsuleAndPaddle_KilledPaddle() {
+    public void interactCapsule_gameWithoutBall(){
+        addPaddleInsteadeOfBall();
+        when(room.getGobjs()).thenReturn(new HashSet<>(balls));
+        
         Paddle mockPaddle = mock(Paddle.class);
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         capsule.interact(mockPaddle);
-        assertFalse(mockPaddle.isAlive());
+        
+        Speed sp = new Speed(speedAngle);
+        sp.setLength(sp.getLength() * 2);
+        verify(balls.get(0), never()).setSpeed(sp);
+    }
+    
+    private void addPaddleInsteadeOfBall(){
+        Paddle p = mock(Paddle.class);
+        balls.add(p);
     }
     
     @Test

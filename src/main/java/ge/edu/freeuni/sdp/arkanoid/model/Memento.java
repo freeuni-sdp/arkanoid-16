@@ -19,8 +19,8 @@ public class Memento {
 
     public Memento(GameState gameState){
         this.gameState = gameState;
-        initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
         this.writer = new WriteGameStateIntoFile();
+        initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
     }
     
     public Memento(GameState gameState, GameStateWriter writer){

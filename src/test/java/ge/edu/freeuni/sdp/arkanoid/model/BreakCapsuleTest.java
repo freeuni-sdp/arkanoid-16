@@ -2,22 +2,19 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
-import java.util.ArrayList;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
-import org.mockito.Mock;
-import static org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by misho on 5/1/2016.
@@ -104,5 +101,41 @@ public class BreakCapsuleTest {
         }
         assertEquals(dead, deadCounter);
         assertEquals(alive, aliveCounter);
+    }
+
+    @Test
+    public void testGetShape(){
+        Rectangle result = capsule.getShape();
+        assertEquals(capsule.getPosition(), result.getPosition());
+        Size sz = result.getSize();
+        assertTrue(sz.getHeight() == 1 && sz.getWidth() == 1);
+    }
+
+    @Test
+    public void testGetKind(){
+        assertEquals(GobjKind.Capsule, capsule.getKind());
+    }
+
+    @Test
+    public void testGetRoom(){
+        assertEquals(room, capsule.getRoom());
+    }
+
+    @Test
+    public void testReleaseNull(){
+        capsule.release(null);
+    }
+
+    @Test
+    public void testReleasePosition(){
+        Point p = new Point(10, 3);
+        capsule.release(p);
+        assertEquals(p, capsule.getPosition());
+    }
+
+    @Test
+    public void testReleasePutObjInRoom(){
+        capsule.release(point);
+        verify(room).add(capsule);
     }
 }

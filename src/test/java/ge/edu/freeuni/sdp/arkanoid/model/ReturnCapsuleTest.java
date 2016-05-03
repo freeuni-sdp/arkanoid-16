@@ -20,14 +20,17 @@ public class ReturnCapsuleTest {
     @Mock Point pointMock;
     @Mock Room roomMock;
     @Mock SoundPlayer soundPlayerMock;
+    @Mock Ball ballMock;
 
     private ReturnCapsule returnCapsule;
+    private Speed speed;
 
     @Before
     public void setup(){
         MockitoAnnotations.initMocks(this);
         returnCapsule = new ReturnCapsule(pointMock, roomMock, oldPaddleMock, 0.5);
         SoundPlayer.setSoundPlayer(soundPlayerMock);
+        speed = new Speed(0);
     }
 
     @Test
@@ -65,9 +68,7 @@ public class ReturnCapsuleTest {
 
     @Test
     public void interact_RoomWithABallAndAGobj_getSpeedIsCalledOnce(){
-        Ball ballMock = mock(Ball.class);
-        Speed speedMock = new Speed(0);
-        when(ballMock.getSpeed()).thenReturn(speedMock);
+        when(ballMock.getSpeed()).thenReturn(speed);
 
         Gobj gobjMock = mock(Gobj.class);
         when(roomMock.getGobjs()).thenReturn(new HashSet<>(Arrays.asList(ballMock, gobjMock)));
@@ -77,8 +78,6 @@ public class ReturnCapsuleTest {
 
     @Test
     public void interact_RoomWithABall_ballSpeedIsHalved(){
-        Ball ballMock = mock(Ball.class);
-        Speed speed = new Speed(0);
         speed.setLength(4);
         when(ballMock.getSpeed()).thenReturn(speed);
 
@@ -86,5 +85,4 @@ public class ReturnCapsuleTest {
         returnCapsule.interact(activePaddleMock);
         assertEquals(speed.getLength(), 2, 0.01);
     }
-
 }
