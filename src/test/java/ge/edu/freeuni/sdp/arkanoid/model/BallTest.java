@@ -60,8 +60,6 @@ public class BallTest {
         double x1 = speed.getX();
         double y1 = speed.getY();
 
-
-        System.out.println(speed);
         assertEquals(y, y1,0.1);
         assertEquals(x, x1,0.1);
 
