@@ -6,7 +6,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 /**
  * Created by dell on 4/12/16.
  */
-public class StickyPaddleCapsule extends Capsule{
+public class StickyPaddleCapsule extends Capsule {
 
     StickyPaddleCapsule(Point position, Room room) {
         super(position, room);
