@@ -118,6 +118,16 @@ public class StickyPaddleCapsuleTest {
     }
 
     @Test
+    public void move_mockPositionAndSpeed_positionAddSpeedCall() throws Exception {
+        Point mPoint = mock(Point.class);
+        Speed mSpeed = new Speed(45);
+        capsule.setPosition(mPoint);
+        capsule.setSpeed(mSpeed);
+        capsule.move();
+        verify(mPoint, times(1)).add(mSpeed);
+    }
+
+    @Test
     public void release_mustFallAndAddToRoom() throws Exception {
         Point releasePoint = new Point(2, 2);
         capsule.release(releasePoint);
