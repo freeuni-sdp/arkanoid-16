@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +16,12 @@ import static org.mockito.Mockito.*;
 public class StickyPaddleTest {
     @Mock Paddle paddle;
     @Mock Point position;
+    @Mock SoundPlayer soundPlayer;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        SoundPlayer.setSoundPlayer(soundPlayer);
     }
 
     @Test
