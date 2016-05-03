@@ -102,4 +102,8 @@ public class SoundPlayer {
             return null;
         }
     }
+
+    public static void setSoundPlayer(SoundPlayer soundPlayer){
+        _instance = soundPlayer;
+    }
 }

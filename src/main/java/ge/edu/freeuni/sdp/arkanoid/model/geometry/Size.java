@@ -30,4 +30,19 @@ public class Size {
     public Point toPoint() {
         return new Point(getWidth(), getHeight());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Size other = (Size) obj;
+        //noinspection SimplifiableIfStatement
+        if (_width != other._width)
+            return false;
+        return _height == other._height;
+    }
 }
