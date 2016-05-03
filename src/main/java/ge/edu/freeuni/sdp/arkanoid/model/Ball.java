@@ -13,6 +13,7 @@ import java.util.Set;
 public class Ball extends Gobj<Circle> {
 
     private static int _numBalls;
+    private  Double RADIUS = 0.5;
 
     private Point _prevPosition;
 
@@ -24,9 +25,15 @@ public class Ball extends Gobj<Circle> {
         this(new Point(0, 0));
     }
 
+    public Ball(Double radius, Point position){
+        this(position);
+        this._prevPosition = position;
+        this.RADIUS = radius;
+    }
     private Ball(Point position) {
         this(position, new Speed(-45));
     }
+
 
     private Ball(Point position, Speed speed) {
         super(position, speed);
@@ -35,7 +42,7 @@ public class Ball extends Gobj<Circle> {
     private boolean isAlive = true;
     @Override
     public Circle getShape() {
-        double RADIUS = (float) 0.5;
+        double RADIUS = this.RADIUS;
         return new Circle(RADIUS, getPosition());
     }
 
