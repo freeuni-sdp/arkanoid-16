@@ -121,6 +121,22 @@ public class TerminalRoomViewTest {
 
     @Test
     public void testUpdateLives() throws Exception {
+        TerminalRoomView view = new TerminalRoomView(presenter, terminal, watcher,0);
+        ArgumentCaptor<Character> argumentCaptor = ArgumentCaptor.forClass(Character.class);
+        when(terminal.getTerminalSize()).thenReturn(new TerminalSize(200,200));
+        view.updateLives(2);
+
+        verify(terminal, times(2)).putCharacter(argumentCaptor.capture());
+
+
+        List<Character> capturedPeople = argumentCaptor.getAllValues();
+
+        List<Character> expected = Arrays.asList('*','*');
+
+        boolean equals = expected.equals(capturedPeople);
+        Collections.reverse(expected);
+        boolean equals1 = expected.equals(capturedPeople);
+        Assert.assertEquals(equals,equals1);
 
     }
 }
