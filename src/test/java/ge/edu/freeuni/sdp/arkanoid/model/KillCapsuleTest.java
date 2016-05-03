@@ -89,6 +89,13 @@ public class KillCapsuleTest {
         assertFalse(capsule.isAlive());
     }
 
+    @Test
+    public void testInteractOther(){
+        KillCapsule capsule = new KillCapsule(point, room);
+        capsule.interact(mock(Gobj.class));
+        assertTrue(capsule.isAlive());
+
+    }
 
 
 }
