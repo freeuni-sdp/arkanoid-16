@@ -21,7 +21,6 @@ public class SwingGameOverView extends GameOverView {
 
     @Override
     protected void show() {
-
         int n = JOptionPane.showConfirmDialog(
                 frame,
                 "Would you like to play again ?",
