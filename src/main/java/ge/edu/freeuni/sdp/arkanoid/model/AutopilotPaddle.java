@@ -25,7 +25,7 @@ public class AutopilotPaddle extends TimerPaddle {
         Point ballPosition = closestBall.getPosition();
         Point paddleCenterPosition = getPosition().add(new Point(getShape().getSize().getWidth()/2, 0));
 
-        double xDistance = ballPosition.X - paddleCenterPosition.X;
+        double xDistance = ballPosition.getX() - paddleCenterPosition.getX();
         if (Math.abs(xDistance) < getShape().getSize().getWidth()/2) {
             newSpeed = new Speed(new Point(0, 0));
         } else {
@@ -46,7 +46,8 @@ public class AutopilotPaddle extends TimerPaddle {
         Ball closestBall = ballList.get(0);
         double min_distance = getPosition().getDistance(closestBall.getPosition());
         for (Ball b: ballList) {
-            double cur_distance = getPosition().getDistance(closestBall.getPosition());
+            double cur_distance = getPosition().getDistance(b.getPosition());
+
             if (cur_distance < min_distance) {
                 closestBall = b;
                 min_distance = cur_distance;
