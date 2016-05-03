@@ -1,12 +1,19 @@
 package ge.edu.freeuni.sdp.arkanoid.view.terminal;
 
-import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.TerminalSize;
+import com.googlecode.lanterna.terminal.text.UnixTerminal;
 import ge.edu.freeuni.sdp.arkanoid.presenter.Command;
 import ge.edu.freeuni.sdp.arkanoid.presenter.RoomPresenter;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.BDDMockito;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -20,7 +27,7 @@ public class TerminalRoomViewTest {
     public void setUp() throws Exception {
         watcher = mock(DefaultPressedKeyWatcher.class);
         presenter = mock(RoomPresenter.class);
-        terminal = mock(Terminal.class);
+        terminal = mock(UnixTerminal.class);
     }
 
     @After
@@ -91,6 +98,24 @@ public class TerminalRoomViewTest {
 
     @Test
     public void testUpdateScore() throws Exception {
+        TerminalRoomView view = new TerminalRoomView(presenter, terminal, watcher,0);
+        ArgumentCaptor<Character> argumentCaptor = ArgumentCaptor.forClass(Character.class);
+        when(terminal.getTerminalSize()).thenReturn(new TerminalSize(200,200));
+        view.updateScore(1);
+
+        verify(terminal, times(8)).putCharacter(argumentCaptor.capture());
+
+
+        List<Character> capturedPeople = argumentCaptor.getAllValues();
+
+        List<Character> expected = Arrays.asList('S','c','O','r','e',':',' ','1');
+
+        boolean equals = expected.equals(capturedPeople);
+        Collections.reverse(expected);
+        boolean equals1 = expected.equals(capturedPeople);
+        Assert.assertEquals(equals,equals1);
+
+
 
     }
 
