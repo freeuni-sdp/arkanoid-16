@@ -71,11 +71,28 @@ public class StickyPaddleTest {
     public void testInteract_withFrameBrick() {
         Size size = mock(Size.class);
         Point originPoint = new Point(0, 0);
-        FrameBrick frameBrick = new FrameBrick(originPoint, size);
+        FrameBrick frameBrick = new FrameBrick(position, size);
         Paddle target = new StickyPaddle(paddle, originPoint);
         target.interact(frameBrick);
 
         assertThat(target.getPosition(), is(equalTo(originPoint)));
+    }
+
+    @Test
+    public void testInteract_withFrameBrickWithStickedBall() {
+        Size size = mock(Size.class);
+        Point startPoint = new Point(0, 0);
+        Speed speed = Direction.LEFT.toSpeed();
+        Ball ball = mock(Ball.class);
+        FrameBrick frameBrick = new FrameBrick(position, size);
+        Paddle target = new StickyPaddle(paddle, startPoint);
+        target.interact(ball);
+        target.setSpeed(speed);
+        target.move();
+        target.interact(frameBrick);
+
+        assertThat(target.getPosition(), is(equalTo(startPoint)));
+        verify(ball).setPosition(new Point(startPoint.X + 1, startPoint.Y - 1));
     }
 
     @Test

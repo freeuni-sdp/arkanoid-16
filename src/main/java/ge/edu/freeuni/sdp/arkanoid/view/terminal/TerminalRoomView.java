@@ -197,6 +197,7 @@ class TerminalRoomView extends RoomView implements CellUpdateListener, StatusUpd
     public void updateScore(int score) {
         _currentScore = "Score: "+score;
         for(int i=_currentScore.length()-1; i>=0; i--){
+
             _terminal.moveCursor(_terminal.getTerminalSize().getRows() * 3 - _currentScore.length() + i, 0);
             _terminal.putCharacter(_currentScore.charAt(i));
         }
