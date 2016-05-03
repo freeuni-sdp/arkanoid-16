@@ -92,6 +92,14 @@ public class TerminalRoomViewTest {
     @Test
     public void testUpdateScore() throws Exception {
 
+//        when(terminal.someMethod(anyString())).thenAnswer(new Answer() {
+//            Object answer(InvocationOnMock invocation) {
+//                Object[] args = invocation.getArguments();
+//                Object mock = invocation.getMock();
+//                return "called with arguments: " + args;
+//            }
+//        });
+
     }
 
     @Test
