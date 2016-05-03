@@ -1,9 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Direction;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
-import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -104,5 +102,41 @@ public class BreakCapsuleTest {
         }
         assertEquals(dead, deadCounter);
         assertEquals(alive, aliveCounter);
+    }
+
+    @Test
+    public void testGetShape(){
+        Rectangle result = capsule.getShape();
+        assertEquals(capsule.getPosition(), result.getPosition());
+        Size sz = result.getSize();
+        assertTrue(sz.getHeight() == 1 && sz.getWidth() == 1);
+    }
+
+    @Test
+    public void testGetKind(){
+        assertEquals(GobjKind.Capsule, capsule.getKind());
+    }
+
+    @Test
+    public void testGetRoom(){
+        assertEquals(room, capsule.getRoom());
+    }
+
+    @Test
+    public void testReleaseNull(){
+        capsule.release(null);
+    }
+
+    @Test
+    public void testReleasePosition(){
+        Point p = new Point(10, 3);
+        capsule.release(p);
+        assertEquals(p, capsule.getPosition());
+    }
+
+    @Test
+    public void testReleasePutObjInRoom(){
+        capsule.release(point);
+        verify(room).add(capsule);
     }
 }
