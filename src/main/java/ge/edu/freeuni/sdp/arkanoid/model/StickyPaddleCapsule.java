@@ -22,8 +22,12 @@ public class StickyPaddleCapsule extends Capsule{
 
         if (other instanceof Paddle) {
             Paddle prevPaddle = (Paddle) other;
-            Paddle stickyPaddle = new StickyPaddle(prevPaddle, other.getPosition());
+            Paddle stickyPaddle = this.createStickyPaddle(prevPaddle, other.getPosition());
             prevPaddle.exchange(stickyPaddle);
         }
+    }
+
+    protected Paddle createStickyPaddle(Paddle prevPaddle, Point position) {
+        return new StickyPaddle(prevPaddle, position);
     }
 }
