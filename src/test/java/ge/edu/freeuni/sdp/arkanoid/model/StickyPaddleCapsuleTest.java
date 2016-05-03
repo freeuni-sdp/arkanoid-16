@@ -8,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.mock;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -44,7 +45,7 @@ public class StickyPaddleCapsuleTest {
     public void interact_PaddleInstance_exchangePaddles() throws Exception {
         Paddle mPaddle = mock(Paddle.class);
         capsule.interact(mPaddle);
-        verify(mPaddle).exchange(capsule.getReturnPaddle());
+        verify(mPaddle, times(1)).exchange(capsule.getReturnPaddle());
     }
 
     @Test
