@@ -6,7 +6,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 /**
  * Created by dell on 4/12/16.
  */
-public class StickyPaddleCapsule extends Capsule{
+public class StickyPaddleCapsule extends Capsule {
 
     StickyPaddleCapsule(Point position, Room room) {
         super(position, room);
@@ -22,8 +22,12 @@ public class StickyPaddleCapsule extends Capsule{
 
         if (other instanceof Paddle) {
             Paddle prevPaddle = (Paddle) other;
-            Paddle stickyPaddle = new StickyPaddle(prevPaddle, other.getPosition());
+            Paddle stickyPaddle = this.createStickyPaddle(prevPaddle, other.getPosition());
             prevPaddle.exchange(stickyPaddle);
         }
+    }
+
+    protected Paddle createStickyPaddle(Paddle prevPaddle, Point position) {
+        return new StickyPaddle(prevPaddle, position);
     }
 }

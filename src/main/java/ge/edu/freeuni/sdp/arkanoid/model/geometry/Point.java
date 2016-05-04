@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model.geometry;
 
-public class Point {
+
+public class Point  {
 
     private static final Point CENTER_OFFSET = new Point(-0.5, -0.5);
     public double X;

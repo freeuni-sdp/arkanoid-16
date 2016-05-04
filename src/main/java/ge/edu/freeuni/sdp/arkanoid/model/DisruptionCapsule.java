@@ -25,21 +25,20 @@ public class DisruptionCapsule extends Capsule {
         super.interact(other);
         if (other instanceof Paddle) {
             ArrayList<Ball> balls = _room.getBalls();
-            if (balls.size() > 0) {
-                if (balls.size() == 1) {
-                    Point position = balls.get(0).getPosition();
 
-                    Ball newBall1  =  new Ball();
-                    Ball newBall2  =  new Ball();
-                    newBall1.setPosition(position);
-                    newBall1.setSpeed(new Speed(-60));
-                    newBall2.setPosition(position);
-                    newBall2.setSpeed(new Speed(210));
-                    balls.get(0).addBall(newBall1);
-                    balls.get(0).addBall(newBall2);
+            if (balls.size() == 1) {
+                Point position = balls.get(0).getPosition();
 
-                }
+                Ball newBall1  =  new Ball();
+                Ball newBall2  =  new Ball();
+                newBall1.setPosition(position);
+                newBall1.setSpeed(new Speed(-60));
+                newBall2.setPosition(position);
+                newBall2.setSpeed(new Speed(210));
+                balls.get(0).addBall(newBall1);
+                balls.get(0).addBall(newBall2);
             }
+
             SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
         }
     }
