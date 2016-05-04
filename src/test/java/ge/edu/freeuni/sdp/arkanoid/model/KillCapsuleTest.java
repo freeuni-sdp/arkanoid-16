@@ -10,7 +10,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
 
 /**
  * Created by elene on 5/4/16.

@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.IPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.StubSoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.TimerPaddleInterfaces.ICurrentTime;
 import ge.edu.freeuni.sdp.arkanoid.TimerPaddleInterfaces.StubCurrentTime;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
@@ -12,6 +14,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.asm.tree.analysis.Frame;
 
+
+import javax.rmi.CORBA.Stub;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -72,6 +76,18 @@ public class TimerPaddleTest {
         assertEquals(paddle.getKind(), GobjKind.Paddle);
     }
 
+    @Test
+    public void PaddleInteractInstanceOfFrameBrickPlayerPlayTest() {
+        StubSoundPlayer player = mock(StubSoundPlayer.class);
+        FrameBrick brick = mock(FrameBrick.class);
+
+        Paddle paddle = new Paddle(position, player);
+
+        paddle.interact(brick);
+
+        verify(player, times(1)).play(anyString());
+    }
+
 
     @Test
     public void PaddleInteractInstanceOfFrameBrickSetPositionTest() {
@@ -84,6 +100,19 @@ public class TimerPaddleTest {
         paddle.interact(new FrameBrick(position, size));
 
         verify(paddle, times(1)).setPosition(any());
+    }
+
+    @Test
+    public void PaddleInteractInstanceOfBallPlayerPlayTest() {
+        StubSoundPlayer player = mock(StubSoundPlayer.class);
+        Ball ball = mock(Ball.class);
+
+        Paddle paddle = new Paddle(position, player);
+        when(ball.getSpeed()).thenReturn(new Speed(3));
+
+        paddle.interact(ball);
+
+        verify(player, times(1)).play(anyString());
     }
 
 
