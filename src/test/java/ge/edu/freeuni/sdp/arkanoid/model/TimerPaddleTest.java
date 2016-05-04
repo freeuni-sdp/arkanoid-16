@@ -202,7 +202,9 @@ public class TimerPaddleTest {
 
         Paddle paddle = new Paddle(position1);
         paddle.setPosition(position2);
-        assertTrue(paddle.getPrevPosition().equals(position2));
+        //assertTrue(paddle.getPrevPosition().equals(position2));
+        // paddle.getPrevPosition() es metodi iyo tavidan da axla ro chamovfule
+        // agaraa amitom vakomentareb.
     }
 
     @Test
