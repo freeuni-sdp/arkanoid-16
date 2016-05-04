@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyList;
@@ -21,6 +23,8 @@ public class KillerBrickTest {
 
     @Mock
     MovingBrick movingBrick;
+    @Mock
+    Configuration configuration;
     private KillerBrick killerBrick;
     private Game game;
     private Ball ball;
@@ -70,7 +74,7 @@ public class KillerBrickTest {
 
     @Test
     public void paddle_life_after_crash_movingBrick(){
-        Configuration.init(size, anyList());
+        Configuration.setInstanceForTesting(configuration);
         room.setLiveCounter(new LiveCounter(3));
         MovementKillerBrick movementKillerBrick = new MovementKillerBrick(new Point(0,0),size,room);
         movementKillerBrick.interact(movingBrick);
@@ -79,7 +83,7 @@ public class KillerBrickTest {
 
     @Test
     public void check_position(){
-        assertEquals(killerBrick.getPosition(),new Point(0,0));
+        assertEquals(killerBrick.getPosition(), new Point(0, 0));
     }
 
 
