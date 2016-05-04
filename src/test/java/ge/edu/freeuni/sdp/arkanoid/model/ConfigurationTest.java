@@ -30,7 +30,7 @@ public class ConfigurationTest {
         levels = new ArrayList<>();
         levels.add(levelOne);
         levels.add(levelTwo);
-        //Configuration.setInstanceForTesting(null);
+        Configuration.setInstanceForTesting(null);
     }
 
     /*
