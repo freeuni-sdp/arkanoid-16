@@ -19,13 +19,14 @@ public class Memento {
 
     public Memento(GameState gameState){
         this.gameState = gameState;
-        this.writer = new WriteGameStateIntoFile();
-        initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
+//        initialGameState(gameState.getBall(),gameState.getPaddle(),
+//                gameState.getScoreCounter(),gameState.getSize());
     }
     
     public Memento(GameState gameState, GameStateWriter writer){
         this(gameState);
         this.writer = writer;
+        System.out.println("writer: " + writer);
     }
 
     public void initialGameState(Ball ball,Paddle paddle,ScoreCounter scoreCounter,Size size) {
@@ -33,13 +34,16 @@ public class Memento {
     }
 
     private void createInitialFile(Ball ball,Paddle paddle,ScoreCounter scoreCounter,Size size) {
+        if (this.writer == null){
+            this.writer = new WriteGameStateIntoFile();
+        }
         this.writer.saveGameState(ball, paddle, scoreCounter, size);
     }
 
     public GameState getSavedState() {
         Properties properties = readProperty();
         gameState = new GameState();
-        if(properties != null){
+        if(properties != null && !properties.isEmpty()){
             gameState.setExistState(true);
             gameState.setSize(new Size(Integer.parseInt(properties.getProperty("game.sizeW")), Integer.parseInt(properties.getProperty("game.sizeH"))));
             gameState.setBall(getBallFromState(properties));

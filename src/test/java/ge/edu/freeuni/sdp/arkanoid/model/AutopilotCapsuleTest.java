@@ -6,6 +6,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,23 +32,31 @@ public class AutopilotCapsuleTest {
     
     @Mock private Point point;
     @Mock private Room room;
+    @Mock private Paddle mockPaddle;
     
     private List<Gobj> balls;
     private int speedAngle;
-    private Room realRoom;
     
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         balls = new ArrayList<>();
         speedAngle = 30;
-        realRoom = new Room();
+    }
+    
+    
+    @Test
+    public void capsuleCanBeKilled() {
+        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
+        assertTrue(capsule.isAlive());
     }
     
     @Test
-    public void capsulCanBeKilled() {
-        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
-        assertTrue(capsule.isAlive());
+    public void getShapeCorrectShape(){
+        Capsule capsule = new AutopilotCapsule(point, room);
+        Rectangle actualShape = capsule.getShape();
+        Rectangle expectedShape = new Rectangle(capsule.getPosition(), new Size(1, 1));
+        assertTrue(expectedShape.equals(actualShape));
     }
     
     @Test
@@ -57,12 +67,15 @@ public class AutopilotCapsuleTest {
     
     @Test
     public void releaseCapsuleInRoom(){
-        Capsule capsule = new AutopilotCapsule(point, realRoom);
-        
+        Capsule capsule = new AutopilotCapsule(point, room);
         capsule.release(point);
-        
-        boolean contains = realRoom.getGobjs().contains(capsule);
-        assertTrue(contains);
+        verify(room).add(capsule);
+    }
+    
+    @Test
+    public void accessToRoom(){
+        Capsule capsule = new AutopilotCapsule(point, room);
+        assertEquals(room, capsule.getRoom());
     }
     
     @Test
@@ -86,24 +99,26 @@ public class AutopilotCapsuleTest {
         assertTrue(expected.equals(actualCapsule));
     }
     
-//    @Test
-//    public void interactCapsuleAndPaddle_KilledPaddle() {
-//        Paddle mockPaddle = mock(Paddle.class);
-//        System.out.println("mockPaddle alive:   " + mockPaddle.isAlive());
-//        
-//        System.out.println("mock paddle is alive:   " + mockPaddle.isAlive());
-//        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
-//        
-////        capsule.interact(mockPaddle);
-//        assertFalse(mockPaddle.isAlive());
-//    }
+    @Test
+    public void interactCapsule_callParentClassInteract(){
+        Capsule capsule = new AutopilotCapsule(point, room);
+        capsule.interact(mockPaddle);
+        assertFalse(capsule.isAlive());
+    }
+    
+    @Test
+    public void interactCapsule_doesNotCallParentClassInteract(){
+        Ball ball = mock(Ball.class);
+        Capsule capsule = new AutopilotCapsule(point, room);
+        capsule.interact(ball);
+        assertTrue(capsule.isAlive());
+    }
     
     @Test
     public void interactCapsule_gameWithoutBall(){
         addPaddleInsteadeOfBall();
         when(room.getGobjs()).thenReturn(new HashSet<>(balls));
         
-        Paddle mockPaddle = mock(Paddle.class);
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         capsule.interact(mockPaddle);
         
@@ -122,7 +137,6 @@ public class AutopilotCapsuleTest {
         addBallBySpecialSpeed();
         when(room.getGobjs()).thenReturn(new HashSet<>(balls));
         
-        Paddle mockPaddle = mock(Paddle.class);
         AutopilotCapsule capsule = new AutopilotCapsule(point, room);
         capsule.interact(mockPaddle);
         
@@ -137,4 +151,14 @@ public class AutopilotCapsuleTest {
         balls.add(currentBall);
     }
     
+    @Test
+    public void paddleExchange(){
+        AutopilotCapsule capsule = new AutopilotCapsule(point, room);
+        
+        Paddle newPaddle = mock(Paddle.class);
+        capsule.setNewPaddle(newPaddle);
+        
+        capsule.interact(mockPaddle);
+        verify(mockPaddle).exchange(newPaddle);
+    }
 }

@@ -13,6 +13,8 @@ public class AutopilotCapsule extends Capsule {
         CapsuleFactory.getInstance().registerCapsuleType(CapsuleType.Autopilot, new AutopilotCapsule());
     }
 
+    private Paddle newPaddle;
+    
     private AutopilotCapsule() {
         super(null, null);
     }
@@ -26,12 +28,20 @@ public class AutopilotCapsule extends Capsule {
         return new AutopilotCapsule(position, room);
     }
 
+    public void setNewPaddle(Paddle newPaddle){
+        this.newPaddle = newPaddle;
+    }
+    
     public void interact(Gobj other) {
         super.interact(other);
         if (other instanceof Paddle) {
             Paddle oldPaddle = (Paddle) other;
-            Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle, 0.5);
-            Paddle newPaddle = new AutopilotPaddle(other.getPosition(), 5000, returnCapsule, _room);
+            
+            if (newPaddle == null){
+                Capsule returnCapsule = new ReturnCapsule(getPosition(), _room, oldPaddle, 0.5);
+                newPaddle = new AutopilotPaddle(other.getPosition(), 5000, returnCapsule, _room);
+            }
+            
             oldPaddle.exchange(newPaddle);
 
             //double speed of ball
