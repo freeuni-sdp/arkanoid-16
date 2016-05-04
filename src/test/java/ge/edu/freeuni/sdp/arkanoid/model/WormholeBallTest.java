@@ -62,7 +62,7 @@ public class WormholeBallTest {
     }
 
     @Test
-    public void is_interact_called_on_other_portalBrick() {
+    public void is_interact_not_called_on_other_portalBrick() {
         PortalBrick pBrick1 = mock(PortalBrick.class);
         PortalBrick pBrick2 = mock(PortalBrick.class);
         when(pBrick2.getPosition()).thenReturn(point);

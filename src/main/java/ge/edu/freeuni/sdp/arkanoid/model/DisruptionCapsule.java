@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.IPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.OriginalSoundPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.StubSoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
  */
 public class DisruptionCapsule extends Capsule {
 
+    private IPlayer player = new OriginalSoundPlayer();
 
     DisruptionCapsule (Point position, Room room) {
         super(position, room);
@@ -19,6 +23,11 @@ public class DisruptionCapsule extends Capsule {
 
     public Capsule createCapsule(Point position, Room room) {
         return new DisruptionCapsule(position, room);
+    }
+
+    DisruptionCapsule(Point position, Room room, StubSoundPlayer player) {
+        super(position, room);
+        this.player = player;
     }
 
     public void interact(Gobj other) {
@@ -39,7 +48,7 @@ public class DisruptionCapsule extends Capsule {
                 balls.get(0).addBall(newBall2);
             }
 
-            SoundPlayer.getInstance().play(SoundPlayer.BOUNCE);
+            player.play(SoundPlayer.BOUNCE);
         }
     }
 }

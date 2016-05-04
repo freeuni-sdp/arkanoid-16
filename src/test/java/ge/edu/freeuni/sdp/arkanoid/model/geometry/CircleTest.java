@@ -25,24 +25,33 @@ public class CircleTest {
 
     @Test
     public void testCircleNotOverlap(){
-        Circle testCircle = new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y + 2*RADIUS ));
-        assertFalse(circle.canOverlap(testCircle));
-        testCircle = new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y - 2*RADIUS ));
-        assertFalse(circle.canOverlap(testCircle));
-        testCircle = new Circle(RADIUS, new Point(circlePoint.X + 2*RADIUS, circlePoint.Y ));
-        assertFalse(circle.canOverlap(testCircle));
-        testCircle = new Circle(RADIUS, new Point(circlePoint.X - 2*RADIUS, circlePoint.Y ));
-        assertFalse(circle.canOverlap(testCircle));
+        assertFalse(circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y + 2*RADIUS)))
+                || circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X  + 2*RADIUS, circlePoint.Y)))
+                || circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X  - 2*RADIUS, circlePoint.Y)))
+                || circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y - 2*RADIUS)))
+        );
     }
 
     @Test
-    public void testCircleOverlap(){
+    public void testCircleOverlapSameCircle(){
+        Circle testCircle = new Circle(RADIUS, circlePoint);
+        assert(circle.canOverlap(testCircle));
+    }
+
+    @Test
+    public void testTwoSameCenteredCirclesOverlap(){
         Circle testCircle = new Circle(RADIUS*2, circlePoint);
         assert(circle.canOverlap(testCircle));
-        testCircle = new Circle(RADIUS + 10, new Point(circlePoint.X, circlePoint.Y + 2*RADIUS-1));
-        assert(circle.canOverlap(testCircle));
-        testCircle = new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y + 2*RADIUS-1));
-        assert(circle.canOverlap(testCircle));
+    }
+
+
+    @Test
+    public void testCircleOverlap(){
+        assert(circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y + 2*RADIUS-0.0001)))
+            && circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X  + 2*RADIUS-0.0001, circlePoint.Y)))
+            && circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X  - 2*RADIUS+0.0001, circlePoint.Y)))
+            && circle.canOverlap(new Circle(RADIUS, new Point(circlePoint.X, circlePoint.Y - 2*RADIUS+0.0001)))
+        );
     }
 
     @Test
@@ -58,8 +67,6 @@ public class CircleTest {
         when(testRect.canOverlap(circlePoint)).thenReturn(true);
         assert(circle.canOverlap(testRect));
     }
-
-
 
     @Test
     public void testOtherShapeOverlap(){
