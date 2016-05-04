@@ -1,58 +1,50 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
-import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
+
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
-/**
- * Created by dell on 4/12/16.
- */
 public class StickyPaddle extends Paddle {
     private Paddle prevPaddle;
     private StickedBall stickedBall;
-    private Room room;
 
-
-    StickyPaddle( Room room, Paddle prevPaddle, Point position) {
+    StickyPaddle(Paddle prevPaddle, Point position) {
         super(position);
         this.prevPaddle = prevPaddle;
         stickedBall = null;
-        this.room = room;
     }
 
     @Override
     public void interact(Gobj other) {
-        if (other instanceof FrameBrick) {
-            SoundPlayer.getInstance().play(SoundPlayer.COLLIDE);
-            setPosition(super.getPrevPosition());
-        }
-
-        if (other instanceof Ball) {
+        if ((other instanceof Ball) && stickedBall == null) {
             Ball ball = (Ball) other;
-            if(stickedBall == null) {
-                stickedBall = new StickedBall(ball, ball.getSpeed());
-                ball.setSpeed(new Speed(new Point(0,0)));
+            stickedBall = new StickedBall(ball, ball.getSpeed());
+            ball.setSpeed(Speed.NULL);
+        } else {
+            super.interact(other);
+        }
 
-            }
-            else{
-                SoundPlayer.getInstance().play(SoundPlayer.PARRY);
-                Speed newSpeed = ball.getSpeed().mirrorY();
-                ball.setSpeed(newSpeed);
-            }
+        if ((other instanceof FrameBrick) && stickedBall != null) {
+            updateStickedBallPosition();
         }
     }
 
     @Override
-    public void move(){
+    public void move() {
         super.move();
-        Point currPoint = super.getPrevPosition();
-        if(stickedBall != null)
-            stickedBall.getBall().setPosition(new Point(currPoint.X+1, currPoint.Y-1));
+        if (stickedBall != null) {
+            updateStickedBallPosition();
+        }
+    }
+
+    private void updateStickedBallPosition() {
+        Point currPoint = getPosition();
+        stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
     }
 
     @Override
-    void fire(Room room){
+    void fire(Room room) {
         super.fire(room);
-        if(stickedBall != null) {
+        if (stickedBall != null) {
             stickedBall.getBall().setSpeed(stickedBall.getSpeed().mirrorY());
             stickedBall = null;
         }
@@ -61,19 +53,20 @@ public class StickyPaddle extends Paddle {
         this.exchange(prevPaddle);
     }
 
-    class StickedBall{
+    private class StickedBall {
         Ball ball;
         Speed speed;
-        StickedBall(Ball ball, Speed speed){
+
+        StickedBall(Ball ball, Speed speed) {
             this.ball = ball;
             this.speed = speed;
         }
 
-        Speed getSpeed(){
+        Speed getSpeed() {
             return speed;
         }
 
-        Ball getBall(){
+        Ball getBall() {
             return ball;
         }
     }

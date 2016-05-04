@@ -87,4 +87,21 @@ public class Point implements IPoint {
     public Point multiply(Point other) {
         return new Point(X * other.X, Y * other.Y);
     }
+
+    public double getY() {
+        return Y;
+    }
+
+    public void setY(double y) {
+        Y = y;
+    }
+
+    public double getX() {
+
+        return X;
+    }
+
+    public void setX(double x) {
+        X = x;
+    }
 }

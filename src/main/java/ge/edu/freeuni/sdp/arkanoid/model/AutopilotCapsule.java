@@ -47,4 +47,8 @@ public class AutopilotCapsule extends Capsule {
             SoundPlayer.getInstance().play(SoundPlayer.AUTOPILOT_START);
         }
     }
+    
+    public boolean equals(AutopilotCapsule other){
+        return this.getPosition().equals(other.getPosition());
+    }
 }

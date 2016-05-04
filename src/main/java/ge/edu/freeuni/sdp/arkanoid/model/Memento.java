@@ -13,12 +13,19 @@ import java.util.Properties;
 public class Memento {
 
     private GameState gameState;
+    private GameStateWriter writer;
 
     public Memento(){}
 
     public Memento(GameState gameState){
         this.gameState = gameState;
+        this.writer = new WriteGameStateIntoFile();
         initialGameState(gameState.getBall(),gameState.getPaddle(),gameState.getScoreCounter(),gameState.getSize());
+    }
+    
+    public Memento(GameState gameState, GameStateWriter writer){
+        this(gameState);
+        this.writer = writer;
     }
 
     public void initialGameState(Ball ball,Paddle paddle,ScoreCounter scoreCounter,Size size) {
@@ -26,30 +33,7 @@ public class Memento {
     }
 
     private void createInitialFile(Ball ball,Paddle paddle,ScoreCounter scoreCounter,Size size) {
-        try {
-            File file = new File("resources/state.properties");
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
-            Writer w = new BufferedWriter(osw);
-            w.write("ball.x=" + ball.getSpeed().X + "\n");
-            w.write("ball.y=" + ball.getSpeed().Y + "\n");
-            w.write("ball.positionX=" + ball.getPosition().X + "\n");
-            w.write("ball.positionY=" + ball.getPosition().Y + "\n");
-            w.write("ball.angel=" + ball.getSpeed().getAngleDegrees() + "\n");
-            w.write("paddle.x=" + paddle.getPosition().X + "\n");
-            w.write("paddle.y=" + paddle.getPosition().Y + "\n");
-            w.write("paddle.sizeW=" + paddle.getShape().getSize().getWidth() + "\n");
-            w.write("paddle.sizeH=" + paddle.getShape().getSize().getHeight() + "\n");
-            w.write("game.score=" + scoreCounter.getScore() + "\n");
-            w.write("game.sizeH=" + size.getHeight() + "\n");
-            w.write("game.sizeW=" + size.getWidth() + "\n");
-            w.write("game.levelIndex=" + Configuration.getInstance().getSelectedLevelIndex() + "\n");
-            w.flush();
-            w.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.writer.saveGameState(ball, paddle, scoreCounter, size);
     }
 
     public GameState getSavedState() {

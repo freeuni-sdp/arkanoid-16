@@ -57,4 +57,19 @@ public class Rectangle extends Shape {
 
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Rectangle other = (Rectangle) obj;
+        //noinspection SimplifiableIfStatement
+        if (!_position.equals(other._position))
+            return false;
+        return _size.equals(other._size);
+    }
 }
