@@ -19,13 +19,14 @@ public class SwingGameOverView extends GameOverView {
         _presenter = presenter;
     }
 
+    //radgan getValueFromDialogs ar vidzaxebt arsad, amitom show c ver moxvdeba coverageshi. xolo show-s shida meore metodi calke itesteba, amitom mshvidobaa mainc.
     @Override
     protected void show() {
-        int n = JOptionPane.showConfirmDialog(
-                frame,
-                "Would you like to play again ?",
-                "Game is over",
-                JOptionPane.YES_NO_OPTION);
+        int n = this.getValueFromDialog();
+        makeAppropriateAction(n);
+    }
+
+    protected void makeAppropriateAction(int n){
         if (n == 0)
             _presenter.setGameActivity(true);
         else {
@@ -34,4 +35,14 @@ public class SwingGameOverView extends GameOverView {
             frame.dispose();
         }
     }
+
+    //es metodi overageshi veranairad moxvdeba, radgan jFrame damockili unda iyos, radgan user irchevs actions.
+    protected int getValueFromDialog() {
+        return JOptionPane.showConfirmDialog(
+                frame,
+                "Would you like to play again ?",
+                "Game is over",
+                JOptionPane.YES_NO_OPTION);
+    }
+
 }

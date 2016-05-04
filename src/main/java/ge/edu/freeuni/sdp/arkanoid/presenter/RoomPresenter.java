@@ -25,11 +25,15 @@ public class RoomPresenter extends Presenter {
     }
 
     public void init() {
-        Level level = Configuration.getInstance().getSelectedLevel();
+        Level level = this.getConfiguration().getSelectedLevel();
         _game.init(level);
         _lives = _game.geLives();
         _score = _game.getScore();
         _are_levels_over = false;
+    }
+
+    protected Configuration getConfiguration() {
+        return Configuration.getInstance();
     }
 
     public void set_cellUpdateListener(CellUpdateListener listener) {
@@ -67,7 +71,7 @@ public class RoomPresenter extends Presenter {
 
         _game.move(_direction);
         if (_game.isLevelCleared()) {
-            Configuration conf = Configuration.getInstance();
+            Configuration conf = this.getConfiguration();
 
             int ind = conf.getSelectedLevelIndex();
 

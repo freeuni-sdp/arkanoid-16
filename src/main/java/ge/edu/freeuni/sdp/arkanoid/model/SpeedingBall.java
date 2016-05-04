@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
 /**
@@ -14,6 +15,14 @@ public class SpeedingBall extends Ball {
     private final double BALL_SPEED_MULTIPLIER = 2;
 
     private final double MAXIMUM_LENGTH = 2.1;
+
+    public SpeedingBall(double v, Point point) {
+        super(v, point);
+    }
+
+    public SpeedingBall() {
+        super();
+    }
 
     @Override
     public void interact(Gobj other) {
