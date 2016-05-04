@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.IPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.StubSoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +27,6 @@ public class DisruptionCapsuleTest {
     @Mock Room room;
     @Mock Paddle paddle;
     @Mock Ball ball;
-
 
     @Before
     public void setup() {
@@ -105,6 +106,18 @@ public class DisruptionCapsuleTest {
         disruptionCapsule.interact(paddle);
 
         verify(mockedBall, times(2)).addBall(any());
+    }
+
+    @Test
+    public void DisruptionCapsuleInteractSoundPlayerTest() {
+        StubSoundPlayer player = mock(StubSoundPlayer.class);
+        Paddle paddle = mock(Paddle.class);
+
+        DisruptionCapsule capsule = new DisruptionCapsule(position, room, player);
+
+        capsule.interact(paddle);
+
+        verify(player, times(1)).play(anyString());
     }
 
     @Test
