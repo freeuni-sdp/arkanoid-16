@@ -14,20 +14,7 @@ class ExpandedPaddle extends Paddle {
     }
 
     @Override
-    public void interact(Gobj other){
-        super.interact(other);
-        if (other instanceof FrameBrick){
-            if (other.getPosition().X < getPosition().X + EXPANDED_WIDTH &&
-                    other.getPosition().X > getPosition().X){
-                setPosition(new Point(other.getPosition().X - EXPANDED_WIDTH,
-                        getPosition().Y));
-            }
-        }
-    }
-
-    @Override
     public Rectangle getShape() {
-        return new Rectangle(getPosition(), new Size(EXPANDED_WIDTH,
-                EXPANDED_HEIGHT));
+        return new Rectangle(getPosition(), new Size(EXPANDED_WIDTH, EXPANDED_HEIGHT));
     }
 }

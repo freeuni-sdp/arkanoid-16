@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.IPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.OriginalSoundPlayer;
+import ge.edu.freeuni.sdp.arkanoid.DisruptionCapsuleInterfaces.StubSoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Rectangle;
@@ -17,6 +20,7 @@ public class Paddle extends Gobj<Rectangle> {
     private int extraLive;
     private Point prevPosition;
     private boolean _isFirable;
+    private IPlayer player = new OriginalSoundPlayer();
 
     public Paddle(Size roomSize) {
         this(new Point(roomSize.getWidth() / 2, roomSize.getHeight() - 2));
@@ -28,6 +32,15 @@ public class Paddle extends Gobj<Rectangle> {
         _paddleListeners = new HashSet<>();
         _lifeLostListeners = new HashSet<>();
         prevPosition = position;
+    }
+
+    Paddle(Point position, StubSoundPlayer player) {
+        super(position);
+        _isAlive = true;
+        _paddleListeners = new HashSet<>();
+        _lifeLostListeners = new HashSet<>();
+        prevPosition = position;
+        this.player = player;
     }
 
     @Override
@@ -43,13 +56,13 @@ public class Paddle extends Gobj<Rectangle> {
     @Override
     public void interact(Gobj other) {
         if (other instanceof FrameBrick) {
-            SoundPlayer.getInstance().play(SoundPlayer.COLLIDE);
+            player.play(SoundPlayer.COLLIDE);
             setPosition(prevPosition);
         }
 
         if (other instanceof Ball) {
             Ball ball = (Ball) other;
-            SoundPlayer.getInstance().play(SoundPlayer.PARRY);
+            player.play(SoundPlayer.PARRY);
             Speed newSpeed = ball.getSpeed().mirrorY();
             ball.setSpeed(newSpeed);
         }

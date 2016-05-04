@@ -22,7 +22,7 @@ public class SinkingWallGeneratorFrameBrick extends GeneratorFrameBrick {
         }
     }
 
-    private int getSinkingBrickWidth() {
+    public static int getSinkingBrickWidth() {
         return new SinkingBrick(null, BrickColor.Red, null).getShape().getSize().getWidth();
     }
 }

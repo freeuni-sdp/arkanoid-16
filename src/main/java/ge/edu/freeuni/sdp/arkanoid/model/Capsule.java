@@ -9,16 +9,16 @@ public abstract class Capsule extends Gobj<Rectangle> {
 
     protected final Room _room;
     private boolean _isAlive;
-
+    
     Capsule(Point position, Room room) {
 
         super(position);
         _isAlive = true;
         _room = room;
     }
-
+    
     public abstract Capsule createCapsule(Point position, Room room);
-
+    
     @Override
     public Rectangle getShape() {
         return new Rectangle(getPosition(), new Size(1, 1));

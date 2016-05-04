@@ -3,9 +3,6 @@ package ge.edu.freeuni.sdp.arkanoid.model;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Point;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 
-/**
- * Created by dell on 4/12/16.
- */
 public class StickyPaddle extends Paddle {
     private Paddle prevPaddle;
     private StickedBall stickedBall;
@@ -25,14 +22,23 @@ public class StickyPaddle extends Paddle {
         } else {
             super.interact(other);
         }
+
+        if ((other instanceof FrameBrick) && stickedBall != null) {
+            updateStickedBallPosition();
+        }
     }
 
     @Override
     public void move() {
         super.move();
+        if (stickedBall != null) {
+            updateStickedBallPosition();
+        }
+    }
+
+    private void updateStickedBallPosition() {
         Point currPoint = getPosition();
-        if (stickedBall != null)
-            stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
+        stickedBall.getBall().setPosition(new Point(currPoint.X + 1, currPoint.Y - 1));
     }
 
     @Override

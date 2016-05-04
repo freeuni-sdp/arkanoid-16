@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.arkanoid.model;
 
+import ge.edu.freeuni.sdp.arkanoid.SoundPlayer;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +16,12 @@ import static org.mockito.Mockito.*;
 public class StickyPaddleTest {
     @Mock Paddle paddle;
     @Mock Point position;
+    @Mock SoundPlayer soundPlayer;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        SoundPlayer.setSoundPlayer(soundPlayer);
     }
 
     @Test
@@ -68,11 +71,28 @@ public class StickyPaddleTest {
     public void testInteract_withFrameBrick() {
         Size size = mock(Size.class);
         Point originPoint = new Point(0, 0);
-        FrameBrick frameBrick = new FrameBrick(originPoint, size);
+        FrameBrick frameBrick = new FrameBrick(position, size);
         Paddle target = new StickyPaddle(paddle, originPoint);
         target.interact(frameBrick);
 
         assertThat(target.getPosition(), is(equalTo(originPoint)));
+    }
+
+    @Test
+    public void testInteract_withFrameBrickWithStickedBall() {
+        Size size = mock(Size.class);
+        Point startPoint = new Point(0, 0);
+        Speed speed = Direction.LEFT.toSpeed();
+        Ball ball = mock(Ball.class);
+        FrameBrick frameBrick = new FrameBrick(position, size);
+        Paddle target = new StickyPaddle(paddle, startPoint);
+        target.interact(ball);
+        target.setSpeed(speed);
+        target.move();
+        target.interact(frameBrick);
+
+        assertThat(target.getPosition(), is(equalTo(startPoint)));
+        verify(ball).setPosition(new Point(startPoint.X + 1, startPoint.Y - 1));
     }
 
     @Test
