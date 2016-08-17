@@ -6,6 +6,8 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 import ge.edu.freeuni.sdp.arkanoid.model.geometry.Speed;
 import org.junit.Before;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
+
 import java.util.Random;
 import java.util.Set;
 
@@ -56,10 +58,10 @@ public class ExpandedPaddleTest {
         paddle = new ExpandedPaddle(point);
         paddle.setSpeed(new Speed(60));
         paddle.move();
-        paddle.interact(new FrameBrick(new Point(7, 8.9), new Size(50, 100)));
+        paddle.interact(mock(FrameBrick.class));
         assertTrue(paddle.getPosition().equals(point));
 
-        Ball ball = new Ball();
+        Ball ball = spy(Ball.class);
         ball.setSpeed(new Speed(60));
         paddle.interact(ball);
         assertEquals(ball.getSpeed().getAngleDegrees(), new Speed(60).mirrorY().getAngleDegrees(), 1e-6);
@@ -116,11 +118,10 @@ public class ExpandedPaddleTest {
     public void testLifeLost(){
         point = new Point(6, 7);
         paddle = new ExpandedPaddle(point);
-        MyLifeLostListener lifeListener = new MyLifeLostListener();
+        LifeLostListener lifeListener = mock(LifeLostListener.class);
         paddle.addLifeLostListener(lifeListener);
-        assertFalse(lifeListener.lost);
         paddle.lifeLost();
-        assertTrue(lifeListener.lost);
+        verify(lifeListener, atLeastOnce()).lifeLost();
     }
 
 
@@ -132,42 +133,27 @@ public class ExpandedPaddleTest {
         Speed speed = new Speed(270);
         speed.setLength(1);
         paddle.setSpeed(speed);
-        MyPaddleChangedListener paddleListener = new MyPaddleChangedListener();
+        PaddleChangedListener paddleListener = mock(PaddleChangedListener.class);
         paddle.addListener(paddleListener);
         paddle.setAlive(true);
-        assertFalse(paddleListener.changed);
         paddle.move();
         paddle.exchange(paddle);
         assertFalse(paddle.isAlive());
-        assertTrue(paddleListener.changed);
+        verify(paddleListener, atLeastOnce()).paddleChanged(any());
         assertEquals(paddle.getPosition(), new Point(10, 6));
     }
 
     /** Test Method fire */
     @Test
     public void testFire(){
-        point = new Point(10, 7);
+        point = mock(Point.class);
         paddle = new ExpandedPaddle(point);
-        Room room = new Room();
-        Beam beam = new Beam(point, room);
+        Room room = mock(Room.class);
         paddle.setFirable(false);
-        assertFalse(contains_beam(room.getGobjs(), (beam)));
         paddle.fire(room);
-        assertFalse(contains_beam(room.getGobjs(), (beam)));
+        verify(room, never()).add(any());
         paddle.setFirable(true);
-        assertFalse(contains_beam(room.getGobjs(), (beam)));
         paddle.fire(room);
-        assertTrue(contains_beam(room.getGobjs(), (beam)));
+        verify(room, times(1)).add(isA(Beam.class));
     }
-
-    private boolean contains_beam(Set<Gobj> s, Gobj beam){
-        for (Gobj o : s){
-            if (o instanceof  Beam){
-                if (beam.getPosition().equals(o.getPosition()))
-                    return true;
-            }
-        }
-        return false;
-    }
-
 }

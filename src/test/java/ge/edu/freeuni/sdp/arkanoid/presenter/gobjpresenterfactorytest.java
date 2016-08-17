@@ -6,6 +6,7 @@ import ge.edu.freeuni.sdp.arkanoid.model.geometry.Size;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -16,13 +17,14 @@ public class gobjpresenterfactorytest {
     /** Test GetPresenter Method on BrickPresenter*/
     @Test
     public void testBrickPresenter(){
-        GobjPresenterFactory factory = new GobjPresenterFactory(new Size(10, 7));
-        Brick b = new BombBrick(new Point(5, 3), BrickColor.Gold, null, 5, null);
+        Size s = new Size(10, 7);
+        GobjPresenterFactory factory = new GobjPresenterFactory(s);
+        Brick b = mock(Brick.class);
+        when(b.getKind()).thenReturn(GobjKind.Brick);
         GobjPresenter presenter = factory.getPresenter(b);
         assertTrue(presenter instanceof  BrickPresenter);
         BrickPresenter p = (BrickPresenter) presenter;
-        assertEquals(p.getSize(), new Size(10, 7));
-        assertTrue((p.getGameObject()) instanceof Brick);
+        assertEquals(p.getSize(), s);
     }
 
     /** Test GetPresenter Method on PaddlePresenter*/
