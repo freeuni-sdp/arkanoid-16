@@ -27,8 +27,8 @@ public class RoomPresenter extends Presenter {
     public void init() {
         Level level = this.getConfiguration().getSelectedLevel();
         _game.init(level);
-        _lives = _game.geLives();
-        _score = _game.getScore();
+        _lives = -1;
+        _score = -1;
         _are_levels_over = false;
     }
 
