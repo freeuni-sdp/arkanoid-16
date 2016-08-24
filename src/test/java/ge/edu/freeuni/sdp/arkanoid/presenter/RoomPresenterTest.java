@@ -200,7 +200,7 @@ public class RoomPresenterTest {
 
     @Test
     public void execute_equalLives_notUpdateLives() throws Exception {
-        when(mGameFacade.geLives()).thenReturn(gameLives);
+        when(mGameFacade.geLives()).thenReturn(-1);
         roomPresenter.execute(Command.None);
         verify(mStatusUpdateListener, times(0)).updateLives(anyInt());
     }
@@ -215,7 +215,7 @@ public class RoomPresenterTest {
 
     @Test
     public void execute_equalScores_notUpdateScores() throws Exception {
-        when(mGameFacade.getScore()).thenReturn(gameScore);
+        when(mGameFacade.getScore()).thenReturn(-1);
         roomPresenter.execute(Command.None);
         verify(mStatusUpdateListener, times(0)).updateScore(anyInt());
     }

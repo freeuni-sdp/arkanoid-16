@@ -2,7 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 
-script: mvn package
+before_script: export AUDIODEV=null
 
-after_success:
-  - mvn clean test jacoco:report coveralls:report -DrepoToken=$repoToken
+script: mvn clean test jacoco:report coveralls:report -DrepoToken=$repoToken
